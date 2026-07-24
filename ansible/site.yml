@@ -1,0 +1,10 @@
+---
+- name: Base configuration
+  hosts: all
+  roles:
+    - common
+
+- name: Workstation profile
+  hosts: workstation
+  roles:
+    - workstation

@@ -1,0 +1,20 @@
+---
+- name: Create FiraCode Nerd Font directory
+  become: true
+  ansible.builtin.file:
+    path: /usr/share/fonts/firacode-nerd
+    state: directory
+    mode: "0755"
+
+- name: Install FiraCode Nerd Font
+  become: true
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz
+    dest: /usr/share/fonts/firacode-nerd
+    remote_src: true
+    creates: /usr/share/fonts/firacode-nerd/FiraCodeNerdFontMono-Regular.ttf
+
+- name: Rebuild font cache
+  become: true
+  ansible.builtin.command: fc-cache -f
+  changed_when: false

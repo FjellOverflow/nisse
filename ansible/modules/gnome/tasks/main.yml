@@ -1,0 +1,44 @@
+---
+- name: Remove GNOME desktop bloat
+  ansible.builtin.import_tasks: cleanup.yml
+
+# TODO: fedora only
+- name: Install GNOME desktop applications
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - gnome-boxes
+      - gnome-tweaks
+      - baobab
+      - dconf-editor
+      - decibels
+      - gnome-calculator
+      - gnome-connections
+      - gnome-disk-utility
+      - gnome-font-viewer
+      - gnome-logs
+      - gnome-system-monitor
+      - gnome-text-editor
+      - loupe
+      - nautilus
+      - papers
+      - showtime
+      - snapshot
+      - libreoffice-writer
+      - libreoffice-calc
+      - libreoffice-impress
+      - libreoffice-draw
+      - libreoffice-math
+      - libreoffice-base
+      - seahorse
+      - python3-psutil
+      - gnome-shell-extension-apps-menu
+      - gnome-shell-extension-places-menu
+      - gnome-shell-extension-window-list
+      - gnome-shell-extension-gsconnect
+
+- name: Configure GNOME settings
+  ansible.builtin.import_tasks: settings.yml
+
+- name: Configure appearance
+  ansible.builtin.import_tasks: appearance.yml

@@ -1,0 +1,35 @@
+---
+- name: Install workstation packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - gparted
+
+- name: Enable flathub remote
+  community.general.flatpak_remote:
+    name: flathub
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+    state: present
+    enabled: true
+
+- name: Install flatpaks
+  community.general.flatpak:
+    method: user
+    name:
+      - org.freefilesync.FreeFileSync
+      - org.gimp.GIMP
+      - md.obsidian.Obsidian
+      - org.videolan.VLC
+      - com.mattjakeman.ExtensionManager
+      - org.inkscape.Inkscape
+      - com.bitwarden.desktop
+      - org.gnome.DejaDup
+      - com.usebruno.Bruno
+      - com.spotify.Client
+
+# TODO: fedora only
+- name: Enable Fedora third-party repositories
+  become: true
+  ansible.builtin.command: fedora-third-party enable
+  changed_when: false

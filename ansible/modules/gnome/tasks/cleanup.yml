@@ -1,0 +1,34 @@
+---
+# TODO: fedora only
+- name: Remove packages
+  become: true
+  ignore_errors: true  # noqa: ignore-errors some packages may not be present
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - anaconda-live
+    - anaconda-webui
+    - gnome-tour
+    - yelp
+    - rhythmbox
+    - gnome-weather
+    - gnome-contacts
+    - gnome-calendar
+    - gnome-clocks
+    - gnome-maps
+    - gnome-characters
+    - mediawriter
+    - totem
+    - abrt-desktop
+    - abrt-gui
+    - gnome-abrt
+    - simple-scan
+    - firefox-langpacks
+    - firefox
+    - malcontent-control
+
+- name: Autoremove orphan dependencies
+  become: true
+  ansible.builtin.dnf:
+    autoremove: true

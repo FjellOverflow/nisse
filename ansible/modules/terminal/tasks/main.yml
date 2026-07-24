@@ -1,0 +1,33 @@
+---
+- name: Set terminal font
+  block:
+    - name: Disable system font
+      community.general.dconf:
+        key: /org/gnome/Ptyxis/use-system-font
+        value: "false"
+    - name: Set new font
+      community.general.dconf:
+        key: /org/gnome/Ptyxis/font-name
+        value: "'FiraCode Nerd Font Mono 16'"
+
+- name: Set terminal theme
+  block:
+    - name: Read profile UUID
+      community.general.dconf:
+        key: /org/gnome/Ptyxis/default-profile-uuid
+        state: read
+      register: terminal_ptyxis_profile_uuid
+    - name: Set nord theme on profile {{ terminal_ptyxis_profile_uuid.value }}
+      community.general.dconf:
+        key: /org/gnome/Ptyxis/Profiles/{{ terminal_ptyxis_profile_uuid.value[1:-1] }}/palette
+        value: "'nord'"
+
+- name: Turn off terminal audible bell
+  community.general.dconf:
+    key: /org/gnome/Ptyxis/audible-bell
+    value: "false"
+
+- name: Turn off terminal visual bell
+  community.general.dconf:
+    key: /org/gnome/Ptyxis/visual-bell
+    value: "false"

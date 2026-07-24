@@ -1,0 +1,8 @@
+---
+- name: Enable passwordless sudo for {{ target_user }}
+  become: true
+  ansible.builtin.lineinfile:
+    dest: /etc/sudoers
+    regexp: "^%wheel"
+    line: "{{ target_user }} ALL=(ALL) NOPASSWD: ALL"
+    validate: "/usr/sbin/visudo -cf %s"

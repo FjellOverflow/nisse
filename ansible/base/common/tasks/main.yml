@@ -1,0 +1,37 @@
+---
+# TODO: fedora only
+- name: Upgrade packages
+  become: true
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+    update_only: true
+
+
+# TODO: fedora only
+- name: Install base utilities
+  become: true
+  ansible.builtin.package:
+    name:
+      - bat
+      - curl
+      - direnv
+      - git
+      - gnupg2
+      - nano
+      - ncdu
+      - tmux
+      - tree
+      - wget
+
+- name: Configure locale
+  ansible.builtin.import_tasks: locale.yml
+
+- name: Setup fish
+  ansible.builtin.import_tasks: fish.yml
+
+- name: Setup git
+  ansible.builtin.import_tasks: git.yml
+
+- name: Setup passwordless sudo
+  ansible.builtin.import_tasks: sudo.yml

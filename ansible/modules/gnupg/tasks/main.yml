@@ -1,0 +1,19 @@
+---
+# TODO: fedora only
+- name: Install GNOME pinentry
+  become: true
+  ansible.builtin.dnf:
+    name: pinentry-gnome3
+
+- name: Ensure gnupg directory exists
+  ansible.builtin.file:
+    path: "/home/{{ target_user }}/.gnupg"
+    state: directory
+    mode: "0700"
+
+- name: Configure gpg-agent to use GNOME pinentry
+  ansible.builtin.copy:
+    dest: "/home/{{ target_user }}/.gnupg/gpg-agent.conf"
+    mode: "0600"
+    content: |
+      pinentry-program /usr/bin/pinentry-gnome3

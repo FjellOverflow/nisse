@@ -1,0 +1,22 @@
+---
+# TODO: fedora only
+- name: Enable mise COPR
+  become: true
+  community.general.copr:
+    name: jdxcode/mise
+
+- name: Install mise
+  become: true
+  ansible.builtin.dnf:
+    name: mise
+
+- name: Check whether usage CLI is installed
+  ansible.builtin.command: mise which usage
+  register: setup_fedora_mise_usage
+  changed_when: false
+  failed_when: false
+
+- name: Install usage CLI for mise completions
+  ansible.builtin.command: mise use -g usage
+  when: setup_fedora_mise_usage.rc != 0
+  changed_when: true

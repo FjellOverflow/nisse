@@ -1,0 +1,45 @@
+---
+# TODO: fedora only
+- name: Import Brave key
+  become: true
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+
+- name: Add Brave repository
+  become: true
+  ansible.builtin.yum_repository:
+    name: brave-browser
+    description: Brave Browser
+    baseurl: https://brave-browser-rpm-release.s3.brave.com/$basearch
+    gpgcheck: true
+    gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+
+- name: Install Brave
+  become: true
+  ansible.builtin.dnf:
+    name: brave-browser
+
+- name: Ensure Brave managed policy directory exists
+  become: true
+  ansible.builtin.file:
+    path: /etc/brave/policies/managed
+    state: directory
+    mode: "0755"
+
+- name: Write Brave managed policy
+  become: true
+  ansible.builtin.copy:
+    src: brave-policy.json
+    dest: /etc/brave/policies/managed/policy.json
+    mode: "0644"
+
+- name: Check default browser
+  ansible.builtin.command: xdg-settings check default-web-browser brave-browser.desktop
+  register: brave_default_browser
+  changed_when: false
+
+- name: Set Brave as default browser
+  ansible.builtin.command: xdg-settings set default-web-browser brave-browser.desktop
+  when: "'yes' not in brave_default_browser.stdout"
+  changed_when: true

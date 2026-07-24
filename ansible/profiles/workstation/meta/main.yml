@@ -1,0 +1,12 @@
+---
+dependencies:
+  - role: keyboard
+  - role: fonts
+  - role: terminal
+  - role: mise
+  - role: brave
+  - role: vscodium
+  - role: mullvad
+  - role: syncthing
+  - role: gnupg
+  - role: gnome

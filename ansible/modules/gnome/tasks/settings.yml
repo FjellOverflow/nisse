@@ -1,0 +1,179 @@
+---
+
+- name: Turn off location services
+  community.general.dconf:
+    key: /org/gnome/system/location/enabled
+    value: "false"
+
+- name: Turn off automatic problem reporting
+  community.general.dconf:
+    key: /org/gnome/desktop/privacy/report-technical-problems
+    value: "false"
+
+- name: Set dark theme
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/color-scheme
+    value: "'prefer-dark'"
+
+- name: Set desktop background
+  community.general.dconf:
+    key: /org/gnome/desktop/background/picture-uri
+    value: "'file:///home/{{ target_user }}/.local/share/backgrounds/fedora.png'"
+
+- name: Set desktop background (dark)
+  community.general.dconf:
+    key: /org/gnome/desktop/background/picture-uri-dark
+    value: "'file:///home/{{ target_user }}/.local/share/backgrounds/fedora.png'"
+
+- name: Set desktop background zoom
+  community.general.dconf:
+    key: /org/gnome/desktop/background/picture-options
+    value: "'zoom'"
+
+- name: Pinned apps
+  community.general.dconf:
+    key: /org/gnome/shell/favorite-apps
+    value: "{{ favorite_apps }}"
+  vars:
+    favorite_apps:
+      - org.gnome.Ptyxis.desktop
+      - brave-browser.desktop
+      - codium.desktop
+      - org.gnome.Nautilus.desktop
+      - md.obsidian.Obsidian.desktop
+      - org.gnome.Software.desktop
+
+- name: Minimize & maximize windows
+  community.general.dconf:
+    key: /org/gnome/desktop/wm/preferences/button-layout
+    value: "'appmenu:minimize,maximize,close'"
+
+- name: Close windows with SUPER + q
+  community.general.dconf:
+    key: /org/gnome/desktop/wm/keybindings/close
+    value: "['<Super>q']"
+
+- name: Launch new terminal with SUPER + ENTER
+  block:
+    - name: Register custom shortcut
+      community.general.dconf:
+        key: /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings
+        value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+    - name: Set custom shortcut binding
+      community.general.dconf:
+        key: /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding
+        value: "'<Super>Return'"
+    - name: Set custom shortcut command
+      community.general.dconf:
+        key: /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command
+        value: "'ptyxis --new-window'"
+    - name: Set custom shortcut name
+      community.general.dconf:
+        key: /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name
+        value: "'Launch terminal'"
+
+- name: 24 hour clock
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/clock-format
+    value: "'24h'"
+
+- name: Show weekday
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/clock-show-weekday
+    value: "true"
+
+- name: Calendar weeks
+  community.general.dconf:
+    key: /org/gnome/desktop/calendar/show-weekdate
+    value: "true"
+
+- name: Enable extensions
+  community.general.dconf:
+    key: /org/gnome/shell/enabled-extensions
+    value: "{{ enabled_extensions }}"
+  vars:
+    enabled_extensions:
+      - places-menu@gnome-shell-extensions.gcampax.github.com
+      - window-list@gnome-shell-extensions.gcampax.github.com
+      - apps-menu@gnome-shell-extensions.gcampax.github.com
+      - gsconnect@andyholmes.github.io
+
+- name: Disable extensions
+  community.general.dconf:
+    key: /org/gnome/shell/disabled-extensions
+    value: "['background-logo@fedorahosted.org']"
+
+- name: Register app folders
+  community.general.dconf:
+    key: /org/gnome/desktop/app-folders/folder-children
+    value: "['Disk', 'Graphics', 'Media', 'Office', 'Settings', 'Sync', 'System', 'Utilities']"
+
+- name: Set app folder names
+  community.general.dconf:
+    key: "/org/gnome/desktop/app-folders/folders/{{ item }}/name"
+    value: "'{{ item }}'"
+  loop:
+    - Disk
+    - Graphics
+    - Media
+    - Office
+    - Settings
+    - Sync
+    - System
+    - Utilities
+
+- name: Set app folder contents
+  community.general.dconf:
+    key: "/org/gnome/desktop/app-folders/folders/{{ item.folder }}/apps"
+    value: "{{ item.apps }}"
+  loop:
+    - folder: Disk
+      apps:
+        - org.gnome.baobab.desktop
+        - org.gnome.DiskUtility.desktop
+        - gparted.desktop
+    - folder: Graphics
+      apps:
+        - org.gimp.GIMP.desktop
+        - org.inkscape.Inkscape.desktop
+    - folder: Media
+      apps:
+        - org.gnome.Decibels.desktop
+        - org.gnome.Loupe.desktop
+        - org.gnome.Showtime.desktop
+        - org.videolan.VLC.desktop
+    - folder: Office
+      apps:
+        - libreoffice-writer.desktop
+        - libreoffice-calc.desktop
+        - libreoffice-impress.desktop
+        - libreoffice-draw.desktop
+        - libreoffice-math.desktop
+        - libreoffice-base.desktop
+        - libreoffice-startcenter.desktop
+    - folder: Settings
+      apps:
+        - ca.desrt.dconf-editor.desktop
+        - com.mattjakeman.ExtensionManager.desktop
+        - org.gnome.Extensions.desktop
+        - org.gnome.Settings.desktop
+        - org.gnome.tweaks.desktop
+    - folder: Sync
+      apps:
+        - org.freefilesync.FreeFileSync.desktop
+        - org.freefilesync.FreeFileSync.RealTimeSync.desktop
+        - syncthing-start.desktop
+        - syncthing-ui.desktop
+    - folder: System
+      apps:
+        - org.gnome.Connections.desktop
+        - org.gnome.font-viewer.desktop
+        - org.gnome.Logs.desktop
+        - org.gnome.SystemMonitor.desktop
+    - folder: Utilities
+      apps:
+        - org.gnome.Calculator.desktop
+        - org.gnome.Snapshot.desktop
+        - org.gnome.Papers.desktop
+        - org.gnome.TextEditor.desktop
+        - org.gnome.seahorse.Application.desktop

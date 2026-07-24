@@ -1,0 +1,51 @@
+---
+# TODO: fedora only
+- name: Import VSCodium key
+  become: true
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+
+- name: Add VSCodium repository
+  become: true
+  ansible.builtin.yum_repository:
+    name: vscodium
+    description: VSCodium
+    baseurl: https://download.vscodium.com/rpms/
+    gpgcheck: true
+    repo_gpgcheck: true
+    gpgkey: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+
+- name: Install VSCodium
+  become: true
+  ansible.builtin.dnf:
+    name: codium
+
+- name: List installed VSCodium extensions
+  ansible.builtin.command: codium --list-extensions
+  register: vscodium_installed
+  changed_when: false
+
+- name: Install VSCodium extensions
+  ansible.builtin.command: "codium --install-extension {{ extension }}"
+  loop:
+    - jnoortheen.nix-ide
+    - vscode-icons-team.vscode-icons
+    - zhuangtongfa.material-theme
+    - jeanp413.open-remote-ssh
+  loop_control:
+    loop_var: extension
+  when: extension not in vscodium_installed.stdout_lines
+  changed_when: true
+
+- name: Ensure VSCodium user config directory exists
+  ansible.builtin.file:
+    path: "/home/{{ target_user }}/.config/VSCodium/User"
+    state: directory
+    mode: "0755"
+
+- name: Write VSCodium settings
+  ansible.builtin.copy:
+    src: vscodium-settings.json
+    dest: "/home/{{ target_user }}/.config/VSCodium/User/settings.json"
+    mode: "0644"

@@ -1,0 +1,34 @@
+---
+# TODO: fedora only
+- name: Install fish
+  become: true
+  ansible.builtin.dnf:
+    name: fish
+
+- name: Enable starship COPR
+  become: true
+  community.general.copr:
+    name: atim/starship
+
+- name: Install starship
+  become: true
+  ansible.builtin.dnf:
+    name: starship
+
+- name: Set fish as default shell for {{ target_user }}
+  become: true
+  ansible.builtin.user:
+    name: "{{ target_user }}"
+    shell: /usr/bin/fish
+
+- name: Ensure fish config directory exists
+  ansible.builtin.file:
+    path: "/home/{{ target_user }}/.config/fish"
+    state: directory
+    mode: "0755"
+
+- name: Write fish config
+  ansible.builtin.copy:
+    src: config.fish
+    dest: "/home/{{ target_user }}/.config/fish/config.fish"
+    mode: "0644"

@@ -1,0 +1,26 @@
+---
+- name: Set timezone
+  become: true
+  community.general.timezone:
+    name: Europe/Oslo
+
+# TODO: fedora only
+- name: Install locale langpacks
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - glibc-langpack-en
+      - glibc-langpack-nb
+
+- name: Configure locale
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/locale.conf
+    mode: "0644"
+    content: |
+      LANG=en_US.UTF-8
+      LC_TIME=nb_NO.UTF-8
+      LC_NUMERIC=nb_NO.UTF-8
+      LC_MONETARY=nb_NO.UTF-8
+      LC_PAPER=nb_NO.UTF-8
+      LC_MEASUREMENT=nb_NO.UTF-8

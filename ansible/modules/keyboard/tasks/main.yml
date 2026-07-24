@@ -1,0 +1,33 @@
+---
+- name: Set console keymap
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/vconsole.conf
+    regexp: "^KEYMAP="
+    line: "KEYMAP={{ keyboard_layout }}"
+    create: true
+    mode: "0644"
+
+- name: Ensure X11 config directory exists
+  become: true
+  ansible.builtin.file:
+    path: /etc/X11/xorg.conf.d
+    state: directory
+    mode: "0755"
+
+- name: Set X11 keyboard layout
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/X11/xorg.conf.d/00-keyboard.conf
+    mode: "0644"
+    content: |
+      Section "InputClass"
+          Identifier "system-keyboard"
+          MatchIsKeyboard "on"
+          Option "XkbLayout" "{{ keyboard_layout }}"
+      EndSection
+
+- name: Set GNOME keyboard layout
+  community.general.dconf:
+    key: /org/gnome/desktop/input-sources/sources
+    value: "[('xkb', '{{ keyboard_layout }}')]"
