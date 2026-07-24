@@ -1,13 +1,23 @@
-name: ci
+---
+name: nix
 
 on:
   push:
+    paths:
+      - "nix/**"
+      - ".github/workflows/nix.yaml"
   pull_request:
+    paths:
+      - "nix/**"
+      - ".github/workflows/nix.yaml"
   workflow_dispatch:
 
 jobs:
   lint:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: nix
     steps:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v30

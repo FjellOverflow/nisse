@@ -1,12 +1,23 @@
 ---
-name: lint
+name: ansible
 
 on:
   push:
+    paths:
+      - "ansible/**"
+      - ".github/workflows/ansible.yaml"
+  pull_request:
+    paths:
+      - "ansible/**"
+      - ".github/workflows/ansible.yaml"
   workflow_dispatch:
+
 jobs:
   lint:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ansible
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
