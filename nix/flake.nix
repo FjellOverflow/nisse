@@ -25,6 +25,7 @@
       home-manager,
       nix-index-database,
       nixpkgs-2511,
+      ...
     }:
     let
       user = "fjelloverflow";
