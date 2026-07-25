@@ -24,7 +24,6 @@
       - com.mattjakeman.ExtensionManager
       - org.inkscape.Inkscape
       - com.bitwarden.desktop
-      - org.gnome.DejaDup
       - com.usebruno.Bruno
       - com.spotify.Client
 
