@@ -99,6 +99,7 @@
       };
       interactiveShellInit = ''
         set fish_greeting
+        fish_add_path $HOME/.local/bin
         if type -q mise
           mise activate fish | source
         end
