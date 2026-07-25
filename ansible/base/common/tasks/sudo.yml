@@ -1,8 +1,16 @@
 ---
-- name: Enable passwordless sudo for {{ target_user }}
+- name: Ensure wheel group membership for {{ target_user }}
   become: true
-  ansible.builtin.lineinfile:
-    dest: /etc/sudoers
-    regexp: "^%wheel"
-    line: "{{ target_user }} ALL=(ALL) NOPASSWD: ALL"
-    validate: "/usr/sbin/visudo -cf %s"
+  ansible.builtin.user:
+    name: "{{ target_user }}"
+    groups: wheel
+    append: true
+
+- name: Enable passwordless sudo for the wheel group
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/10-wheel-nopasswd
+    mode: "0440"
+    validate: /usr/sbin/visudo -cf %s
+    content: |
+      %wheel ALL=(ALL) NOPASSWD: ALL
