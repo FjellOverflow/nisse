@@ -28,7 +28,6 @@
     options = "--delete-older-than 14d";
   };
 
-  system.stateVersion = "25.11";
   security.sudo.wheelNeedsPassword = false;
 
   users.users.${user} = {
@@ -90,8 +89,6 @@
   programs.nix-index-database.comma.enable = true;
 
   home-manager.users.${user} = _: {
-    home.stateVersion = "25.11";
-
     programs.fish = {
       enable = true;
       shellAliases = {

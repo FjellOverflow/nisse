@@ -1,4 +1,4 @@
-{ nixpkgs-2511, ... }:
+{ user, nixpkgs-2511, ... }:
 
 {
   imports = [
@@ -16,4 +16,7 @@
 
   # TODO: 26.05 introduced render issue
   hardware.graphics.package = nixpkgs-2511.legacyPackages.x86_64-linux.mesa;
+
+  system.stateVersion = "25.11";
+  home-manager.users.${user}.home.stateVersion = "25.11";
 }

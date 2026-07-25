@@ -1,4 +1,4 @@
-{ ... }:
+{ user, ... }:
 
 {
   imports = [
@@ -21,4 +21,7 @@
     variant = "";
   };
   console.keyMap = "de";
+
+  system.stateVersion = "25.11";
+  home-manager.users.${user}.home.stateVersion = "25.11";
 }
