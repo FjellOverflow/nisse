@@ -29,9 +29,9 @@
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "nil";
           "nix.formatterPath" = [ "${pkgs.nixfmt}/bin/nixfmt" ];
-          "editor.formatOnSave" = true;
           "[nix]" = {
             "editor.defaultFormatter" = "jnoortheen.nix-ide";
+            "editor.formatOnSave" = true;
           };
         };
       };

@@ -29,7 +29,6 @@
 - name: Install VSCodium extensions
   ansible.builtin.command: "codium --install-extension {{ extension }}"
   loop:
-    - jnoortheen.nix-ide
     - vscode-icons-team.vscode-icons
     - zhuangtongfa.material-theme
     - jeanp413.open-remote-ssh
