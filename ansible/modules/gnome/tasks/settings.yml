@@ -144,13 +144,13 @@
         - org.videolan.VLC.desktop
     - folder: Office
       apps:
-        - libreoffice-writer.desktop
-        - libreoffice-calc.desktop
-        - libreoffice-impress.desktop
-        - libreoffice-draw.desktop
-        - libreoffice-math.desktop
-        - libreoffice-base.desktop
-        - libreoffice-startcenter.desktop
+        - org.libreoffice.LibreOffice.desktop
+        - org.libreoffice.LibreOffice.base.desktop
+        - org.libreoffice.LibreOffice.calc.desktop
+        - org.libreoffice.LibreOffice.draw.desktop
+        - org.libreoffice.LibreOffice.impress.desktop
+        - org.libreoffice.LibreOffice.math.desktop
+        - org.libreoffice.LibreOffice.writer.desktop
     - folder: Settings
       apps:
         - ca.desrt.dconf-editor.desktop

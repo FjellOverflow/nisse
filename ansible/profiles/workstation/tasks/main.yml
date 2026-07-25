@@ -26,6 +26,7 @@
       - com.bitwarden.desktop
       - com.usebruno.Bruno
       - com.spotify.Client
+      - org.libreoffice.LibreOffice
 
 # TODO: fedora only
 - name: Enable Fedora third-party repositories
