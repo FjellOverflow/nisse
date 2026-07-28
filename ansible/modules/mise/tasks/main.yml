@@ -10,6 +10,7 @@
   ansible.builtin.dnf:
     name: mise
 
+# TODO: fedora only
 - name: Check whether usage CLI is installed
   ansible.builtin.command: mise which usage
   register: setup_fedora_mise_usage
