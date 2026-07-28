@@ -69,6 +69,7 @@ sudo chown $(whoami): machines/<host>/*
 5. Wire in new config
 
 ```sh
+git add .
 sudo rm -rf /etc/nixos
 sudo ln -s ~/.nisse/nix /etc/nixos
 ```
@@ -93,6 +94,7 @@ sudo nixos-rebuild switch --flake /etc/nixos#<host>
 ```sh
 sudo dnf install -y ansible git
 git clone https://github.com/FjellOverflow/nisse.git ~/.nisse && cd ~/.nisse/ansible
+ansible-galaxy collection install -r requirements.yaml
 ```
 
 2. Add the new host to `hosts.yaml`
