@@ -66,22 +66,22 @@ sudo chown $(whoami): machines/<host>/*
 };
 ```
 
-5. Wire in new config
+5. Activate config
 
 ```sh
 git add .
+sudo nixos-rebuild switch --flake ~/.nisse/nix#<host>
+```
+
+6. Wire in new config, once the activation above succeeded
+
+```sh
 sudo rm -rf /etc/nixos
 sudo ln -s ~/.nisse/nix /etc/nixos
 ```
 
 > [!NOTE]
 > After symlinking `/etc/nixos` to it, `~/.nisse` should not be deleted or moved, otherwise the symlink needs updating.
-
-6. Activate config
-
-```sh
-sudo nixos-rebuild switch --flake /etc/nixos#<host>
-```
 
 ### Fedora
 
