@@ -5,6 +5,13 @@
     name:
       - gparted
 
+- name: Libvirt group for {{ target_user }}
+  become: true
+  ansible.builtin.user:
+    name: "{{ target_user }}"
+    groups: libvirt
+    append: true
+
 - name: Enable flathub remote
   community.general.flatpak_remote:
     name: flathub
