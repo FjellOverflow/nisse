@@ -45,6 +45,9 @@
           find . -name '*.nix' -exec nixfmt --check {} +
         '';
       };
+      machines = builtins.attrNames (
+        nixpkgs.lib.filterAttrs (_: type: type == "directory") (builtins.readDir ./machines)
+      );
       commonModules = [
         nix-flatpak.nixosModules.nix-flatpak
         home-manager.nixosModules.home-manager
@@ -69,23 +72,12 @@
         ];
       };
 
-      nixosConfigurations = {
-        vm = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit user; };
-          modules = commonModules ++ [ ./machines/vm/default.nix ];
-        };
-        thinkpad = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit user; };
-          modules = commonModules ++ [ ./machines/thinkpad/default.nix ];
-        };
-        brick = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = nixpkgs.lib.genAttrs machines (
+        host:
+        nixpkgs.lib.nixosSystem {
           specialArgs = { inherit user nixpkgs-2511; };
-          modules = commonModules ++ [ ./machines/brick/default.nix ];
-        };
-        gigabyte = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit user; };
-          modules = commonModules ++ [ ./machines/gigabyte/default.nix ];
-        };
-      };
+          modules = commonModules ++ [ ./machines/${host}/default.nix ];
+        }
+      );
     };
 }
