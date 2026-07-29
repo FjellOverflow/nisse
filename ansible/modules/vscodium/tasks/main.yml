@@ -39,12 +39,12 @@
 
 - name: Ensure VSCodium user config directory exists
   ansible.builtin.file:
-    path: "/home/{{ target_user }}/.config/VSCodium/User"
+    path: "{{ target_home }}/.config/VSCodium/User"
     state: directory
     mode: "0755"
 
 - name: Write VSCodium settings
   ansible.builtin.copy:
     src: vscodium-settings.json
-    dest: "/home/{{ target_user }}/.config/VSCodium/User/settings.json"
+    dest: "{{ target_home }}/.config/VSCodium/User/settings.json"
     mode: "0644"

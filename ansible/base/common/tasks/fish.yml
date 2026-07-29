@@ -23,12 +23,12 @@
 
 - name: Ensure fish config directory exists
   ansible.builtin.file:
-    path: "/home/{{ target_user }}/.config/fish"
+    path: "{{ target_home }}/.config/fish"
     state: directory
     mode: "0755"
 
 - name: Write fish config
   ansible.builtin.copy:
     src: config.fish
-    dest: "/home/{{ target_user }}/.config/fish/config.fish"
+    dest: "{{ target_home }}/.config/fish/config.fish"
     mode: "0644"

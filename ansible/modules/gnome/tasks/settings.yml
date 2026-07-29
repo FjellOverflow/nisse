@@ -18,12 +18,12 @@
 - name: Set desktop background
   community.general.dconf:
     key: /org/gnome/desktop/background/picture-uri
-    value: "'file:///home/{{ target_user }}/.local/share/backgrounds/fedora.png'"
+    value: "'file://{{ target_home }}/.local/share/backgrounds/fedora.png'"
 
 - name: Set desktop background (dark)
   community.general.dconf:
     key: /org/gnome/desktop/background/picture-uri-dark
-    value: "'file:///home/{{ target_user }}/.local/share/backgrounds/fedora.png'"
+    value: "'file://{{ target_home }}/.local/share/backgrounds/fedora.png'"
 
 - name: Set desktop background zoom
   community.general.dconf:

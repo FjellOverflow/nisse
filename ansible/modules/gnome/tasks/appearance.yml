@@ -1,20 +1,20 @@
 ---
 - name: Ensure backgrounds directory exists
   ansible.builtin.file:
-    path: "/home/{{ target_user }}/.local/share/backgrounds"
+    path: "{{ target_home }}/.local/share/backgrounds"
     state: directory
     mode: "0755"
 
 - name: Install wallpaper
   ansible.builtin.copy:
     src: wallpaper.png
-    dest: "/home/{{ target_user }}/.local/share/backgrounds/fedora.png"
+    dest: "{{ target_home }}/.local/share/backgrounds/fedora.png"
     mode: "0644"
 
 - name: Set user avatar
   ansible.builtin.copy:
     src: avatar.png
-    dest: "/home/{{ target_user }}/.face"
+    dest: "{{ target_home }}/.face"
     mode: "0644"
 
 - name: Install avatar for AccountsService

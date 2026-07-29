@@ -1,4 +1,10 @@
 ---
+- name: Assert that target_user is the connecting user
+  ansible.builtin.assert:
+    that: target_user == ansible_facts['user_id']
+    fail_msg: "target_user is '{{ target_user }}', but this play connects as '{{ ansible_facts['user_id'] }}'."
+    quiet: true
+
 # TODO: fedora only
 - name: Upgrade packages
   become: true
