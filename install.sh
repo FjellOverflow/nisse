@@ -9,15 +9,34 @@ CHECKOUT=$HOME/.nisse
 CHECKOUT_SHORT='~/.nisse'
 README=$REPO#installation
 
-step() { printf '==> %s\n' "$*"; }
+if [ -z "${NO_COLOR:-}" ] && [ "${TERM:-dumb}" != dumb ]; then
+  PRIMARY=$(printf '\033[1;36m')
+  INFO=$(printf '\033[36m')
+  ACCENT=$(printf '\033[1;33m')
+  ERROR=$(printf '\033[1;31m')
+  RESET=$(printf '\033[0m')
+else
+  PRIMARY='' INFO='' ACCENT='' ERROR='' RESET=''
+fi
+
+step() { printf '%s==> %s%s\n' "$PRIMARY" "$*" "$RESET" >/dev/tty; }
+
+say() { printf '\n%s%s%s\n' "$INFO" "$*" "$RESET" >/dev/tty; }
+
+cmd() {
+  printf '\n' >/dev/tty
+  printf '%s\n' "$*" | while IFS= read -r line; do
+    printf '     %s%s%s\n' "$PRIMARY" "$line" "$RESET" >/dev/tty
+  done
+}
 
 die() {
-  printf '!! %s\n' "$*" >&2
+  printf '%s!! %s%s\n' "$ERROR" "$*" "$RESET" >&2
   exit 1
 }
 
 ask() {
-  printf '\n%s ' "$*" >/dev/tty
+  printf '\n%s%s%s ' "$ACCENT" "$*" "$RESET" >/dev/tty
   IFS= read -r reply </dev/tty || reply=
 }
 
@@ -26,7 +45,8 @@ confirm() {
   case $reply in
   [Yy]*) ;;
   *)
-    printf '\nExited without applying configuration. Re-run script once you are ready or read more at %s\n\n' "$README"
+    say "Exited without applying configuration. Re-run script once you are ready or read more at $README"
+    printf '\n' >/dev/tty
     exit 0
     ;;
   esac
@@ -103,29 +123,22 @@ bootstrap_fedora() {
   (cd "$CHECKOUT/ansible" && ansible-galaxy collection install -r requirements.yaml)
   step 'Installed ansible collections.'
 
-  printf '\nBefore the installation proceeds, add host %s to ansible/hosts.yaml.\n' "$host" >/dev/tty
+  say "Before the installation proceeds, add host $host to ansible/hosts.yaml."
   edit_files "$CHECKOUT/ansible/hosts.yaml"
 
-  confirm "The configuration is about to be applied. This may take a while.
-
-     ansible-playbook site.yml --limit $host -K
-
-Continue? [y/N]"
+  say 'The configuration is about to be applied. This may take a while.'
+  cmd "ansible-playbook site.yml --limit $host -K"
+  confirm 'Continue? [y/N]'
 
   (cd "$CHECKOUT/ansible" && ansible-playbook site.yml --limit "$host" -K </dev/tty) ||
     die 'Ansible exited with error. The machine may be in a partially configured state. Inspect and fix the error, then re-run the script.'
   step "Host $host was successfully configured."
 
-  cat <<EOF
-
-You can re-apply this configuration again at any point with
-
-     cd $CHECKOUT_SHORT && git pull
-     cd ansible && ansible-playbook site.yml --limit $host
-
-Read more at $README
-
-EOF
+  say 'You can re-apply this configuration again at any point with'
+  cmd "cd $CHECKOUT_SHORT && git pull
+cd ansible && ansible-playbook site.yml --limit $host"
+  say "Read more at $README"
+  printf '\n' >/dev/tty
 }
 
 bootstrap_nixos() {
@@ -145,21 +158,16 @@ bootstrap_nixos() {
     step "Copied pre-generated configuration to nix/machines/$host."
   fi
 
-  cat >/dev/tty <<EOF
-
-Before the installation proceeds, adjust nix/machines/$host/default.nix (see existing machines for reference) and add new host to nix/flake.nix.
-EOF
+  say "Before the installation proceeds, adjust nix/machines/$host/default.nix (see existing machines for reference) and add new host to nix/flake.nix."
   edit_files "$machine/default.nix" "$CHECKOUT/nix/flake.nix"
 
   git_run -C "$CHECKOUT" add .
   step 'Added new configuration files.'
 
-  confirm "The configuration is about to be applied. This may take a while.
-
-     sudo nixos-rebuild switch --flake $CHECKOUT_SHORT/nix#$host
-     sudo rm -rf /etc/nixos && sudo ln -s $CHECKOUT_SHORT/nix /etc/nixos
-
-Continue? [y/N]"
+  say 'The configuration is about to be applied. This may take a while.'
+  cmd "sudo nixos-rebuild switch --flake $CHECKOUT_SHORT/nix#$host
+sudo rm -rf /etc/nixos && sudo ln -s $CHECKOUT_SHORT/nix /etc/nixos"
+  confirm 'Continue? [y/N]'
 
   sudo nixos-rebuild switch --flake "$CHECKOUT/nix#$host" ||
     die 'NixOS exited with error. The machine remained in its previous state. Inspect and fix the error, then re-run the script.'
@@ -169,16 +177,11 @@ Continue? [y/N]"
   sudo ln -s "$CHECKOUT/nix" /etc/nixos
   step "Symlinked /etc/nixos to $CHECKOUT_SHORT/nix."
 
-  cat <<EOF
-
-You can re-apply this configuration again at any point with
-
-     cd $CHECKOUT_SHORT && git pull
-     nh os switch
-
-Read more at $README
-
-EOF
+  say 'You can re-apply this configuration again at any point with'
+  cmd "cd $CHECKOUT_SHORT && git pull
+nh os switch"
+  say "Read more at $README"
+  printf '\n' >/dev/tty
 }
 
 (: </dev/tty) 2>/dev/null || die 'Terminal is non-interactive.'
