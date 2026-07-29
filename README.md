@@ -59,23 +59,14 @@ sudo chown $(whoami): machines/<host>/*
 
 3. Adjust `machines/<host>/default.nix` (same pattern as already existing `machines/<existingHost>/default.nix`)
 
-4. Add the new host to `flake.nix`
-
-```nix
-<host> = nixpkgs.lib.nixosSystem {
-  specialArgs = { inherit user; };
-  modules = commonModules ++ [ ./machines/<host>/default.nix ];
-};
-```
-
-5. Activate config
+4. Activate config
 
 ```sh
 git add .
 sudo nixos-rebuild switch --flake ~/.nisse/nix#<host>
 ```
 
-6. Wire in new config, once the activation above succeeded
+5. Wire in new config, once the activation above succeeded
 
 ```sh
 sudo rm -rf /etc/nixos
@@ -114,6 +105,17 @@ all:
 
 ```sh
 ansible-playbook site.yml --limit <host> -K
+```
+
+### Quick install
+
+Alternatively, the autoconfiguration can be triggered with an automated install script. The script detects the current operating system, clones the repository and runs the applicable configuration. It's interactive and prompts for user inputs at important steps and always asks for confirmation before applying changes.
+
+> [!CAUTION]
+> Executing a remote script of unknown origin can be dangerous. Verify that you understand what [`install.sh`](install.sh) does before running it, and do so at your own risk.
+
+```sh
+curl -sSL https://raw.githubusercontent.com/FjellOverflow/nisse/main/install.sh | sh
 ```
 
 ## Usage
