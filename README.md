@@ -79,8 +79,7 @@ sudo ln -s ~/.nisse/nix /etc/nixos
 ### Fedora
 
 > [!NOTE]
-> While the Ansible based configuration might work on all Fedora/RHEL based distros, it has only been tested for Fedora Workstation.
-> This also assumes GNOME was chosen as Desktop Environment on the initial install. On another DE, the GNOME specific configurations will have no effect.
+> While the Ansible based configuration might work on all Fedora/RHEL based distros, it has only been tested on Fedora.
 
 1. Set up repository
 
@@ -91,6 +90,9 @@ ansible-galaxy collection install -r requirements.yaml
 ```
 
 2. Add the new host to `hosts.yaml`
+
+> [!IMPORTANT]
+> The playbook configures the user it connects as, so that user account has to exist already. Creating it is part of installing the operating system and therefore out of scope. When connecting remotely, connect as that user (`ansible_user`), not as `root`.
 
 ```yaml
 all:
