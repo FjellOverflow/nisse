@@ -1,4 +1,9 @@
 ---
+- name: Install fontconfig
+  become: true
+  ansible.builtin.package:
+    name: fontconfig
+
 - name: Create FiraCode Nerd Font directory
   become: true
   ansible.builtin.file:

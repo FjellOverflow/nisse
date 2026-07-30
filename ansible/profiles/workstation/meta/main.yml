@@ -1,5 +1,6 @@
 ---
 dependencies:
+  - role: gnome
   - role: keyboard
   - role: fonts
   - role: terminal
@@ -9,4 +10,3 @@ dependencies:
   - role: mullvad
   - role: syncthing
   - role: gnupg
-  - role: gnome
