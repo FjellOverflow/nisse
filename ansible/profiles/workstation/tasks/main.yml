@@ -4,6 +4,9 @@
   ansible.builtin.package:
     name:
       - gparted
+      - flatpak
+      # TODO: fedora only
+      - fedora-third-party
 
 - name: Libvirt group for {{ target_user }}
   become: true
