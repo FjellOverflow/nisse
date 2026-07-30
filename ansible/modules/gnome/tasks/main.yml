@@ -1,4 +1,7 @@
 ---
+- name: Install GNOME desktop
+  ansible.builtin.import_tasks: desktop.yml
+
 - name: Remove GNOME desktop bloat
   ansible.builtin.import_tasks: cleanup.yml
 
