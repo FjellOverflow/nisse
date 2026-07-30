@@ -13,14 +13,17 @@
 
 - name: Set terminal theme
   block:
-    - name: Read profile UUID
+    - name: Set default profile
       community.general.dconf:
         key: /org/gnome/Ptyxis/default-profile-uuid
-        state: read
-      register: terminal_ptyxis_profile_uuid
-    - name: Set nord theme on profile {{ terminal_ptyxis_profile_uuid.value }}
+        value: "'00000000-0000-0000-0000-000000000001'"
+    - name: Register profile
       community.general.dconf:
-        key: /org/gnome/Ptyxis/Profiles/{{ terminal_ptyxis_profile_uuid.value[1:-1] }}/palette
+        key: /org/gnome/Ptyxis/profile-uuids
+        value: "['00000000-0000-0000-0000-000000000001']"
+    - name: Set nord theme on profile
+      community.general.dconf:
+        key: /org/gnome/Ptyxis/Profiles/00000000-0000-0000-0000-000000000001/palette
         value: "'nord'"
 
 - name: Turn off terminal audible bell
