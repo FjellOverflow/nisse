@@ -6,27 +6,7 @@
   ansible.builtin.dnf:
     name: "{{ item }}"
     state: absent
-  loop:
-    - anaconda-live
-    - anaconda-webui
-    - gnome-tour
-    - yelp
-    - rhythmbox
-    - gnome-weather
-    - gnome-contacts
-    - gnome-calendar
-    - gnome-clocks
-    - gnome-maps
-    - gnome-characters
-    - mediawriter
-    - totem
-    - abrt-desktop
-    - abrt-gui
-    - gnome-abrt
-    - simple-scan
-    - firefox-langpacks
-    - firefox
-    - malcontent-control
+  loop: "{{ gnome_removed_packages }}"
 
 - name: Autoremove orphan dependencies
   become: true

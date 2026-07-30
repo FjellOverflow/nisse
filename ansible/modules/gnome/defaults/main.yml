@@ -1,0 +1,23 @@
+---
+gnome_removed_packages:
+  - anaconda-live
+  - slitherer
+  - anaconda-webui
+  - gnome-tour
+  - yelp
+  - rhythmbox
+  - gnome-weather
+  - gnome-contacts
+  - gnome-calendar
+  - gnome-clocks
+  - gnome-maps
+  - gnome-characters
+  - mediawriter
+  - totem
+  - abrt-desktop
+  - abrt-gui
+  - gnome-abrt
+  - simple-scan
+  - firefox-langpacks
+  - firefox
+  - malcontent-control
