@@ -15,6 +15,21 @@
     key: /org/gnome/desktop/interface/color-scheme
     value: "'prefer-dark'"
 
+- name: Set GTK theme
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/gtk-theme
+    value: "'Adwaita'"
+
+- name: Set icon theme
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/icon-theme
+    value: "'Adwaita'"
+
+- name: Set cursor theme
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/cursor-theme
+    value: "'Adwaita'"
+
 - name: Set desktop background
   community.general.dconf:
     key: /org/gnome/desktop/background/picture-uri
