@@ -107,6 +107,12 @@
         "codium.desktop"
         "org.gnome.Nautilus.desktop"
         "md.obsidian.Obsidian.desktop"
+        "com.bitwarden.desktop.desktop"
+        "com.spotify.Client.desktop"
+        "org.gnome.Boxes.desktop"
+        "mullvad-vpn.desktop"
+        "bruno.desktop"
+        "org.gnome.DejaDup.desktop"
       ];
     };
 
