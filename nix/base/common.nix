@@ -3,7 +3,6 @@
 {
   imports = [
     ../modules/tailscale.nix
-    ../modules/docker.nix
   ];
 
   time.timeZone = "Europe/Oslo";
@@ -104,11 +103,6 @@
     };
 
     programs.starship.enable = true;
-
-    programs.direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
 
     programs.git = {
       enable = true;

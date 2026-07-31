@@ -8,13 +8,6 @@
       # TODO: fedora only
       - fedora-third-party
 
-- name: Libvirt group for {{ target_user }}
-  become: true
-  ansible.builtin.user:
-    name: "{{ target_user }}"
-    groups: libvirt
-    append: true
-
 - name: Enable flathub remote
   community.general.flatpak_remote:
     name: flathub
@@ -34,7 +27,6 @@
       - com.mattjakeman.ExtensionManager
       - org.inkscape.Inkscape
       - com.bitwarden.desktop
-      - com.usebruno.Bruno
       - com.spotify.Client
       - org.libreoffice.LibreOffice
 

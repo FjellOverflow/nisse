@@ -8,3 +8,8 @@
   hosts: workstation
   roles:
     - workstation
+
+- name: Development profile
+  hosts: development
+  roles:
+    - development

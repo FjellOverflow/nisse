@@ -1,0 +1,8 @@
+---
+dependencies:
+  - role: bruno
+  - role: direnv
+  - role: docker
+  - role: mise
+  - role: virtualization
+  - role: vscodium

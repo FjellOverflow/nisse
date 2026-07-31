@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -11,11 +7,9 @@
     ../modules/gnome.nix
     ../modules/gnupg.nix
     ../modules/keyboard.nix
-    ../modules/mise.nix
     ../modules/mullvad.nix
     ../modules/syncthing.nix
     ../modules/terminal.nix
-    ../modules/vscodium.nix
   ];
 
   networking.networkmanager.enable = true;
@@ -40,7 +34,6 @@
     "com.bitwarden.desktop"
     "com.mattjakeman.ExtensionManager"
     "com.spotify.Client"
-    "com.usebruno.Bruno"
     "md.obsidian.Obsidian"
     "org.freefilesync.FreeFileSync"
     "org.gimp.GIMP"
@@ -48,17 +41,4 @@
     "org.libreoffice.LibreOffice"
     "org.videolan.VLC"
   ];
-
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true;
-      swtpm.enable = true;
-    };
-  };
-
-  users.users.${user} = {
-    extraGroups = [ "libvirtd" ];
-  };
 }

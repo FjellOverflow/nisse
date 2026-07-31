@@ -1,0 +1,11 @@
+---
+# TODO: fedora only
+- name: Enable Bruno COPR
+  become: true
+  community.general.copr:
+    name: grahamwhiteuk/bruno
+
+- name: Install Bruno
+  become: true
+  ansible.builtin.dnf:
+    name: bruno

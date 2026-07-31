@@ -8,7 +8,9 @@ if type -q mise
     mise activate fish | source
 end
 
-direnv hook fish | source
+if type -q direnv
+    direnv hook fish | source
+end
 
 alias cat="bat"
 alias l="ls -alh"

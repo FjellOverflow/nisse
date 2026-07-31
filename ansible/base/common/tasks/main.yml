@@ -27,7 +27,6 @@
     name:
       - bat
       - curl
-      - direnv
       - git
       - gnupg2
       - nano

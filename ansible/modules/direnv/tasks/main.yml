@@ -1,0 +1,5 @@
+---
+- name: Install direnv
+  become: true
+  ansible.builtin.package:
+    name: direnv

@@ -1,0 +1,15 @@
+---
+# TODO: fedora only
+- name: Install virtualization packages
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - libvirt-daemon-kvm
+      - gnome-boxes
+
+- name: Libvirt group for {{ target_user }}
+  become: true
+  ansible.builtin.user:
+    name: "{{ target_user }}"
+    groups: libvirt
+    append: true

@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../profiles/development.nix
     ../../profiles/workstation.nix
   ];
 

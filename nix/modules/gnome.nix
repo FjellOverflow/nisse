@@ -13,7 +13,6 @@
     dconf-editor
     decibels
     deja-dup
-    gnome-boxes
     gnome-shell-extensions
     gnome-calculator
     gnome-connections
