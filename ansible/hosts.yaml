@@ -1,7 +1,12 @@
 ---
 all:
+  hosts:
+    vm:
+      ansible_connection: local
   children:
     workstation:
       hosts:
         vm:
-          ansible_connection: local
+    development:
+      hosts:
+        vm:

@@ -96,11 +96,16 @@ ansible-galaxy collection install -r requirements.yaml
 
 ```yaml
 all:
+  hosts:
+    <host>:
+      ansible_connection: local
   children:
     workstation:
       hosts:
         <host>:
-          ansible_connection: local
+    development:
+      hosts:
+        <host>:
 ```
 
 3. Activate the config by running the playbook
