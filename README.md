@@ -34,7 +34,7 @@
 It is assumed that the autoconfiguration takes place on a freshly installed machine, with a working internet connection and no manual setup beyond that. Installing the operating system and partitioning disks are out of scope, everything from there on is handled here.
 
 > [!IMPORTANT]
-> Don't forget to adjust/replace hardcoded values, such as username, git name, ... across the project before running the configuration for the first time.
+> Don't forget to adjust/replace hardcoded values in [`nix/variables.nix`](nix/variables.nix) and [`ansible/group_vars/all.yml`](ansible/group_vars/all.yml) before running the configuration for the first time.
 
 ### NixOS
 

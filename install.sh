@@ -123,8 +123,8 @@ bootstrap_fedora() {
   (cd "$CHECKOUT/ansible" && ansible-galaxy collection install -r requirements.yaml)
   step 'Installed ansible collections.'
 
-  say "Before the installation proceeds, add host $host to ansible/hosts.yaml."
-  edit_files "$CHECKOUT/ansible/hosts.yaml"
+  say "Before the installation proceeds, adjust variables and add host $host to ansible/hosts.yaml."
+  edit_files "$CHECKOUT/ansible/group_vars/all.yml" "$CHECKOUT/ansible/hosts.yaml"
 
   say 'The configuration is about to be applied. This may take a while.'
   cmd "ansible-playbook site.yml --limit $host -K"
@@ -173,8 +173,8 @@ bootstrap_nixos() {
     step "Generated nix/machines/$host from the pre-generated configuration."
   fi
 
-  say "Before the installation proceeds, resolve the TODOs in nix/machines/$host/default.nix (see existing machines for reference)."
-  edit_files "$machine/default.nix"
+  say "Before the installation proceeds, adjust variables and resolve the TODOs in nix/machines/$host/default.nix (see existing machines for reference)."
+  edit_files "$CHECKOUT/nix/variables.nix" "$machine/default.nix"
 
   git_run -C "$CHECKOUT" add .
   step 'Added new configuration files.'
