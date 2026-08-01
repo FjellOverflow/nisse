@@ -1,6 +1,6 @@
 ---
 # TODO: fedora only
-- name: Install GNOME desktop
+- name: Install GNOME desktop group
   become: true
   ansible.builtin.dnf:
     name: "@gnome-desktop"
@@ -11,7 +11,7 @@
     path: /etc/systemd/system/display-manager.service
   register: gnome_display_manager
 
-- name: Drop foreign display manager alias
+- name: Remove foreign display manager alias
   become: true
   ansible.builtin.file:
     path: /etc/systemd/system/display-manager.service
@@ -20,7 +20,7 @@
     - gnome_display_manager.stat.exists
     - gnome_display_manager.stat.lnk_target | default("") | basename != "gdm.service"
 
-- name: Enable GDM
+- name: Enable GDM service
   become: true
   ansible.builtin.service:
     name: gdm
@@ -31,7 +31,7 @@
   register: gnome_default_target
   changed_when: false
 
-- name: Boot into graphical target
+- name: Set default systemd target to graphical
   become: true
   ansible.builtin.command: systemctl set-default graphical.target
   when: gnome_default_target.stdout != "graphical.target"

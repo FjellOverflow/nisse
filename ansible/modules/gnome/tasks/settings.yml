@@ -1,16 +1,16 @@
 ---
 
-- name: Turn off location services
+- name: Disable location services
   community.general.dconf:
     key: /org/gnome/system/location/enabled
     value: "false"
 
-- name: Turn off automatic problem reporting
+- name: Disable automatic problem reporting
   community.general.dconf:
     key: /org/gnome/desktop/privacy/report-technical-problems
     value: "false"
 
-- name: Set dark theme
+- name: Set color scheme to dark
   community.general.dconf:
     key: /org/gnome/desktop/interface/color-scheme
     value: "'prefer-dark'"
@@ -40,12 +40,12 @@
     key: /org/gnome/desktop/background/picture-uri-dark
     value: "'file://{{ target_home }}/.local/share/backgrounds/fedora.png'"
 
-- name: Set desktop background zoom
+- name: Set desktop background scaling
   community.general.dconf:
     key: /org/gnome/desktop/background/picture-options
     value: "'zoom'"
 
-- name: Pinned apps
+- name: Pin apps to dock
   community.general.dconf:
     key: /org/gnome/shell/favorite-apps
     value: "{{ favorite_apps }}"
@@ -64,17 +64,17 @@
       - bruno.desktop
       - org.gnome.DejaDup.desktop
 
-- name: Minimize & maximize windows
+- name: Set window button layout
   community.general.dconf:
     key: /org/gnome/desktop/wm/preferences/button-layout
     value: "'appmenu:minimize,maximize,close'"
 
-- name: Close windows with SUPER + q
+- name: Set window close shortcut
   community.general.dconf:
     key: /org/gnome/desktop/wm/keybindings/close
     value: "['<Super>q']"
 
-- name: Launch new terminal with SUPER + ENTER
+- name: Set terminal launch shortcut
   block:
     - name: Register custom shortcut
       community.general.dconf:
@@ -93,22 +93,22 @@
         key: /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name
         value: "'Launch terminal'"
 
-- name: 24 hour clock
+- name: Set 24 hour clock
   community.general.dconf:
     key: /org/gnome/desktop/interface/clock-format
     value: "'24h'"
 
-- name: Show weekday
+- name: Show weekday in clock
   community.general.dconf:
     key: /org/gnome/desktop/interface/clock-show-weekday
     value: "true"
 
-- name: Calendar weeks
+- name: Show week numbers in calendar
   community.general.dconf:
     key: /org/gnome/desktop/calendar/show-weekdate
     value: "true"
 
-- name: Enable extensions
+- name: Enable GNOME shell extensions
   community.general.dconf:
     key: /org/gnome/shell/enabled-extensions
     value: "{{ enabled_extensions }}"
@@ -119,7 +119,7 @@
       - apps-menu@gnome-shell-extensions.gcampax.github.com
       - gsconnect@andyholmes.github.io
 
-- name: Disable extensions
+- name: Disable GNOME shell extensions
   community.general.dconf:
     key: /org/gnome/shell/disabled-extensions
     value: "['background-logo@fedorahosted.org']"

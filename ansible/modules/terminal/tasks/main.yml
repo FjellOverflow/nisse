@@ -6,32 +6,32 @@
       community.general.dconf:
         key: /org/gnome/Ptyxis/use-system-font
         value: "false"
-    - name: Set new font
+    - name: Set terminal font family
       community.general.dconf:
         key: /org/gnome/Ptyxis/font-name
         value: "'FiraCode Nerd Font Mono 16'"
 
 - name: Set terminal theme
   block:
-    - name: Set default profile
+    - name: Set default Ptyxis profile
       community.general.dconf:
         key: /org/gnome/Ptyxis/default-profile-uuid
         value: "'00000000-0000-0000-0000-000000000001'"
-    - name: Register profile
+    - name: Register Ptyxis profile
       community.general.dconf:
         key: /org/gnome/Ptyxis/profile-uuids
         value: "['00000000-0000-0000-0000-000000000001']"
-    - name: Set nord theme on profile
+    - name: Set Ptyxis palette to nord
       community.general.dconf:
         key: /org/gnome/Ptyxis/Profiles/00000000-0000-0000-0000-000000000001/palette
         value: "'nord'"
 
-- name: Turn off terminal audible bell
+- name: Disable terminal audible bell
   community.general.dconf:
     key: /org/gnome/Ptyxis/audible-bell
     value: "false"
 
-- name: Turn off terminal visual bell
+- name: Disable terminal visual bell
   community.general.dconf:
     key: /org/gnome/Ptyxis/visual-bell
     value: "false"

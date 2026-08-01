@@ -11,20 +11,20 @@
     dest: "{{ target_home }}/.local/share/backgrounds/fedora.png"
     mode: "0644"
 
-- name: Set user avatar
+- name: Install user avatar
   ansible.builtin.copy:
     src: avatar.png
     dest: "{{ target_home }}/.face"
     mode: "0644"
 
-- name: Install avatar for AccountsService
+- name: Install AccountsService avatar
   become: true
   ansible.builtin.copy:
     src: avatar.png
     dest: "/var/lib/AccountsService/icons/{{ target_user }}"
     mode: "0644"
 
-- name: Point AccountsService at the avatar
+- name: Set AccountsService avatar path
   become: true
   community.general.ini_file:
     path: "/var/lib/AccountsService/users/{{ target_user }}"

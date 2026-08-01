@@ -12,7 +12,7 @@
       - "glibc-langpack-{{ default_locale.split('_')[0] }}"
       - "glibc-langpack-{{ regional_locale.split('_')[0] }}"
 
-- name: Configure locale
+- name: Write locale configuration
   become: true
   ansible.builtin.copy:
     dest: /etc/locale.conf

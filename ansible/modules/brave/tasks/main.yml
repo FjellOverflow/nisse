@@ -34,7 +34,7 @@
     dest: /etc/brave/policies/managed/policy.json
     mode: "0644"
 
-- name: Check default browser
+- name: Check current default browser
   ansible.builtin.command: xdg-settings check default-web-browser brave-browser.desktop
   register: brave_default_browser
   changed_when: false

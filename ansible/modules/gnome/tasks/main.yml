@@ -1,5 +1,5 @@
 ---
-- name: Install GNOME desktop
+- name: Configure GNOME desktop
   ansible.builtin.import_tasks: desktop.yml
 
 - name: Remove GNOME desktop bloat
@@ -36,5 +36,5 @@
 - name: Configure GNOME settings
   ansible.builtin.import_tasks: settings.yml
 
-- name: Configure appearance
+- name: Configure GNOME appearance
   ansible.builtin.import_tasks: appearance.yml

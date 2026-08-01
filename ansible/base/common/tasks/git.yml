@@ -23,7 +23,7 @@
     scope: global
     value: "true"
 
-- name: Set default branch to main
+- name: Set git default branch
   community.general.git_config:
     name: init.defaultbranch
     scope: global

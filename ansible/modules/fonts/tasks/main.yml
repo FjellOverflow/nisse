@@ -4,7 +4,7 @@
   ansible.builtin.package:
     name: fontconfig
 
-- name: Create FiraCode Nerd Font directory
+- name: Ensure FiraCode Nerd Font directory exists
   become: true
   ansible.builtin.file:
     path: /usr/share/fonts/firacode-nerd

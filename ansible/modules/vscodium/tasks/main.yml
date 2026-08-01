@@ -21,7 +21,7 @@
   ansible.builtin.dnf:
     name: codium
 
-- name: List installed VSCodium extensions
+- name: Check installed VSCodium extensions
   ansible.builtin.command: codium --list-extensions
   register: vscodium_installed
   changed_when: false

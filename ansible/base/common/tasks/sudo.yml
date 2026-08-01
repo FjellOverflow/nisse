@@ -1,5 +1,5 @@
 ---
-- name: Ensure wheel group membership for {{ target_user }}
+- name: Add wheel group membership for {{ target_user }}
   become: true
   ansible.builtin.user:
     name: "{{ target_user }}"

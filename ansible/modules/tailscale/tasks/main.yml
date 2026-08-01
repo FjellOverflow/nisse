@@ -14,7 +14,7 @@
   ansible.builtin.dnf:
     name: tailscale
 
-- name: Start tailscale daemon
+- name: Enable and start Tailscale service
   become: true
   ansible.builtin.service:
     name: "tailscaled"

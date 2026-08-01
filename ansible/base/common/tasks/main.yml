@@ -12,7 +12,7 @@
     quiet: true
 
 # TODO: fedora only
-- name: Upgrade packages
+- name: Upgrade all packages
   become: true
   ansible.builtin.dnf:
     name: "*"
@@ -46,11 +46,11 @@
 - name: Configure locale
   ansible.builtin.import_tasks: locale.yml
 
-- name: Setup fish
+- name: Configure fish
   ansible.builtin.import_tasks: fish.yml
 
-- name: Setup git
+- name: Configure git
   ansible.builtin.import_tasks: git.yml
 
-- name: Setup passwordless sudo
+- name: Configure passwordless sudo
   ansible.builtin.import_tasks: sudo.yml

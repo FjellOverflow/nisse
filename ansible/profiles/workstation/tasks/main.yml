@@ -8,7 +8,7 @@
       # TODO: fedora only
       - fedora-third-party
 
-- name: Enable flathub remote
+- name: Enable Flathub remote
   community.general.flatpak_remote:
     name: flathub
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo

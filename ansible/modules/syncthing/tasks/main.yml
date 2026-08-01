@@ -1,11 +1,11 @@
 ---
 # TODO: fedora only
-- name: Install syncthing
+- name: Install Syncthing
   become: true
   ansible.builtin.dnf:
     name: syncthing
 
-- name: Enable syncthing service
+- name: Enable and start Syncthing service
   become: true
   ansible.builtin.service:
     name: "syncthing@{{ target_user }}"
