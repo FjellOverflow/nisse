@@ -3,19 +3,19 @@
   community.general.git_config:
     name: user.name
     scope: global
-    value: FjellOverflow
+    value: "{{ full_name }}"
 
 - name: Set git user email
   community.general.git_config:
     name: user.email
     scope: global
-    value: fjelloverflow@protonmail.com
+    value: "{{ email }}"
 
 - name: Set git signing key
   community.general.git_config:
     name: user.signingkey
     scope: global
-    value: 1F460E4716149438
+    value: "{{ signing_key }}"
 
 - name: Enable commit signing
   community.general.git_config:
