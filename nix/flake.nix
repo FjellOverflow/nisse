@@ -28,7 +28,8 @@
       ...
     }:
     let
-      user = "fjelloverflow";
+      variables = import ./variables.nix;
+      inherit (variables) user;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       lint = pkgs.writeShellApplication {
@@ -75,7 +76,7 @@
       nixosConfigurations = nixpkgs.lib.genAttrs machines (
         host:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit user nixpkgs-2511; };
+          specialArgs = { inherit variables user nixpkgs-2511; };
           modules = commonModules ++ [ ./machines/${host}/default.nix ];
         }
       );

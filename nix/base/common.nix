@@ -1,19 +1,25 @@
-{ pkgs, user, ... }:
+{
+  lib,
+  pkgs,
+  variables,
+  user,
+  ...
+}:
 
 {
   imports = [
     ../modules/tailscale.nix
   ];
 
-  time.timeZone = "Europe/Oslo";
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_TIME = "nb_NO.UTF-8";
-    LC_NUMERIC = "nb_NO.UTF-8";
-    LC_MONETARY = "nb_NO.UTF-8";
-    LC_PAPER = "nb_NO.UTF-8";
-    LC_MEASUREMENT = "nb_NO.UTF-8";
-  };
+  time.timeZone = variables.timeZone;
+  i18n.defaultLocale = variables.defaultLocale;
+  i18n.extraLocaleSettings = lib.genAttrs [
+    "LC_TIME"
+    "LC_NUMERIC"
+    "LC_MONETARY"
+    "LC_PAPER"
+    "LC_MEASUREMENT"
+  ] (_: variables.regionalLocale);
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [
@@ -31,7 +37,7 @@
 
   users.users.${user} = {
     isNormalUser = true;
-    description = "FjellOverflow";
+    description = variables.fullName;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -108,9 +114,8 @@
       enable = true;
       settings = {
         user = {
-          name = "FjellOverflow";
-          email = "fjelloverflow@protonmail.com";
-          signingKey = "1F460E4716149438";
+          name = variables.fullName;
+          inherit (variables) email signingKey;
         };
         commit = {
           gpgSign = true;

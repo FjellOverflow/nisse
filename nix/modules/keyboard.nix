@@ -1,9 +1,9 @@
-{ lib, ... }:
+{ lib, variables, ... }:
 
 {
   services.xserver.xkb = {
-    layout = lib.mkDefault "no";
+    layout = lib.mkDefault variables.keyboardLayout;
     variant = lib.mkDefault "";
   };
-  console.keyMap = lib.mkDefault "no";
+  console.keyMap = lib.mkDefault variables.keyboardLayout;
 }
