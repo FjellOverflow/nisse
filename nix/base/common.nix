@@ -13,9 +13,8 @@
 
   time.timeZone = variables.timeZone;
   i18n.defaultLocale = variables.defaultLocale;
-  i18n.extraLocaleSettings = lib.genAttrs [
+    i18n.extraLocaleSettings = lib.genAttrs [
     "LC_TIME"
-    "LC_NUMERIC"
     "LC_MONETARY"
     "LC_PAPER"
     "LC_MEASUREMENT"

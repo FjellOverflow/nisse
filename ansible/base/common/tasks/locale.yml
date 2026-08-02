@@ -20,7 +20,6 @@
     content: |
       LANG={{ default_locale }}
       LC_TIME={{ regional_locale }}
-      LC_NUMERIC={{ regional_locale }}
       LC_MONETARY={{ regional_locale }}
       LC_PAPER={{ regional_locale }}
       LC_MEASUREMENT={{ regional_locale }}
