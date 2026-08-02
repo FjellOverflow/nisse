@@ -1,0 +1,37 @@
+---
+- name: Assert that target_user is the connecting user
+  ansible.builtin.assert:
+    that: target_user == ansible_facts['user_id']
+    fail_msg: "target_user is '{{ target_user }}', but this play connects as '{{ ansible_facts['user_id'] }}'."
+    quiet: true
+
+- name: Assert that the connecting user is not root
+  ansible.builtin.assert:
+    that: ansible_facts['user_id'] != "root"
+    fail_msg: "This play connects as root, but it configures a normal user account. Connect as an existing user."
+    quiet: true
+
+- name: Assert that the target is Fedora
+  ansible.builtin.assert:
+    that: ansible_facts['distribution'] == "Fedora"
+    fail_msg: "nisse targets Fedora, but this host reports '{{ ansible_facts['distribution'] }}'."
+    quiet: true
+
+- name: Assert that the target installs packages with dnf5
+  ansible.builtin.assert:
+    that: ansible_facts['pkg_mgr'] == "dnf5"
+    fail_msg: "nisse installs packages with dnf5, but this host uses '{{ ansible_facts['pkg_mgr'] }}'."
+    quiet: true
+
+- name: Check whether dnf Python bindings are installed # noqa: command-instead-of-module need to verify that modules have deps available
+  ansible.builtin.command: rpm --query python3-libdnf5 python3-dnf
+  register: preflight_dnf_bindings
+  changed_when: false
+  failed_when: false
+
+- name: Install dnf Python bindings
+  become: true
+  # TODO: https://github.com/ansible-collections/community.general/issues/12501
+  ansible.builtin.command: dnf install --assumeyes python3-libdnf5 python3-dnf
+  when: preflight_dnf_bindings.rc != 0
+  changed_when: true

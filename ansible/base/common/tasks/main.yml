@@ -1,17 +1,4 @@
 ---
-- name: Assert that target_user is the connecting user
-  ansible.builtin.assert:
-    that: target_user == ansible_facts['user_id']
-    fail_msg: "target_user is '{{ target_user }}', but this play connects as '{{ ansible_facts['user_id'] }}'."
-    quiet: true
-
-- name: Assert that the connecting user is not root
-  ansible.builtin.assert:
-    that: ansible_facts['user_id'] != "root"
-    fail_msg: "This play connects as root, but it configures a normal user account. Connect as an existing user."
-    quiet: true
-
-# TODO: fedora only
 - name: Upgrade all packages
   become: true
   ansible.builtin.dnf:
@@ -36,9 +23,7 @@
 - name: Install Ansible module dependencies
   become: true
   ansible.builtin.dnf:
-    name:
-      - python3-dnf # TODO: https://github.com/ansible-collections/community.general/issues/12501
-      - python3-psutil
+    name: python3-psutil
 
 - name: Configure locale
   ansible.builtin.import_tasks: locale.yml

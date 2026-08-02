@@ -1,6 +1,10 @@
 ---
 - name: Base configuration
   hosts: all
+  pre_tasks:
+    - name: Run preflight checks
+      ansible.builtin.import_role:
+        name: preflight
   roles:
     - common
 
