@@ -15,9 +15,7 @@
   &ensp;
   <img src="https://img.shields.io/github/license/FjellOverflow/nisse?label=License"/>
   &ensp;
-  <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/nisse/nix.yaml?branch=main&label=CI%20NixOS"/>
-  &ensp;
-  <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/nisse/ansible.yaml?branch=main&label=CI%20Ansible"/>
+  <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/nisse/nix.yaml?branch=main&label=CI"/>
 </p>
 
 > A *nisse* (Norwegian: [ˈnɪ̂sːə]) is a gnome-like household spirit from Nordic culture who, if rewarded with porridge, might help with common chores.
