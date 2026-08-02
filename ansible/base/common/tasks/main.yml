@@ -19,8 +19,6 @@
     state: latest
     update_only: true
 
-
-# TODO: fedora only
 - name: Install base utilities
   become: true
   ansible.builtin.package:
@@ -35,7 +33,6 @@
       - tree
       - wget
 
-# TODO: fedora only
 - name: Install Ansible module dependencies
   become: true
   ansible.builtin.package:

@@ -1,5 +1,4 @@
 ---
-# TODO: fedora only
 - name: Remove excluded GNOME packages
   become: true
   ignore_errors: true  # noqa: ignore-errors some packages may not be present

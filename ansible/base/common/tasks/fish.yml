@@ -1,5 +1,4 @@
 ---
-# TODO: fedora only
 - name: Install fish
   become: true
   ansible.builtin.dnf:

@@ -4,7 +4,6 @@
   community.general.timezone:
     name: "{{ timezone }}"
 
-# TODO: fedora only
 - name: Install locale langpacks
   become: true
   ansible.builtin.dnf:

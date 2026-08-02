@@ -5,7 +5,6 @@
     name:
       - gparted
       - flatpak
-      # TODO: fedora only
       - fedora-third-party
 
 - name: Enable Flathub remote
@@ -30,7 +29,6 @@
       - com.spotify.Client
       - org.libreoffice.LibreOffice
 
-# TODO: fedora only
 - name: Enable Fedora third-party repositories
   become: true
   ansible.builtin.command: fedora-third-party enable

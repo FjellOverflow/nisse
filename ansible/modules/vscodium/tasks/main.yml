@@ -1,5 +1,4 @@
 ---
-# TODO: fedora only
 - name: Import VSCodium key
   become: true
   ansible.builtin.rpm_key:

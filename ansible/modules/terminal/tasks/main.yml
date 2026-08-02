@@ -1,5 +1,4 @@
 ---
-# TODO: fedora only
 - name: Set terminal font
   block:
     - name: Disable system font

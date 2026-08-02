@@ -1,5 +1,4 @@
 ---
-# TODO: fedora only
 - name: Install GNOME pinentry
   become: true
   ansible.builtin.dnf:

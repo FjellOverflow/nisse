@@ -1,5 +1,4 @@
 ---
-# TODO: fedora only
 - name: Install virtualization packages
   become: true
   ansible.builtin.dnf:

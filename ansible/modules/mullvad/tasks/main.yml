@@ -1,5 +1,4 @@
 ---
-# TODO: fedora only
 - name: Add Mullvad repository
   become: true
   ansible.builtin.yum_repository:

@@ -1,5 +1,4 @@
 ---
-# TODO: fedora only
 - name: Install GNOME desktop group
   become: true
   ansible.builtin.dnf:
