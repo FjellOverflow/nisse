@@ -1,8 +1,11 @@
 ---
-- name: Install fontconfig
+- name: Install fontconfig and archive tools
   become: true
   ansible.builtin.dnf:
-    name: fontconfig
+    name:
+      - fontconfig
+      - tar
+      - xz
 
 - name: Ensure FiraCode Nerd Font directory exists
   become: true
