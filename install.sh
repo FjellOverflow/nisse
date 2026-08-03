@@ -123,7 +123,7 @@ clone() {
     if git_run -C "$CHECKOUT" pull --ff-only; then
       step 'Found local version of repository.'
     else
-      step 'Repository has local changes, skipped updating.'
+      step 'Could not update repository, continuing with local version.'
     fi
     return
   fi
