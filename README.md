@@ -1,5 +1,6 @@
 <h1 align="center">
-  nisse
+  <img src="./.github/logo.svg" height="64" align="middle" alt="" />
+  &nbsp;nisse
 </h1>
 
 <p align="center">
@@ -11,11 +12,11 @@
   &ensp;
   <img src="https://img.shields.io/badge/Fedora-44-51A2DA?logo=fedora&logoColor=white"/>
   &ensp;
+  <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/nisse/nix.yaml?branch=main&label=CI"/>
+  &ensp;
   <img src="https://img.shields.io/github/v/tag/FjellOverflow/nisse?label=Version"/>
   &ensp;
   <img src="https://img.shields.io/github/license/FjellOverflow/nisse?label=License"/>
-  &ensp;
-  <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/nisse/nix.yaml?branch=main&label=CI"/>
 </p>
 
 > A *nisse* (Norwegian: [ˈnɪ̂sːə]) is a gnome-like household spirit from Nordic culture who, if rewarded with porridge, might help with common chores.
