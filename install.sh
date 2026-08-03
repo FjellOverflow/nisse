@@ -9,6 +9,32 @@ CHECKOUT=$HOME/.nisse
 CHECKOUT_SHORT='~/.nisse'
 README=$REPO#installation
 
+BANNER='              .@@@@@@@@
+           =@@@%      @@@%
+         @@@*           #@@
+       %@@:           #@@@@@
+      @@*             :@@
+     @@                @@%
+    @@-                 @@
+   :@@                  @@%
+   @@:                  .@@
+   @@                    @@
+  %@@                    @@%
+  @@.                    .@@
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@+
+#@@     +%@@       @@+:    @@-
+@@        @@@@  @@@@        @@
+@@=@@        #@@*        .@%@@
+@@@@.                    .@@@@
+ @@@.                     @@
+  *@@@@                @@*@@
+   @@@@@              :@@@@
+      @@=             @@.@
+       @@@           @@:
+        %@@:       @@@
+          %@@@  -@@@:
+             @@@@*'
+
 if [ -z "${NO_COLOR:-}" ] && [ "${TERM:-dumb}" != dumb ]; then
   PRIMARY=$(printf '\033[1;36m')
   INFO=$(printf '\033[36m')
@@ -18,6 +44,8 @@ if [ -z "${NO_COLOR:-}" ] && [ "${TERM:-dumb}" != dumb ]; then
 else
   PRIMARY='' INFO='' ACCENT='' ERROR='' RESET=''
 fi
+
+banner() { printf '\n%s%s%s\n\n' "$PRIMARY" "$BANNER" "$RESET" >/dev/tty; }
 
 step() { printf '%s==> %s%s\n' "$PRIMARY" "$*" "$RESET" >/dev/tty; }
 
@@ -200,6 +228,10 @@ nh os switch"
 }
 
 (: </dev/tty) 2>/dev/null || die 'Terminal is non-interactive.'
+
+step 'Starting'
+banner
+
 [ -r /etc/os-release ] || die 'Could not identify OS.'
 
 . /etc/os-release
