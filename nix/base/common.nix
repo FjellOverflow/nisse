@@ -37,10 +37,7 @@
   users.users.${user} = {
     isNormalUser = true;
     description = variables.fullName;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
+    extraGroups = [ "wheel" ];
     shell = pkgs.fish;
   };
 

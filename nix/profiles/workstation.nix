@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 
 {
   imports = [
@@ -13,6 +13,7 @@
   ];
 
   networking.networkmanager.enable = true;
+  users.users.${user}.extraGroups = [ "networkmanager" ];
 
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
