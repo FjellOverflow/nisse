@@ -1,11 +1,4 @@
 ---
-- name: Upgrade all packages
-  become: true
-  ansible.builtin.dnf:
-    name: "*"
-    state: latest
-    update_only: true
-
 - name: Install base utilities
   become: true
   ansible.builtin.dnf:
