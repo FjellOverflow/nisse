@@ -1,9 +1,9 @@
 ---
 - name: Configure GNOME desktop
-  ansible.builtin.import_tasks: desktop.yml
+  ansible.builtin.import_tasks: desktop.yaml
 
 - name: Remove GNOME desktop bloat
-  ansible.builtin.import_tasks: cleanup.yml
+  ansible.builtin.import_tasks: cleanup.yaml
 
 - name: Install GNOME desktop applications
   become: true
@@ -33,7 +33,7 @@
       - gnome-shell-extension-gsconnect
 
 - name: Configure GNOME settings
-  ansible.builtin.import_tasks: settings.yml
+  ansible.builtin.import_tasks: settings.yaml
 
 - name: Configure GNOME appearance
-  ansible.builtin.import_tasks: appearance.yml
+  ansible.builtin.import_tasks: appearance.yaml

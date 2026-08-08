@@ -110,7 +110,7 @@ all:
 3. Activate the config by running the playbook
 
 ```sh
-ansible-playbook site.yml --limit <host> -K
+ansible-playbook site.yaml --limit <host> -K
 ```
 
 ### Quick install
@@ -141,7 +141,7 @@ cd ~/.nisse && git pull
 cd nix && nh os switch
 
 # on Fedora
-cd ansible && ansible-playbook site.yml --limit <host>
+cd ansible && ansible-playbook site.yaml --limit <host>
 ```
 
 ## Structure

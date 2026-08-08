@@ -19,13 +19,13 @@
     name: python3-psutil
 
 - name: Configure locale
-  ansible.builtin.import_tasks: locale.yml
+  ansible.builtin.import_tasks: locale.yaml
 
 - name: Configure fish
-  ansible.builtin.import_tasks: fish.yml
+  ansible.builtin.import_tasks: fish.yaml
 
 - name: Configure git
-  ansible.builtin.import_tasks: git.yml
+  ansible.builtin.import_tasks: git.yaml
 
 - name: Configure passwordless sudo
-  ansible.builtin.import_tasks: sudo.yml
+  ansible.builtin.import_tasks: sudo.yaml

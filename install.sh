@@ -155,16 +155,16 @@ bootstrap_fedora() {
   edit_files "$CHECKOUT/ansible/group_vars/all.yml" "$CHECKOUT/ansible/hosts.yaml"
 
   say 'The configuration is about to be applied. This may take a while.'
-  cmd "ansible-playbook site.yml --limit $host -K"
+  cmd "ansible-playbook site.yaml --limit $host -K"
   confirm 'Continue? [y/N]'
 
-  (cd "$CHECKOUT/ansible" && ansible-playbook site.yml --limit "$host" -K </dev/tty) ||
+  (cd "$CHECKOUT/ansible" && ansible-playbook site.yaml --limit "$host" -K </dev/tty) ||
     die 'Ansible exited with error. The machine may be in a partially configured state. Inspect and fix the error, then re-run the script.'
   step "Host $host was successfully configured."
 
   say 'You can re-apply this configuration again at any point with'
   cmd "cd $CHECKOUT_SHORT && git pull
-cd ansible && ansible-playbook site.yml --limit $host"
+cd ansible && ansible-playbook site.yaml --limit $host"
   say "Read more at $README"
   printf '\n' >/dev/tty
 }
