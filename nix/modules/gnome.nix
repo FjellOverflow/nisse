@@ -119,6 +119,7 @@
     dconf.settings."org/gnome/desktop/app-folders" = {
       folder-children = [
         "Disk"
+        "Gaming"
         "Graphics"
         "Media"
         "Office"
@@ -135,6 +136,15 @@
         "org.gnome.baobab.desktop"
         "org.gnome.DiskUtility.desktop"
         "gparted.desktop"
+      ];
+    };
+
+    dconf.settings."org/gnome/desktop/app-folders/folders/Gaming" = {
+      name = "Gaming";
+      apps = [
+        "steam.desktop"
+        "net.lutris.Lutris.desktop"
+        "protontricks.desktop"
       ];
     };
 
