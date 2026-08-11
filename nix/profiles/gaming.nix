@@ -1,10 +1,7 @@
 { pkgs, ... }:
 
 {
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
-  };
+  programs.steam.enable = true;
 
   programs.gamemode.enable = true;
   programs.gamescope.enable = true;
