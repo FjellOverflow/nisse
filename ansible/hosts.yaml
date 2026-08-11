@@ -10,3 +10,6 @@ all:
     development:
       hosts:
         vm:
+    gaming:
+      hosts:
+        vm:

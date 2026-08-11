@@ -1,0 +1,23 @@
+---
+- name: Install Fedora workstation repositories
+  become: true
+  ansible.builtin.dnf:
+    name: fedora-workstation-repositories
+
+- name: Enable Steam repository
+  become: true
+  community.general.dnf_config_manager:
+    name: rpmfusion-nonfree-steam
+    state: enabled
+
+- name: Install gaming packages
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - steam
+      - steam-devices
+      - lutris
+      - gamemode
+      - gamescope
+      - mangohud
+      - protontricks

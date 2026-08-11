@@ -17,3 +17,8 @@
   hosts: development
   roles:
     - development
+
+- name: Gaming profile
+  hosts: gaming
+  roles:
+    - gaming

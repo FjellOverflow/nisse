@@ -127,7 +127,7 @@
 - name: Register app folders
   community.general.dconf:
     key: /org/gnome/desktop/app-folders/folder-children
-    value: "['Disk', 'Graphics', 'Media', 'Office', 'Settings', 'Sync', 'System', 'Utilities']"
+    value: "['Disk', 'Gaming', 'Graphics', 'Media', 'Office', 'Settings', 'Sync', 'System', 'Utilities']"
 
 - name: Set app folder names
   community.general.dconf:
@@ -135,6 +135,7 @@
     value: "'{{ item }}'"
   loop:
     - Disk
+    - Gaming
     - Graphics
     - Media
     - Office
@@ -153,6 +154,13 @@
         - org.gnome.baobab.desktop
         - org.gnome.DiskUtility.desktop
         - gparted.desktop
+    - folder: Gaming
+      apps:
+        - steam.desktop
+        - net.lutris.Lutris.desktop
+        - protontricks.desktop
+        - winetricks.desktop
+        - yad-icon-browser.desktop
     - folder: Graphics
       apps:
         - org.gimp.GIMP.desktop
