@@ -5,3 +5,4 @@ result-*
 
 # ansible
 .ansible/
+host_vars/

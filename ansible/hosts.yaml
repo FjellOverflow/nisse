@@ -3,16 +3,21 @@ all:
   hosts:
     vm:
       ansible_connection: local
+    dell:
+      ansible_connection: local
   children:
     workstation:
       hosts:
         vm:
+        dell:
     desktop_gnome:
       hosts:
         vm:
+        dell:
     development:
       hosts:
         vm:
+        dell:
     gaming:
       hosts:
         vm:
