@@ -118,7 +118,7 @@ git_run() {
 
 clone() {
   if [ -e "$CHECKOUT" ]; then
-    grep -qF "$REPO" "$CHECKOUT/.git/config" 2>/dev/null ||
+    grep -qF "${REPO#https://github.com/}" "$CHECKOUT/.git/config" 2>/dev/null ||
       die 'Found malformed local repository. Inspect, fix and re-run script.'
     if git_run -C "$CHECKOUT" pull --ff-only; then
       step 'Found local version of repository.'
