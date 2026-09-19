@@ -15,7 +15,6 @@
     url = "github:nix-community/nix-index-database";
     inputs.nixpkgs.follows = "nixpkgs";
   };
-  inputs.nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
 
   outputs =
     {
@@ -24,7 +23,6 @@
       nix-vscode-extensions,
       home-manager,
       nix-index-database,
-      nixpkgs-2511,
       ...
     }:
     let
@@ -76,7 +74,7 @@
       nixosConfigurations = nixpkgs.lib.genAttrs machines (
         host:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit variables user nixpkgs-2511; };
+          specialArgs = { inherit variables user; };
           modules = commonModules ++ [ ./machines/${host}/default.nix ];
         }
       );
