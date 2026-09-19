@@ -7,6 +7,20 @@
       - flatpak
       - fedora-third-party
 
+- name: Add RPM Fusion repositories
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+      - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+    disable_gpg_check: true
+
+- name: Install multimedia codecs
+  become: true
+  ansible.builtin.dnf:
+    name: ffmpeg
+    allowerasing: true
+
 - name: Enable Flathub remote
   community.general.flatpak_remote:
     name: flathub
