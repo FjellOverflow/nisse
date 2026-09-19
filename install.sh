@@ -152,7 +152,7 @@ bootstrap_fedora() {
   step 'Installed ansible collections.'
 
   say "Before the installation proceeds, adjust variables and add host $host to ansible/hosts.yaml."
-  edit_files "$CHECKOUT/ansible/group_vars/all.yml" "$CHECKOUT/ansible/hosts.yaml"
+  edit_files "$CHECKOUT/ansible/group_vars/all.yaml" "$CHECKOUT/ansible/hosts.yaml"
 
   say 'The configuration is about to be applied. This may take a while.'
   cmd "ansible-playbook site.yaml --limit $host -K"
