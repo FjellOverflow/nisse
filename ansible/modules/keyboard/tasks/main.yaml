@@ -26,8 +26,3 @@
           MatchIsKeyboard "on"
           Option "XkbLayout" "{{ keyboard_layout }}"
       EndSection
-
-- name: Set GNOME keyboard layout
-  community.general.dconf:
-    key: /org/gnome/desktop/input-sources/sources
-    value: "[('xkb', '{{ keyboard_layout }}')]"

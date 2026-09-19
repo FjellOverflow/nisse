@@ -1,9 +1,5 @@
 ---
 dependencies:
-  - role: gnome
-  - role: keyboard
-  - role: fonts
-  - role: terminal
   - role: brave
   - role: mullvad
   - role: syncthing

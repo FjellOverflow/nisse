@@ -13,6 +13,11 @@
   roles:
     - workstation
 
+- name: Desktop GNOME profile
+  hosts: desktop_gnome
+  roles:
+    - desktop_gnome
+
 - name: Development profile
   hosts: development
   roles:

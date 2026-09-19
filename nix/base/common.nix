@@ -8,6 +8,8 @@
 
 {
   imports = [
+    ../modules/fonts.nix
+    ../modules/keyboard.nix
     ../modules/tailscale.nix
   ];
 

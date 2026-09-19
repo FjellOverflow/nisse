@@ -7,6 +7,9 @@ all:
     workstation:
       hosts:
         vm:
+    desktop_gnome:
+      hosts:
+        vm:
     development:
       hosts:
         vm:

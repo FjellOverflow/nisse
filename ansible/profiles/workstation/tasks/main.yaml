@@ -37,7 +37,6 @@
       - org.gimp.GIMP
       - md.obsidian.Obsidian
       - org.videolan.VLC
-      - com.mattjakeman.ExtensionManager
       - org.inkscape.Inkscape
       - com.bitwarden.desktop
       - com.spotify.Client

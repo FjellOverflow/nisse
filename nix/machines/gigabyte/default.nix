@@ -3,9 +3,10 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../profiles/workstation.nix
+    ../../profiles/desktop-gnome.nix
     ../../profiles/development.nix
     ../../profiles/gaming.nix
+    ../../profiles/workstation.nix
   ];
 
   boot.loader.systemd-boot.enable = true;

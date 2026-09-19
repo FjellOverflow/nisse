@@ -3,13 +3,9 @@
 {
   imports = [
     ../modules/brave.nix
-    ../modules/fonts.nix
-    ../modules/gnome.nix
     ../modules/gnupg.nix
-    ../modules/keyboard.nix
     ../modules/mullvad.nix
     ../modules/syncthing.nix
-    ../modules/terminal.nix
   ];
 
   networking.networkmanager.enable = true;
@@ -59,7 +55,6 @@
   services.flatpak.enable = true;
   services.flatpak.packages = [
     "com.bitwarden.desktop"
-    "com.mattjakeman.ExtensionManager"
     "com.spotify.Client"
     "md.obsidian.Obsidian"
     "org.freefilesync.FreeFileSync"

@@ -64,6 +64,11 @@
       - bruno.desktop
       - org.gnome.DejaDup.desktop
 
+- name: Set GNOME keyboard layout
+  community.general.dconf:
+    key: /org/gnome/desktop/input-sources/sources
+    value: "[('xkb', '{{ keyboard_layout }}')]"
+
 - name: Set window button layout
   community.general.dconf:
     key: /org/gnome/desktop/wm/preferences/button-layout

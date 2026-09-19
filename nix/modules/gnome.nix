@@ -1,4 +1,10 @@
-{ pkgs, user, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 
 {
   services.xserver.enable = true;
@@ -34,6 +40,8 @@
     gnome-tour
   ];
 
+  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gnome3;
+
   programs.kdeconnect = {
     enable = true;
     package = pkgs.gnomeExtensions.gsconnect;
@@ -64,6 +72,15 @@
 
     dconf.settings."org/gnome/desktop/calendar" = {
       show-weekdate = true;
+    };
+
+    dconf.settings."org/gnome/desktop/input-sources" = {
+      sources = lib.mkDefault [
+        (lib.gvariant.mkTuple [
+          "xkb"
+          config.services.xserver.xkb.layout
+        ])
+      ];
     };
 
     dconf.settings."org/gnome/desktop/wm/preferences" = {

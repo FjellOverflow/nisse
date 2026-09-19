@@ -1,3 +1,5 @@
 ---
 dependencies:
+  - role: fonts
+  - role: keyboard
   - role: tailscale
