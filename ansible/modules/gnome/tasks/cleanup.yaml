@@ -7,6 +7,16 @@
     state: absent
   loop: "{{ gnome_removed_packages }}"
 
+- name: Gather installed package facts
+  ansible.builtin.package_facts:
+
+- name: Remove native LibreOffice packages
+  become: true
+  ansible.builtin.dnf:
+    name: "{{ ansible_facts.packages.keys() | select('match', '^(libreoffice|unoconv)') | list }}"
+    state: absent
+  when: ansible_facts.packages.keys() | select('match', '^(libreoffice|unoconv)') | list | length > 0
+
 - name: Autoremove orphan dependencies
   become: true
   ansible.builtin.dnf:
