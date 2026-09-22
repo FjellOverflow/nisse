@@ -42,6 +42,11 @@
       - com.spotify.Client
       - org.libreoffice.LibreOffice
 
+- name: Remove unused flatpak runtimes
+  ansible.builtin.command: flatpak uninstall --unused --user -y
+  register: flatpak_unused
+  changed_when: "'Nothing unused to uninstall' not in flatpak_unused.stdout"
+
 - name: Enable Fedora third-party repositories
   become: true
   ansible.builtin.command: fedora-third-party enable

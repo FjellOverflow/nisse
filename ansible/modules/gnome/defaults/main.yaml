@@ -1,9 +1,12 @@
 ---
-gnome_removed_packages:
+gnome_removed_installer_packages:
   - anaconda-live
   - slitherer
   - anaconda-webui
   - gnome-tour
+  - mediawriter
+
+gnome_removed_default_apps:
   - yelp
   - rhythmbox
   - gnome-weather
@@ -12,12 +15,33 @@ gnome_removed_packages:
   - gnome-clocks
   - gnome-maps
   - gnome-characters
-  - mediawriter
   - totem
+  - simple-scan
+
+gnome_removed_crash_reporting_packages:
   - abrt-desktop
   - abrt-gui
   - gnome-abrt
-  - simple-scan
+  - abrt
+  - abrt-cli
+  - abrt-tui
+  - abrt-dbus
+  - abrt-libs
+  - abrt-addon-ccpp
+  - abrt-addon-kerneloops
+  - abrt-addon-pstoreoops
+  - abrt-addon-vmcore
+  - abrt-addon-xorg
+  - abrt-plugin-bodhi
+  - python3-abrt
+  - python3-abrt-addon
+
+gnome_removed_browser_packages:
   - firefox-langpacks
   - firefox
   - malcontent-control
+
+gnome_removed_packages: "{{ gnome_removed_installer_packages
+  + gnome_removed_default_apps
+  + gnome_removed_crash_reporting_packages
+  + gnome_removed_browser_packages }}"

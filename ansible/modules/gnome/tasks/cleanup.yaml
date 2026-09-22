@@ -1,11 +1,31 @@
 ---
-- name: Remove excluded GNOME packages
+- name: Remove installer leftover packages
   become: true
   ignore_errors: true  # noqa: ignore-errors some packages may not be present
   ansible.builtin.dnf:
-    name: "{{ item }}"
+    name: "{{ gnome_removed_installer_packages }}"
     state: absent
-  loop: "{{ gnome_removed_packages }}"
+
+- name: Remove default GNOME app packages
+  become: true
+  ignore_errors: true  # noqa: ignore-errors some packages may not be present
+  ansible.builtin.dnf:
+    name: "{{ gnome_removed_default_apps }}"
+    state: absent
+
+- name: Remove crash reporting packages
+  become: true
+  ignore_errors: true  # noqa: ignore-errors some packages may not be present
+  ansible.builtin.dnf:
+    name: "{{ gnome_removed_crash_reporting_packages }}"
+    state: absent
+
+- name: Remove browser packages
+  become: true
+  ignore_errors: true  # noqa: ignore-errors some packages may not be present
+  ansible.builtin.dnf:
+    name: "{{ gnome_removed_browser_packages }}"
+    state: absent
 
 - name: Gather installed package facts
   ansible.builtin.package_facts:
