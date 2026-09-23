@@ -19,7 +19,7 @@
   services.thermald.enable = true;
 
   services.xserver.xkb = {
-    layout = "de";
+    layout = "de,no";
     variant = "";
   };
   console.keyMap = "de";

@@ -10,4 +10,4 @@ timezone: Europe/Oslo
 default_locale: en_US.UTF-8
 regional_locale: nb_NO.UTF-8
 
-keyboard_layout: "no"
+keyboard_layout: "no,de"

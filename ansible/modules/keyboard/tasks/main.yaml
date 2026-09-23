@@ -4,7 +4,7 @@
   ansible.builtin.lineinfile:
     path: /etc/vconsole.conf
     regexp: "^KEYMAP="
-    line: "KEYMAP={{ keyboard_layout }}"
+    line: "KEYMAP={{ keyboard_layout.split(',') | first }}"
     create: true
     mode: "0644"
 

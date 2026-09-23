@@ -8,5 +8,5 @@
   defaultLocale = "en_US.UTF-8";
   regionalLocale = "nb_NO.UTF-8";
 
-  keyboardLayout = "no";
+  keyboardLayout = "no,de";
 }

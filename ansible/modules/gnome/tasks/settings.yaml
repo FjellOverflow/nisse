@@ -67,7 +67,7 @@
 - name: Set GNOME keyboard layout
   community.general.dconf:
     key: /org/gnome/desktop/input-sources/sources
-    value: "[('xkb', '{{ keyboard_layout }}')]"
+    value: "[{% for layout in keyboard_layout.split(',') %}('xkb', '{{ layout }}'){{ ', ' if not loop.last }}{% endfor %}]"
 
 - name: Set window button layout
   community.general.dconf:
