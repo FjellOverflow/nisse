@@ -5,6 +5,8 @@ all:
       ansible_connection: local
     dell:
       ansible_connection: local
+    fjellheimen:
+      ansible_connection: local
   children:
     workstation:
       hosts:
