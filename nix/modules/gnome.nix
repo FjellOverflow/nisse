@@ -76,9 +76,13 @@
 
     dconf.settings."org/gnome/desktop/input-sources" = {
       sources = lib.mkDefault (
-        map (layout: lib.gvariant.mkTuple [ "xkb" layout ]) (
-          lib.splitString "," config.services.xserver.xkb.layout
-        )
+        map (
+          layout:
+          lib.gvariant.mkTuple [
+            "xkb"
+            layout
+          ]
+        ) (lib.splitString "," config.services.xserver.xkb.layout)
       );
     };
 
