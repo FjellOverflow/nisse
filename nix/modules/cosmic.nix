@@ -44,13 +44,14 @@
             };
           }
         ];
-      };
 
-      programs.cosmic-term = {
-        enable = true;
-        package = null;
-        settings.font_name = "FiraCode Nerd Font Mono";
-        settings.font_size = 16;
+        configFile."com.system76.CosmicTerm" = {
+          version = 1;
+          entries = {
+            font_name = "FiraCode Nerd Font Mono";
+            font_size = 16;
+          };
+        };
       };
     };
 }
