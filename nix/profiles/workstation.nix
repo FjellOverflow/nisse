@@ -49,7 +49,7 @@
   documentation.nixos.enable = false;
 
   systemd.tmpfiles.rules = [
-    "L+ /var/lib/AccountsService/icons/${user} - - - - ${../assets/avatar.png}"
+    "C+ /var/lib/AccountsService/icons/${user} - - - - ${../assets/avatar.png}"
     "f /var/lib/AccountsService/users/${user} 0644 root root - [User]\\nIcon=/var/lib/AccountsService/icons/${user}"
   ];
 
