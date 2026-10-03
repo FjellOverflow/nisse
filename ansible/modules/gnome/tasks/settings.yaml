@@ -74,10 +74,48 @@
     key: /org/gnome/desktop/wm/preferences/button-layout
     value: "'appmenu:minimize,maximize,close'"
 
+- name: Disable dynamic workspaces
+  community.general.dconf:
+    key: /org/gnome/mutter/dynamic-workspaces
+    value: "false"
+
+- name: Set number of workspaces
+  community.general.dconf:
+    key: /org/gnome/desktop/wm/preferences/num-workspaces
+    value: "5"
+
+- name: Set workspace names
+  community.general.dconf:
+    key: /org/gnome/desktop/wm/preferences/workspace-names
+    value: "['1', '2', '3', '4', '5']"
+
+- name: Show workspace names in window list
+  community.general.dconf:
+    key: /org/gnome/shell/extensions/window-list/embed-previews
+    value: "false"
+
 - name: Set window close shortcut
   community.general.dconf:
     key: /org/gnome/desktop/wm/keybindings/close
     value: "['<Super>q']"
+
+- name: Unset application switch shortcuts
+  community.general.dconf:
+    key: "/org/gnome/shell/keybindings/switch-to-application-{{ item }}"
+    value: "@as []"
+  loop: "{{ range(1, 6) | list }}"
+
+- name: Set workspace switch shortcuts
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-{{ item }}"
+    value: "['<Super>{{ item }}']"
+  loop: "{{ range(1, 6) | list }}"
+
+- name: Set move to workspace shortcuts
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-{{ item }}"
+    value: "['<Super><Shift>{{ item }}']"
+  loop: "{{ range(1, 6) | list }}"
 
 - name: Set terminal launch shortcut
   block:
@@ -119,9 +157,7 @@
     value: "{{ enabled_extensions }}"
   vars:
     enabled_extensions:
-      - places-menu@gnome-shell-extensions.gcampax.github.com
       - window-list@gnome-shell-extensions.gcampax.github.com
-      - apps-menu@gnome-shell-extensions.gcampax.github.com
       - gsconnect@andyholmes.github.io
 
 - name: Disable GNOME shell extensions

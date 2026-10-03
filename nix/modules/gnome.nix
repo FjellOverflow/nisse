@@ -88,10 +88,44 @@
 
     dconf.settings."org/gnome/desktop/wm/preferences" = {
       button-layout = "appmenu:minimize,maximize,close";
+      num-workspaces = 5;
+      workspace-names = [
+        "1"
+        "2"
+        "3"
+        "4"
+        "5"
+      ];
+    };
+
+    dconf.settings."org/gnome/mutter" = {
+      dynamic-workspaces = false;
     };
 
     dconf.settings."org/gnome/desktop/wm/keybindings" = {
       close = [ "<Super>q" ];
+      switch-to-workspace-1 = [ "<Super>1" ];
+      switch-to-workspace-2 = [ "<Super>2" ];
+      switch-to-workspace-3 = [ "<Super>3" ];
+      switch-to-workspace-4 = [ "<Super>4" ];
+      switch-to-workspace-5 = [ "<Super>5" ];
+      move-to-workspace-1 = [ "<Super><Shift>1" ];
+      move-to-workspace-2 = [ "<Super><Shift>2" ];
+      move-to-workspace-3 = [ "<Super><Shift>3" ];
+      move-to-workspace-4 = [ "<Super><Shift>4" ];
+      move-to-workspace-5 = [ "<Super><Shift>5" ];
+    };
+
+    dconf.settings."org/gnome/shell/keybindings" = {
+      switch-to-application-1 = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+      switch-to-application-2 = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+      switch-to-application-3 = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+      switch-to-application-4 = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+      switch-to-application-5 = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+    };
+
+    dconf.settings."org/gnome/shell/extensions/window-list" = {
+      embed-previews = false;
     };
 
     dconf.settings."org/gnome/settings-daemon/plugins/media-keys" = {
@@ -116,9 +150,7 @@
 
     dconf.settings."org/gnome/shell" = {
       enabled-extensions = [
-        "places-menu@gnome-shell-extensions.gcampax.github.com"
         "window-list@gnome-shell-extensions.gcampax.github.com"
-        "apps-menu@gnome-shell-extensions.gcampax.github.com"
         "gsconnect@andyholmes.github.io"
       ];
       favorite-apps = [
