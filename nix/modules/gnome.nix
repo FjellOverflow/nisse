@@ -47,14 +47,7 @@
     package = pkgs.gnomeExtensions.gsconnect;
   };
 
-  systemd.tmpfiles.rules = [
-    "L+ /var/lib/AccountsService/icons/${user} - - - - ${../assets/avatar.png}"
-    "f /var/lib/AccountsService/users/${user} 0644 root root - [User]\\nIcon=/var/lib/AccountsService/icons/${user}"
-  ];
-
   home-manager.users.${user} = _: {
-    home.file.".face".source = ../assets/avatar.png;
-
     dconf.settings."org/gnome/desktop/background" = {
       picture-uri = "file://${../assets/wallpapers/nixos.png}";
       picture-uri-dark = "file://${../assets/wallpapers/nixos.png}";

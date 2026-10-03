@@ -15,7 +15,10 @@
     in
     {
       gtk.enable = true;
-      gtk.gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+      gtk.theme = {
+        name = "Nordic";
+        package = pkgs.nordic;
+      };
 
       wayland.desktopManager.cosmic = {
         enable = true;
