@@ -1,4 +1,9 @@
-{ pkgs, user, ... }:
+{
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 
 {
   services.displayManager.cosmic-greeter.enable = true;
@@ -9,7 +14,7 @@
   ];
 
   home-manager.users.${user} =
-    { cosmicLib, ... }:
+    { cosmicLib, osConfig, ... }:
     let
       inherit (cosmicLib.cosmic) importRON mkRON;
       appGroup = name: apps: {
@@ -83,11 +88,6 @@
         package = null;
         settings.groups = [
           (appGroup "Disk" [ "gparted" ])
-          (appGroup "Gaming" [
-            "steam"
-            "net.lutris.Lutris"
-            "protontricks"
-          ])
           (appGroup "Graphics" [
             "org.gimp.GIMP"
             "org.inkscape.Inkscape"
@@ -116,7 +116,14 @@
             "com.system76.CosmicReader"
             "com.system76.CosmicScreenshot"
           ])
-        ];
+        ]
+        ++ lib.optional osConfig.programs.steam.enable (
+          appGroup "Gaming" [
+            "steam"
+            "net.lutris.Lutris"
+            "protontricks"
+          ]
+        );
       };
     };
 }
