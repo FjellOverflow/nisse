@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 
 {
   services.displayManager.cosmic-greeter.enable = true;
@@ -7,4 +7,50 @@
   environment.cosmic.excludePackages = with pkgs; [
     cosmic-initial-setup
   ];
+
+  home-manager.users.${user} =
+    { cosmicLib, ... }:
+    let
+      inherit (cosmicLib.cosmic) importRON mkRON;
+    in
+    {
+      gtk.enable = true;
+      gtk.gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+
+      wayland.desktopManager.cosmic = {
+        enable = true;
+
+        appearance.theme.mode = "dark";
+        # palette is stock cosmic-dark, corner_radii are dropped for COSMIC's round default
+        appearance.theme.dark = removeAttrs (importRON ../assets/themes/nord-dark.ron) [
+          "palette"
+          "corner_radii"
+        ];
+        appearance.toolkit.apply_theme_global = true;
+
+        applets.time.settings = {
+          military_time = true;
+          show_weekday = true;
+          first_day_of_week = 0;
+        };
+
+        shortcuts = [
+          {
+            description = mkRON "optional" "Launch terminal";
+            key = "Super+Return";
+            action = mkRON "enum" {
+              variant = "System";
+              value = [ (mkRON "enum" "Terminal") ];
+            };
+          }
+        ];
+      };
+
+      programs.cosmic-term = {
+        enable = true;
+        package = null;
+        settings.font_name = "FiraCode Nerd Font Mono";
+        settings.font_size = 16;
+      };
+    };
 }

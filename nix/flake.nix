@@ -11,6 +11,11 @@
     url = "github:nix-community/home-manager/release-26.05";
     inputs.nixpkgs.follows = "nixpkgs";
   };
+  inputs.cosmic-manager = {
+    url = "github:HeitorAugustoLN/cosmic-manager";
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.home-manager.follows = "home-manager";
+  };
   inputs.nix-index-database = {
     url = "github:nix-community/nix-index-database";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +27,7 @@
       nix-flatpak,
       nix-vscode-extensions,
       home-manager,
+      cosmic-manager,
       nix-index-database,
       ...
     }:
@@ -53,6 +59,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.sharedModules = [ cosmic-manager.homeManagerModules.cosmic-manager ];
         }
         { nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ]; }
         nix-index-database.nixosModules.nix-index
