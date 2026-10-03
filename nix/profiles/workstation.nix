@@ -48,8 +48,10 @@
 
   documentation.nixos.enable = false;
 
+  system.activationScripts.avatar = ''
+    install -D -m 0644 ${../assets/avatar.png} /var/lib/AccountsService/icons/${user}
+  '';
   systemd.tmpfiles.rules = [
-    "C+ /var/lib/AccountsService/icons/${user} - - - - ${../assets/avatar.png}"
     "f /var/lib/AccountsService/users/${user} 0644 root root - [User]\\nIcon=/var/lib/AccountsService/icons/${user}"
   ];
 
