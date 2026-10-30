@@ -1,0 +1,7 @@
+[tools]
+cocogitto = "7.0.0"
+
+[tasks.release]
+description = "Bump the version from the commit history, tag it and push"
+confirm = "Tag and push a new release?"
+run = "cog bump --auto"

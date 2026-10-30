@@ -1,0 +1,17 @@
+---
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: sudo apt-get update && sudo apt-get install --yes jq shellcheck
+      - run: ./build.sh
+      - run: shellcheck build.sh scripts/*.sh
+      - run: ./scripts/check-shell-selectors.sh

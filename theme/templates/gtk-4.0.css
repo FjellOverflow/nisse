@@ -1,0 +1,44 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent-color: {{ colors.accent }};
+    --accent-bg-color: {{ colors.accent_bg }};
+    --accent-fg-color: {{ colors.accent_fg }};
+
+    --destructive-bg-color: {{ colors.error }};
+    --destructive-fg-color: {{ colors.fg_bright }};
+    --success-bg-color: {{ colors.success }};
+    --success-fg-color: {{ colors.bg0 }};
+    --warning-bg-color: {{ colors.warning }};
+    --warning-fg-color: {{ colors.bg0 }};
+    --error-bg-color: {{ colors.error }};
+    --error-fg-color: {{ colors.fg_bright }};
+
+    --window-bg-color: {{ colors.bg1 }};
+    --window-fg-color: {{ colors.fg }};
+    --view-bg-color: {{ colors.bg0 }};
+    --view-fg-color: {{ colors.fg_bright }};
+
+    --headerbar-bg-color: {{ colors.bg2 }};
+    --headerbar-fg-color: {{ colors.fg_bright }};
+    --headerbar-backdrop-color: {{ colors.bg1 }};
+
+    --sidebar-bg-color: {{ colors.bg2 }};
+    --sidebar-fg-color: {{ colors.fg_bright }};
+    --sidebar-backdrop-color: {{ colors.bg1 }};
+    --secondary-sidebar-bg-color: {{ colors.bg1 }};
+    --secondary-sidebar-fg-color: {{ colors.fg_bright }};
+    --secondary-sidebar-backdrop-color: {{ colors.bg0 }};
+
+    --card-bg-color: {{ colors.card_bg }};
+    --card-fg-color: {{ colors.fg_bright }};
+    --dialog-bg-color: {{ colors.bg3 }};
+    --dialog-fg-color: {{ colors.fg_bright }};
+    --popover-bg-color: {{ colors.bg3 }};
+    --popover-fg-color: {{ colors.fg_bright }};
+
+    --overview-bg-color: {{ colors.bg2 }};
+    --overview-fg-color: {{ colors.fg_bright }};
+    --thumbnail-bg-color: {{ colors.bg3 }};
+    --thumbnail-fg-color: {{ colors.fg_bright }};
+  }
+}

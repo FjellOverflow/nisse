@@ -1,0 +1,12 @@
+tag_prefix = "v"
+branch_whitelist = ["main"]
+
+pre_bump_hooks = ["./build.sh"]
+
+post_bump_hooks = [
+  "git tag --force --sign --message {{version_tag}} {{version_tag}}",
+  "git push --atomic origin HEAD {{version_tag}}",
+]
+
+[changelog]
+path = "CHANGELOG.md"

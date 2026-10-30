@@ -1,0 +1,31 @@
+---
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: jdx/mise-action@v2
+      - run: sudo apt-get update && sudo apt-get install --yes jq
+      - run: ./build.sh
+      - name: Package theme
+        run: |
+          tar -czf nordfra.tar.gz -C dist nordfra
+          sha256sum nordfra.tar.gz > nordfra.tar.gz.sha256
+      - name: Publish release
+        run: |
+          cog changelog --at "$GITHUB_REF_NAME" > notes.md
+          gh release create "$GITHUB_REF_NAME" nordfra.tar.gz nordfra.tar.gz.sha256 --title "$GITHUB_REF_NAME" --notes-file notes.md
+        env:
+          GH_TOKEN: ${{ github.token }}
