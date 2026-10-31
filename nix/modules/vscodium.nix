@@ -12,7 +12,7 @@
         profiles.default.extensions = with pkgs.open-vsx; [
           jnoortheen.nix-ide
           vscode-icons-team.vscode-icons
-          zhuangtongfa.material-theme
+          arcticicestudio.nord-visual-studio-code
           jeanp413.open-remote-ssh
         ];
         profiles.default.userSettings = {
@@ -23,7 +23,7 @@
           "workbench.enableExperiments" = false;
           "chat.disableAIFeatures" = true;
           "workbench.startupEditor" = "none";
-          "workbench.colorTheme" = "One Dark Pro";
+          "workbench.colorTheme" = "Nord";
           "workbench.iconTheme" = "vscode-icons";
           "vsicons.dontShowNewVersionMessage" = true;
           "nix.enableLanguageServer" = true;

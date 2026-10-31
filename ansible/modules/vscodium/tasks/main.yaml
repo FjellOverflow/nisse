@@ -29,7 +29,7 @@
   ansible.builtin.command: "codium --install-extension {{ extension }}"
   loop:
     - vscode-icons-team.vscode-icons
-    - zhuangtongfa.material-theme
+    - arcticicestudio.nord-visual-studio-code
     - jeanp413.open-remote-ssh
   loop_control:
     loop_var: extension
