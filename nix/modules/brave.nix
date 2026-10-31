@@ -52,8 +52,6 @@
       "nngceckbapebfimnlniiiahkandclblb;https://clients2.google.com/service/update2/crx"
       # Google Translate
       "aapbdbdomjkkjkaonfhkkikfgjllcleb;https://clients2.google.com/service/update2/crx"
-      # Nord theme
-      "abehfkkfjlplnjadfcjiflnejblfmmpj;https://clients2.google.com/service/update2/crx"
     ];
   };
 }
