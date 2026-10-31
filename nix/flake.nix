@@ -15,6 +15,10 @@
     url = "github:nix-community/nix-index-database";
     inputs.nixpkgs.follows = "nixpkgs";
   };
+  inputs.nordfra = {
+    url = "https://github.com/FjellOverflow/nordfra/releases/download/v0.1.0/nordfra.tar.gz";
+    flake = false;
+  };
 
   outputs =
     {
@@ -23,6 +27,7 @@
       nix-vscode-extensions,
       home-manager,
       nix-index-database,
+      nordfra,
       ...
     }:
     let
@@ -74,7 +79,7 @@
       nixosConfigurations = nixpkgs.lib.genAttrs machines (
         host:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit variables user; };
+          specialArgs = { inherit variables user nordfra; };
           modules = commonModules ++ [ ./machines/${host}/default.nix ];
         }
       );

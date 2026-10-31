@@ -20,6 +20,7 @@
     decibels
     deja-dup
     gnome-shell-extensions
+    gnomeExtensions.blur-my-shell
     gnome-calculator
     gnome-connections
     gnome-disk-utility
@@ -65,7 +66,6 @@
       clock-format = "24h";
       clock-show-weekday = true;
       color-scheme = "prefer-dark";
-      gtk-theme = "Adwaita";
       icon-theme = "Adwaita";
       cursor-theme = "Adwaita";
     };
@@ -151,6 +151,8 @@
     dconf.settings."org/gnome/shell" = {
       enabled-extensions = [
         "window-list@gnome-shell-extensions.gcampax.github.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "blur-my-shell@aunetx"
         "gsconnect@andyholmes.github.io"
       ];
       favorite-apps = [
