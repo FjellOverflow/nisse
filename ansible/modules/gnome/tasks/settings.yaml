@@ -15,11 +15,6 @@
     key: /org/gnome/desktop/interface/color-scheme
     value: "'prefer-dark'"
 
-- name: Set GTK theme
-  community.general.dconf:
-    key: /org/gnome/desktop/interface/gtk-theme
-    value: "'Adwaita'"
-
 - name: Set icon theme
   community.general.dconf:
     key: /org/gnome/desktop/interface/icon-theme
@@ -158,6 +153,8 @@
   vars:
     enabled_extensions:
       - window-list@gnome-shell-extensions.gcampax.github.com
+      - user-theme@gnome-shell-extensions.gcampax.github.com
+      - blur-my-shell@aunetx
       - gsconnect@andyholmes.github.io
 
 - name: Disable GNOME shell extensions
