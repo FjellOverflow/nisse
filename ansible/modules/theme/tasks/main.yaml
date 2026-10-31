@@ -1,0 +1,91 @@
+---
+- name: Install adw-gtk3 theme
+  become: true
+  ansible.builtin.dnf:
+    name: adw-gtk3-theme
+
+- name: Install adw-gtk3 flatpak theme
+  community.general.flatpak:
+    method: user
+    name: org.gtk.Gtk3theme.adw-gtk3-dark
+
+- name: Expose GTK config to flatpaks
+  community.general.ini_file:
+    path: "{{ target_home }}/.local/share/flatpak/overrides/global"
+    section: Context
+    option: filesystems
+    value: "xdg-config/gtk-3.0:ro;xdg-config/gtk-4.0:ro;"
+    no_extra_spaces: true
+    mode: "0644"
+    create: true
+
+- name: Ensure nordfra directory exists
+  ansible.builtin.file:
+    path: "{{ theme_nordfra_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Download nordfra release
+  ansible.builtin.get_url:
+    url: "https://github.com/FjellOverflow/nordfra/releases/download/{{ theme_nordfra_version }}/nordfra.tar.gz"
+    dest: "{{ theme_nordfra_dir }}.tar.gz"
+    checksum: "{{ theme_nordfra_checksum }}"
+    mode: "0644"
+
+- name: Extract nordfra release
+  ansible.builtin.unarchive:
+    src: "{{ theme_nordfra_dir }}.tar.gz"
+    dest: "{{ theme_nordfra_dir }}"
+    remote_src: true
+    extra_opts:
+      - --strip-components=1
+
+- name: Ensure theme directories exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ target_home }}/.config/gtk-3.0"
+    - "{{ target_home }}/.config/gtk-4.0"
+    - "{{ target_home }}/.local/share/themes/nordfra/gnome-shell"
+
+- name: Install nordfra
+  ansible.builtin.copy:
+    src: "{{ theme_nordfra_dir }}/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    remote_src: true
+    mode: "0644"
+  loop:
+    - src: config/gtk-3.0/gtk.css
+      dest: "{{ target_home }}/.config/gtk-3.0/gtk.css"
+    - src: config/gtk-4.0/gtk.css
+      dest: "{{ target_home }}/.config/gtk-4.0/gtk.css"
+    - src: data/themes/nordfra/gnome-shell/gnome-shell.css
+      dest: "{{ target_home }}/.local/share/themes/nordfra/gnome-shell/gnome-shell.css"
+  loop_control:
+    label: "{{ item.src }}"
+
+- name: Read nordfra tokens
+  ansible.builtin.slurp:
+    src: "{{ theme_nordfra_dir }}/tokens.json"
+  register: theme_nordfra_tokens_file
+
+- name: Set nordfra tokens
+  ansible.builtin.set_fact:
+    theme_nordfra_tokens: "{{ theme_nordfra_tokens_file.content | b64decode | from_json }}"
+
+- name: Set GTK theme
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/gtk-theme
+    value: "'adw-gtk3-dark'"
+
+- name: Set accent color
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/accent-color
+    value: "'{{ theme_nordfra_tokens.gnome_accent }}'"
+
+- name: Set Shell theme
+  community.general.dconf:
+    key: /org/gnome/shell/extensions/user-theme/name
+    value: "'nordfra'"

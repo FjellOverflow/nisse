@@ -2,3 +2,4 @@
 dependencies:
   - role: gnome
   - role: ptyxis
+  - role: theme

@@ -7,7 +7,7 @@
 
 - name: Install wallpaper
   ansible.builtin.copy:
-    src: wallpaper.png
+    src: fedora.png
     dest: "{{ target_home }}/.local/share/backgrounds/fedora.png"
     mode: "0644"
 
