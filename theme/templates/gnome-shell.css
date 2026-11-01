@@ -562,6 +562,7 @@ StEntry:focus,
 
 StEntry,
 .search-entry,
+.login-dialog .login-dialog-prompt-entry,
 .unlock-dialog .login-dialog-prompt-entry {
   selection-background-color: st-transparentize({{ colors.accent_bg }}, 0.7);
 }
@@ -630,35 +631,68 @@ StEntry,
   color: {{ colors.fg_bright }};
 }
 
+#lockDialogGroup {
+  background-color: {{ colors.bg0 }};
+}
+
+.login-dialog,
 .unlock-dialog,
 .unlock-dialog-clock,
+.login-dialog .user-widget .user-widget-label,
 .unlock-dialog .user-widget .user-widget-label,
+.login-dialog .caps-lock-warning-label,
 .unlock-dialog .caps-lock-warning-label,
+.login-dialog .login-dialog-message-warning,
 .unlock-dialog .login-dialog-message-warning {
   color: {{ colors.fg_bright }};
 }
 
+.login-dialog-message,
+.login-dialog-message-hint,
+.login-dialog-banner-view .login-dialog-banner {
+  color: {{ colors.fg }};
+}
+
+.login-dialog .login-dialog-prompt-entry,
 .unlock-dialog .login-dialog-prompt-entry {
   background-color: {{ colors.bg1 }};
   color: {{ colors.fg }};
 }
 
+.login-dialog .login-dialog-prompt-entry:hover,
 .unlock-dialog .login-dialog-prompt-entry:hover {
   background-color: {{ colors.bg2 }};
   color: {{ colors.fg_bright }};
 }
 
+.login-dialog .login-dialog-prompt-entry:focus,
 .unlock-dialog .login-dialog-prompt-entry:focus {
   background-color: {{ colors.bg2 }};
   color: {{ colors.fg_bright }};
   box-shadow: inset 0 0 0 2px st-transparentize({{ colors.accent }}, 0.2) !important;
 }
 
+.login-dialog .login-dialog-prompt-entry:insensitive,
+.unlock-dialog .login-dialog-prompt-entry:insensitive {
+  background-color: {{ colors.bg1 }};
+  color: st-transparentize({{ colors.fg }}, 0.5);
+}
+
+.login-dialog .user-widget .user-icon {
+  background-color: st-transparentize({{ colors.fg_bright }}, 0.85);
+  color: {{ colors.fg_bright }};
+}
+
+.login-dialog .login-dialog-prompt-entry StLabel.hint-text,
 .unlock-dialog .login-dialog-prompt-entry StLabel.hint-text {
   color: {{ colors.fg }};
 }
 
 .unlock-dialog .user-widget .user-icon,
+.login-dialog .login-dialog-button.cancel-button,
+.login-dialog .login-dialog-button.switch-user-button,
+.login-dialog .login-dialog-button.a11y-button,
+.login-dialog .login-dialog-button.login-dialog-session-list-button,
 .unlock-dialog .login-dialog-button.cancel-button,
 .unlock-dialog .login-dialog-button.switch-user-button,
 .unlock-dialog .login-dialog-button.a11y-button,
@@ -667,10 +701,72 @@ StEntry,
   color: {{ colors.fg_bright }};
 }
 
+.login-dialog .login-dialog-button.cancel-button:hover,
+.login-dialog .login-dialog-button.switch-user-button:hover,
+.login-dialog .login-dialog-button.a11y-button:hover,
+.login-dialog .login-dialog-button.login-dialog-session-list-button:hover,
 .unlock-dialog .login-dialog-button.cancel-button:hover,
 .unlock-dialog .login-dialog-button.switch-user-button:hover,
 .unlock-dialog .login-dialog-button.a11y-button:hover {
   background-color: {{ colors.bg3 }};
+}
+
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item,
+.login-dialog .login-dialog-auth-list-item {
+  background-color: {{ colors.bg1 }};
+  color: {{ colors.fg_bright }};
+}
+
+.login-dialog-not-listed-button {
+  background-color: transparent;
+}
+
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:hover,
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:selected,
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:focus,
+.login-dialog .login-dialog-auth-list-item:hover,
+.login-dialog .login-dialog-auth-list-item:selected,
+.login-dialog .login-dialog-auth-list-item:focus,
+.login-dialog-not-listed-button:hover,
+.login-dialog-not-listed-button:focus {
+  background-color: {{ colors.bg2 }};
+}
+
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:active,
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:active:hover,
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:active:focus,
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:selected:hover,
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:focus:hover,
+.login-dialog .login-dialog-auth-list-item:active,
+.login-dialog .login-dialog-auth-list-item:active:hover,
+.login-dialog .login-dialog-auth-list-item:active:focus,
+.login-dialog .login-dialog-auth-list-item:selected:hover,
+.login-dialog .login-dialog-auth-list-item:focus:hover,
+.login-dialog-not-listed-button:active,
+.login-dialog-not-listed-button:active:hover,
+.login-dialog-not-listed-button:active:focus,
+.login-dialog-not-listed-button:focus:hover,
+.login-dialog .login-dialog-button.cancel-button:active,
+.login-dialog .login-dialog-button.switch-user-button:active,
+.login-dialog .login-dialog-button.a11y-button:active,
+.login-dialog .login-dialog-button.login-dialog-session-list-button:active {
+  background-color: {{ colors.bg3 }};
+}
+
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:selected,
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:focus,
+.login-dialog .login-dialog-auth-list-item:selected,
+.login-dialog .login-dialog-auth-list-item:focus,
+.login-dialog-not-listed-button:focus {
+  box-shadow: inset 0 0 0 2px st-transparentize({{ colors.accent }}, 0.2) !important;
+}
+
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:logged-in .user-icon {
+  border-color: {{ colors.accent }};
+}
+
+.login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:logged-in .user-icon StIcon {
+  background-color: st-transparentize({{ colors.accent }}, 0.7);
 }
 
 .unlock-dialog-notifications-container .message,

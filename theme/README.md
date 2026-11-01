@@ -55,6 +55,13 @@ flatpak install flathub org.gtk.Gtk3theme.adw-gtk3-dark
 
 The installer replaces `~/.config/gtk-3.0/gtk.css` and `~/.config/gtk-4.0/gtk.css` and backs up the originals as `*.nordfra-backup`.
 
+### Login screen
+
+```sh
+./nordfra/install-gdm.sh     # needs sudo; rerun after GNOME Shell updates
+./nordfra/install-gdm.sh -r  # restore the stock login screen
+```
+
 ## Uninstall
 
 ```sh
