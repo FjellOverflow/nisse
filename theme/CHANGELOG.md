@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.2.0 - 2026-11-01
+#### Features
+- theme the gdm login screen - (81432f1) - FjellOverflow
+#### Bug Fixes
+- harden install-gdm.sh install and restore - (95b6327) - FjellOverflow
+
+- - -
+
 ## v0.1.0 - 2026-10-30
 #### Features
 - initial release - (243802d) - FjellOverflow
