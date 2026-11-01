@@ -18,7 +18,6 @@
     baobab
     dconf-editor
     decibels
-    deja-dup
     gnome-shell-extensions
     gnomeExtensions.blur-my-shell
     gnome-calculator
@@ -166,7 +165,6 @@
         "org.gnome.Boxes.desktop"
         "mullvad-vpn.desktop"
         "bruno.desktop"
-        "org.gnome.DejaDup.desktop"
       ];
     };
 
@@ -178,7 +176,6 @@
         "Media"
         "Office"
         "Settings"
-        "Sync"
         "System"
         "Utilities"
       ];
@@ -244,15 +241,6 @@
       ];
     };
 
-    dconf.settings."org/gnome/desktop/app-folders/folders/Sync" = {
-      name = "Sync";
-      apps = [
-        "org.freefilesync.FreeFileSync.desktop"
-        "org.freefilesync.FreeFileSync.RealTimeSync.desktop"
-        "syncthing-ui.desktop"
-      ];
-    };
-
     dconf.settings."org/gnome/desktop/app-folders/folders/System" = {
       name = "System";
       apps = [
@@ -260,6 +248,7 @@
         "org.gnome.font-viewer.desktop"
         "org.gnome.Logs.desktop"
         "org.gnome.SystemMonitor.desktop"
+        "syncthing-ui.desktop"
       ];
     };
 

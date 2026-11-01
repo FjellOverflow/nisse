@@ -57,7 +57,6 @@
       - org.gnome.Boxes.desktop
       - mullvad-vpn.desktop
       - bruno.desktop
-      - org.gnome.DejaDup.desktop
 
 - name: Set GNOME keyboard layout
   community.general.dconf:
@@ -165,7 +164,7 @@
 - name: Register app folders
   community.general.dconf:
     key: /org/gnome/desktop/app-folders/folder-children
-    value: "['Disk', 'Gaming', 'Graphics', 'Media', 'Office', 'Settings', 'Sync', 'System', 'Utilities']"
+    value: "['Disk', 'Gaming', 'Graphics', 'Media', 'Office', 'Settings', 'System', 'Utilities']"
 
 - name: Set app folder names
   community.general.dconf:
@@ -178,7 +177,6 @@
     - Media
     - Office
     - Settings
-    - Sync
     - System
     - Utilities
 
@@ -225,18 +223,14 @@
         - org.gnome.Extensions.desktop
         - org.gnome.Settings.desktop
         - org.gnome.tweaks.desktop
-    - folder: Sync
-      apps:
-        - org.freefilesync.FreeFileSync.desktop
-        - org.freefilesync.FreeFileSync.RealTimeSync.desktop
-        - syncthing-start.desktop
-        - syncthing-ui.desktop
     - folder: System
       apps:
         - org.gnome.Connections.desktop
         - org.gnome.font-viewer.desktop
         - org.gnome.Logs.desktop
         - org.gnome.SystemMonitor.desktop
+        - syncthing-start.desktop
+        - syncthing-ui.desktop
     - folder: Utilities
       apps:
         - org.gnome.Calculator.desktop

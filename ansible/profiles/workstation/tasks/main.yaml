@@ -33,7 +33,6 @@
   community.general.flatpak:
     method: user
     name:
-      - org.freefilesync.FreeFileSync
       - org.gimp.GIMP
       - md.obsidian.Obsidian
       - org.videolan.VLC

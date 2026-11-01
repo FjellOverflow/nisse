@@ -57,7 +57,6 @@
     "com.bitwarden.desktop"
     "com.spotify.Client"
     "md.obsidian.Obsidian"
-    "org.freefilesync.FreeFileSync"
     "org.gimp.GIMP"
     "org.inkscape.Inkscape"
     "org.libreoffice.LibreOffice"
