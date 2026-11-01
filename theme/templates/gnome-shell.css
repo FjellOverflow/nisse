@@ -821,13 +821,13 @@ StEntry,
 
 #uiGroup.overview-components-light .search-entry,
 #uiGroup.overview-components-dark .search-entry {
-  background-color: {{ colors.bg2 }};
-  color: {{ colors.fg_bright }};
+  background-color: {{ colors.bg2 }} !important;
+  color: {{ colors.fg_bright }} !important;
 }
 
 #uiGroup.overview-components-light .search-entry .search-entry-icon,
 #uiGroup.overview-components-dark .search-entry .search-entry-icon {
-  color: {{ colors.fg }};
+  color: {{ colors.fg }} !important;
 }
 
 #uiGroup.overview-components-light .workspace-thumbnail,
@@ -838,7 +838,7 @@ StEntry,
 #uiGroup.overview-components-dark .overview-tile.app-folder,
 #uiGroup.overview-components-dark .app-folder-dialog .icon-button,
 #uiGroup.overview-components-dark .app-folder-dialog .page-navigation-arrow {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ colors.bg2 }} !important;
 }
 
 #uiGroup.overview-components-light .search-section-content,
@@ -847,7 +847,7 @@ StEntry,
 #uiGroup.overview-components-dark .search-section-content,
 #uiGroup.overview-components-dark .page-navigation-arrow,
 #uiGroup.overview-components-dark StBoxLayout > StWidget > #dash > .dash-background {
-  background-color: {{ colors.bg1 }};
+  background-color: {{ colors.bg1 }} !important;
 }
 
 #uiGroup.overview-components-light .overview-tile:hover,
@@ -890,7 +890,7 @@ StEntry,
 #uiGroup.overview-components-dark #dash .overview-tile:focus .overview-icon,
 #uiGroup.overview-components-dark #dash .show-apps:hover .overview-icon,
 #uiGroup.overview-components-dark #dash .show-apps:focus .overview-icon {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ colors.bg2 }} !important;
 }
 
 #uiGroup.overview-components-light .overview-tile:drop,
@@ -967,16 +967,16 @@ StEntry,
 #uiGroup.overview-components-dark #dash .overview-tile:drop .overview-icon,
 #uiGroup.overview-components-dark #dash .show-apps:checked .overview-icon,
 #uiGroup.overview-components-dark #dash .show-apps:checked .overview-icon:hover {
-  background-color: {{ colors.bg3 }};
+  background-color: {{ colors.bg3 }} !important;
 }
 
 .app-folder-dialog.appfolder-dialogs-light,
 .app-folder-dialog.appfolder-dialogs-dark {
-  background-color: {{ colors.bg1 }};
+  background-color: {{ colors.bg1 }} !important;
 }
 
 .app-folder-dialog.appfolder-dialogs-light .folder-name-entry,
 .app-folder-dialog.appfolder-dialogs-dark .folder-name-entry {
-  background-color: {{ colors.bg2 }};
-  color: {{ colors.fg_bright }};
+  background-color: {{ colors.bg2 }} !important;
+  color: {{ colors.fg_bright }} !important;
 }
