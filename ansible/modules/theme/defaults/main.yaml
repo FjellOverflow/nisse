@@ -1,4 +1,4 @@
 ---
-theme_nordfra_version: v0.3.1
-theme_nordfra_checksum: sha256:5b0555c40a39ef1d9e8c8227535bdf65e63f97ddd511af005508cc75e7ad109a
+theme_nordfra_version: v0.3.2
+theme_nordfra_checksum: sha256:2fc670c1df3ef7b152532745741411d3fbd816b3973ec1c115bf0630954a806a
 theme_nordfra_dir: "/var/cache/nordfra/{{ theme_nordfra_version }}"

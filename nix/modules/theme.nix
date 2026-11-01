@@ -44,5 +44,14 @@ in
     dconf.settings."org/gnome/shell/extensions/user-theme" = {
       name = "nordfra";
     };
+
+    dconf.settings."org/gnome/shell/extensions/blur-my-shell/overview" = {
+      style-components = 0;
+    };
+
+    dconf.settings."org/gnome/shell/extensions/blur-my-shell/appfolder" = {
+      blur = false;
+      style-dialogs = 0;
+    };
   };
 }

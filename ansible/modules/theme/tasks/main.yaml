@@ -95,6 +95,21 @@
     key: /org/gnome/shell/extensions/user-theme/name
     value: "'nordfra'"
 
+- name: Set Blur my Shell overview style
+  community.general.dconf:
+    key: /org/gnome/shell/extensions/blur-my-shell/overview/style-components
+    value: "0"
+
+- name: Set Blur my Shell app folder style
+  community.general.dconf:
+    key: /org/gnome/shell/extensions/blur-my-shell/appfolder/style-dialogs
+    value: "0"
+
+- name: Disable Blur my Shell app folder blur
+  community.general.dconf:
+    key: /org/gnome/shell/extensions/blur-my-shell/appfolder/blur
+    value: "false"
+
 - name: Install GResource tools
   become: true
   ansible.builtin.dnf:

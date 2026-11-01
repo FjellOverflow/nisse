@@ -16,7 +16,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
   inputs.nordfra = {
-    url = "https://github.com/FjellOverflow/nordfra/releases/download/v0.3.1/nordfra.tar.gz";
+    url = "https://github.com/FjellOverflow/nordfra/releases/download/v0.3.2/nordfra.tar.gz";
     flake = false;
   };
 
