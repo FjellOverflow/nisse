@@ -173,6 +173,18 @@
   background-color: {{ colors.bg3 }};
 }
 
+#dash .dash-item-container .overview-tile,
+#dash .dash-item-container .overview-tile:hover,
+#dash .dash-item-container .overview-tile:active,
+#dash .dash-item-container .overview-tile:checked,
+#dash .dash-item-container .overview-tile:selected,
+#dash .dash-item-container .overview-tile:highlighted,
+#dash .dash-item-container .overview-tile:focus,
+#dash .dash-item-container .overview-tile:drop {
+  background-color: transparent;
+  box-shadow: none !important;
+}
+
 .app-grid-running-dot {
   background-color: {{ colors.accent }};
 }
@@ -259,7 +271,7 @@
 }
 
 .app-folder {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ colors.card_bg }};
 }
 
 .overview-tile:hover,
@@ -817,166 +829,4 @@ StEntry,
 .unlock-dialog-notifications-container .message.critical,
 .unlock-dialog-notifications-container .unlock-dialog-notification-source.critical {
   background-color: {{ colors.bg2 }};
-}
-
-#uiGroup.overview-components-light .search-entry,
-#uiGroup.overview-components-dark .search-entry {
-  background-color: {{ colors.bg2 }} !important;
-  color: {{ colors.fg_bright }} !important;
-}
-
-#uiGroup.overview-components-light .search-entry .search-entry-icon,
-#uiGroup.overview-components-dark .search-entry .search-entry-icon {
-  color: {{ colors.fg }} !important;
-}
-
-#uiGroup.overview-components-light .workspace-thumbnail,
-#uiGroup.overview-components-light .overview-tile.app-folder,
-#uiGroup.overview-components-light .app-folder-dialog .icon-button,
-#uiGroup.overview-components-light .app-folder-dialog .page-navigation-arrow,
-#uiGroup.overview-components-dark .workspace-thumbnail,
-#uiGroup.overview-components-dark .overview-tile.app-folder,
-#uiGroup.overview-components-dark .app-folder-dialog .icon-button,
-#uiGroup.overview-components-dark .app-folder-dialog .page-navigation-arrow {
-  background-color: {{ colors.bg2 }} !important;
-}
-
-#uiGroup.overview-components-light .search-section-content,
-#uiGroup.overview-components-light .page-navigation-arrow,
-#uiGroup.overview-components-light StBoxLayout > StWidget > #dash > .dash-background,
-#uiGroup.overview-components-dark .search-section-content,
-#uiGroup.overview-components-dark .page-navigation-arrow,
-#uiGroup.overview-components-dark StBoxLayout > StWidget > #dash > .dash-background {
-  background-color: {{ colors.bg1 }} !important;
-}
-
-#uiGroup.overview-components-light .overview-tile:hover,
-#uiGroup.overview-components-light .overview-tile:focus,
-#uiGroup.overview-components-light .overview-tile:selected,
-#uiGroup.overview-components-light .overview-tile:highlighted,
-#uiGroup.overview-components-light .grid-search-result:hover,
-#uiGroup.overview-components-light .grid-search-result:focus,
-#uiGroup.overview-components-light .grid-search-result:selected,
-#uiGroup.overview-components-light .grid-search-result:highlighted,
-#uiGroup.overview-components-light .list-search-result:hover,
-#uiGroup.overview-components-light .list-search-result:focus,
-#uiGroup.overview-components-light .list-search-result:selected,
-#uiGroup.overview-components-light .list-search-result:highlighted,
-#uiGroup.overview-components-light .search-provider-icon:hover,
-#uiGroup.overview-components-light .search-provider-icon:focus,
-#uiGroup.overview-components-light .page-navigation-arrow:hover,
-#uiGroup.overview-components-light .page-navigation-arrow:focus,
-#uiGroup.overview-components-light #dash .overview-tile:hover .overview-icon,
-#uiGroup.overview-components-light #dash .overview-tile:focus .overview-icon,
-#uiGroup.overview-components-light #dash .show-apps:hover .overview-icon,
-#uiGroup.overview-components-light #dash .show-apps:focus .overview-icon,
-#uiGroup.overview-components-dark .overview-tile:hover,
-#uiGroup.overview-components-dark .overview-tile:focus,
-#uiGroup.overview-components-dark .overview-tile:selected,
-#uiGroup.overview-components-dark .overview-tile:highlighted,
-#uiGroup.overview-components-dark .grid-search-result:hover,
-#uiGroup.overview-components-dark .grid-search-result:focus,
-#uiGroup.overview-components-dark .grid-search-result:selected,
-#uiGroup.overview-components-dark .grid-search-result:highlighted,
-#uiGroup.overview-components-dark .list-search-result:hover,
-#uiGroup.overview-components-dark .list-search-result:focus,
-#uiGroup.overview-components-dark .list-search-result:selected,
-#uiGroup.overview-components-dark .list-search-result:highlighted,
-#uiGroup.overview-components-dark .search-provider-icon:hover,
-#uiGroup.overview-components-dark .search-provider-icon:focus,
-#uiGroup.overview-components-dark .page-navigation-arrow:hover,
-#uiGroup.overview-components-dark .page-navigation-arrow:focus,
-#uiGroup.overview-components-dark #dash .overview-tile:hover .overview-icon,
-#uiGroup.overview-components-dark #dash .overview-tile:focus .overview-icon,
-#uiGroup.overview-components-dark #dash .show-apps:hover .overview-icon,
-#uiGroup.overview-components-dark #dash .show-apps:focus .overview-icon {
-  background-color: {{ colors.bg2 }} !important;
-}
-
-#uiGroup.overview-components-light .overview-tile:drop,
-#uiGroup.overview-components-light .overview-tile:active,
-#uiGroup.overview-components-light .overview-tile:focus:hover,
-#uiGroup.overview-components-light .overview-tile:selected:hover,
-#uiGroup.overview-components-light .overview-tile:highlighted:hover,
-#uiGroup.overview-components-light .overview-tile:focus:active,
-#uiGroup.overview-components-light .overview-tile:selected:active,
-#uiGroup.overview-components-light .overview-tile:highlighted:active,
-#uiGroup.overview-components-light .grid-search-result:active,
-#uiGroup.overview-components-light .grid-search-result:focus:hover,
-#uiGroup.overview-components-light .grid-search-result:selected:hover,
-#uiGroup.overview-components-light .grid-search-result:highlighted:hover,
-#uiGroup.overview-components-light .grid-search-result:focus:active,
-#uiGroup.overview-components-light .grid-search-result:selected:active,
-#uiGroup.overview-components-light .grid-search-result:highlighted:active,
-#uiGroup.overview-components-light .list-search-result:active,
-#uiGroup.overview-components-light .list-search-result:focus:hover,
-#uiGroup.overview-components-light .list-search-result:selected:hover,
-#uiGroup.overview-components-light .list-search-result:highlighted:hover,
-#uiGroup.overview-components-light .list-search-result:focus:active,
-#uiGroup.overview-components-light .list-search-result:selected:active,
-#uiGroup.overview-components-light .list-search-result:highlighted:active,
-#uiGroup.overview-components-light .search-provider-icon:active,
-#uiGroup.overview-components-light .search-provider-icon:focus:hover,
-#uiGroup.overview-components-light .page-navigation-arrow:active,
-#uiGroup.overview-components-light .page-navigation-arrow:focus:hover,
-#uiGroup.overview-components-light .app-folder-dialog .icon-button:hover,
-#uiGroup.overview-components-light .app-folder-dialog .icon-button:focus,
-#uiGroup.overview-components-light .app-folder-dialog .icon-button:active,
-#uiGroup.overview-components-light .app-folder-dialog .page-navigation-arrow:hover,
-#uiGroup.overview-components-light .app-folder-dialog .page-navigation-arrow:focus,
-#uiGroup.overview-components-light .app-folder-dialog .page-navigation-arrow:active,
-#uiGroup.overview-components-light #dash .overview-tile:active .overview-icon,
-#uiGroup.overview-components-light #dash .overview-tile:focus:hover .overview-icon,
-#uiGroup.overview-components-light #dash .overview-tile:drop .overview-icon,
-#uiGroup.overview-components-light #dash .show-apps:checked .overview-icon,
-#uiGroup.overview-components-light #dash .show-apps:checked .overview-icon:hover,
-#uiGroup.overview-components-dark .overview-tile:drop,
-#uiGroup.overview-components-dark .overview-tile:active,
-#uiGroup.overview-components-dark .overview-tile:focus:hover,
-#uiGroup.overview-components-dark .overview-tile:selected:hover,
-#uiGroup.overview-components-dark .overview-tile:highlighted:hover,
-#uiGroup.overview-components-dark .overview-tile:focus:active,
-#uiGroup.overview-components-dark .overview-tile:selected:active,
-#uiGroup.overview-components-dark .overview-tile:highlighted:active,
-#uiGroup.overview-components-dark .grid-search-result:active,
-#uiGroup.overview-components-dark .grid-search-result:focus:hover,
-#uiGroup.overview-components-dark .grid-search-result:selected:hover,
-#uiGroup.overview-components-dark .grid-search-result:highlighted:hover,
-#uiGroup.overview-components-dark .grid-search-result:focus:active,
-#uiGroup.overview-components-dark .grid-search-result:selected:active,
-#uiGroup.overview-components-dark .grid-search-result:highlighted:active,
-#uiGroup.overview-components-dark .list-search-result:active,
-#uiGroup.overview-components-dark .list-search-result:focus:hover,
-#uiGroup.overview-components-dark .list-search-result:selected:hover,
-#uiGroup.overview-components-dark .list-search-result:highlighted:hover,
-#uiGroup.overview-components-dark .list-search-result:focus:active,
-#uiGroup.overview-components-dark .list-search-result:selected:active,
-#uiGroup.overview-components-dark .list-search-result:highlighted:active,
-#uiGroup.overview-components-dark .search-provider-icon:active,
-#uiGroup.overview-components-dark .search-provider-icon:focus:hover,
-#uiGroup.overview-components-dark .page-navigation-arrow:active,
-#uiGroup.overview-components-dark .page-navigation-arrow:focus:hover,
-#uiGroup.overview-components-dark .app-folder-dialog .icon-button:hover,
-#uiGroup.overview-components-dark .app-folder-dialog .icon-button:focus,
-#uiGroup.overview-components-dark .app-folder-dialog .icon-button:active,
-#uiGroup.overview-components-dark .app-folder-dialog .page-navigation-arrow:hover,
-#uiGroup.overview-components-dark .app-folder-dialog .page-navigation-arrow:focus,
-#uiGroup.overview-components-dark .app-folder-dialog .page-navigation-arrow:active,
-#uiGroup.overview-components-dark #dash .overview-tile:active .overview-icon,
-#uiGroup.overview-components-dark #dash .overview-tile:focus:hover .overview-icon,
-#uiGroup.overview-components-dark #dash .overview-tile:drop .overview-icon,
-#uiGroup.overview-components-dark #dash .show-apps:checked .overview-icon,
-#uiGroup.overview-components-dark #dash .show-apps:checked .overview-icon:hover {
-  background-color: {{ colors.bg3 }} !important;
-}
-
-.app-folder-dialog.appfolder-dialogs-light,
-.app-folder-dialog.appfolder-dialogs-dark {
-  background-color: {{ colors.bg1 }} !important;
-}
-
-.app-folder-dialog.appfolder-dialogs-light .folder-name-entry,
-.app-folder-dialog.appfolder-dialogs-dark .folder-name-entry {
-  background-color: {{ colors.bg2 }} !important;
-  color: {{ colors.fg_bright }} !important;
 }

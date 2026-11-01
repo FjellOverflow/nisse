@@ -55,6 +55,15 @@ flatpak install flathub org.gtk.Gtk3theme.adw-gtk3-dark
 
 The installer replaces `~/.config/gtk-3.0/gtk.css` and `~/.config/gtk-4.0/gtk.css` and backs up the originals as `*.nordfra-backup`.
 
+### Blur my Shell
+
+Its styling overrides nordfra, so turn it off:
+
+```sh
+dconf write /org/gnome/shell/extensions/blur-my-shell/overview/style-components 0
+dconf write /org/gnome/shell/extensions/blur-my-shell/appfolder/style-dialogs 0
+```
+
 ### Login screen
 
 ```sh
