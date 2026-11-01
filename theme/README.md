@@ -60,6 +60,7 @@ The installer replaces `~/.config/gtk-3.0/gtk.css` and `~/.config/gtk-4.0/gtk.cs
 ```sh
 ./nordfra/install-gdm.sh     # needs sudo; rerun after GNOME Shell updates
 ./nordfra/install-gdm.sh -r  # restore the stock login screen
+./nordfra/gdm-resource.sh <stock.gresource> <out.gresource>  # only build it, e.g. for packaging
 ```
 
 ## Uninstall

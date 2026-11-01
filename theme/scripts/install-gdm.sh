@@ -4,7 +4,7 @@ set -eu
 cd "$(dirname "$0")"
 target=/usr/share/gnome-shell/gnome-shell-theme.gresource
 backup=$target.nordfra-backup
-prefix=/org/gnome/shell/theme
+# Must match the marker in gdm-resource.sh.
 marker='/* nordfra: login screen */'
 
 usage() {
@@ -16,7 +16,7 @@ as_root() {
   if [ "$(id -u)" -eq 0 ]; then "$@"; else sudo "$@"; fi
 }
 
-# Our resource is uncompressed, so the marker shows up in the raw file.
+# gdm-resource.sh compiles uncompressed, so the marker shows up in the raw file.
 is_themed() {
   grep -qaF "$marker" "$target"
 }
@@ -54,28 +54,11 @@ theme() {
 
   work=$(mktemp -d)
   trap 'rm -rf "$work"' EXIT
-  stylesheet=$work/gnome-shell-dark.css
-  paths=$(gresource list "$backup")
+  ./gdm-resource.sh "$backup" "$work/theme.gresource"
 
-  echo "<gresources><gresource prefix=\"$prefix\">" > "$work/theme.xml"
-  for path in $paths; do
-    file=${path#"$prefix"/}
-    gresource extract "$backup" "$path" > "$work/$file"
-    echo "<file>$file</file>" >> "$work/theme.xml"
-  done
-  echo '</gresource></gresources>' >> "$work/theme.xml"
-
-  if [ ! -s "$stylesheet" ]; then
-    echo "error: $backup has no gnome-shell-dark.css" >&2
-    exit 1
-  fi
-  printf '\n%s\n' "$marker" >> "$stylesheet"
-  cat data/themes/nordfra/gnome-shell/gnome-shell.css >> "$stylesheet"
-
-  glib-compile-resources --sourcedir="$work" --target="$work/theme.gresource" "$work/theme.xml"
-  if ! gresource extract "$work/theme.gresource" "$prefix/gnome-shell-dark.css" | grep -qF "$marker"; then
-    echo "error: the rebuilt theme failed verification; $target is unchanged" >&2
-    exit 1
+  if cmp -s "$work/theme.gresource" "$target"; then
+    echo "login screen already up to date"
+    return
   fi
 
   as_root install -m 644 "$work/theme.gresource" "$target.nordfra-new"

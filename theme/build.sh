@@ -24,7 +24,7 @@ gtk-4.0.css config/gtk-4.0/gtk.css
 gnome-shell.css data/themes/nordfra/gnome-shell/gnome-shell.css
 EOF
 
-cp scripts/install.sh scripts/install-gdm.sh "$out/"
+cp scripts/install.sh scripts/install-gdm.sh scripts/gdm-resource.sh "$out/"
 
 if grep -rlF '{{' "$out" >&2; then
   echo "unresolved placeholders in the files above" >&2
