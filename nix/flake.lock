@@ -93,13 +93,27 @@
         "type": "github"
       }
     },
+    "nordfra": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793402541,
+        "narHash": "sha256-d0ayVKUQCnJ76JIZCg3u34dXMc2F48N7OcunRzSuxOQ=",
+        "type": "tarball",
+        "url": "https://github.com/FjellOverflow/nordfra/releases/download/v0.1.0/nordfra.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/FjellOverflow/nordfra/releases/download/v0.1.0/nordfra.tar.gz"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nordfra": "nordfra"
       }
     }
   },
