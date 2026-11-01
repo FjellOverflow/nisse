@@ -48,7 +48,7 @@
     favorite_apps:
       - org.gnome.Ptyxis.desktop
       - brave-browser.desktop
-      - codium.desktop
+      - com.visualstudio.CodeOSS.desktop
       - org.gnome.Nautilus.desktop
       - md.obsidian.Obsidian.desktop
       - org.gnome.Software.desktop
