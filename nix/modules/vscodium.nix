@@ -26,6 +26,7 @@
           "workbench.colorTheme" = "Nord";
           "workbench.iconTheme" = "vscode-icons";
           "vsicons.dontShowNewVersionMessage" = true;
+          "window.dialogStyle" = "custom";
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "nil";
           "nix.formatterPath" = [ "${pkgs.nixfmt}/bin/nixfmt" ];
