@@ -2,12 +2,13 @@
 set -eu
 
 shell_version=50
+blur_my_shell_version=72
 
 usage() {
   echo "Usage: $0 [SOURCE_DIR...]"
   echo "  Fails if a class or id in templates/gnome-shell.css is missing from"
-  echo "  gnome-shell and gnome-shell-extensions $shell_version. Without SOURCE_DIRs,"
-  echo "  both are cloned from gitlab.gnome.org."
+  echo "  gnome-shell and gnome-shell-extensions $shell_version and Blur my Shell"
+  echo "  v$blur_my_shell_version. Without SOURCE_DIRs, all three are cloned."
 }
 
 case "${1:-}" in
@@ -27,7 +28,9 @@ if [ $# -eq 0 ]; then
     git clone --quiet --depth 1 --branch "gnome-$shell_version" \
       "https://gitlab.gnome.org/GNOME/$repo.git" "$sources/$repo"
   done
-  set -- "$sources/gnome-shell" "$sources/gnome-shell-extensions"
+  git -c advice.detachedHead=false clone --quiet --depth 1 --branch "v$blur_my_shell_version" \
+    https://github.com/aunetx/blur-my-shell.git "$sources/blur-my-shell"
+  set -- "$sources/gnome-shell" "$sources/gnome-shell-extensions" "$sources/blur-my-shell"
 fi
 
 selectors=$(
