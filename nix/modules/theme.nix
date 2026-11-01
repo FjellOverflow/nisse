@@ -50,7 +50,6 @@ in
     };
 
     dconf.settings."org/gnome/shell/extensions/blur-my-shell/appfolder" = {
-      blur = false;
       style-dialogs = 0;
     };
   };
