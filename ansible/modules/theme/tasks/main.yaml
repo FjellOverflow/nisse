@@ -20,12 +20,14 @@
     create: true
 
 - name: Ensure nordfra directory exists
+  become: true
   ansible.builtin.file:
     path: "{{ theme_nordfra_dir }}"
     state: directory
     mode: "0755"
 
 - name: Download nordfra release
+  become: true
   ansible.builtin.get_url:
     url: "https://github.com/FjellOverflow/nordfra/releases/download/{{ theme_nordfra_version }}/nordfra.tar.gz"
     dest: "{{ theme_nordfra_dir }}.tar.gz"
@@ -33,10 +35,13 @@
     mode: "0644"
 
 - name: Extract nordfra release
+  become: true
   ansible.builtin.unarchive:
     src: "{{ theme_nordfra_dir }}.tar.gz"
     dest: "{{ theme_nordfra_dir }}"
     remote_src: true
+    owner: root
+    group: root
     extra_opts:
       - --strip-components=1
 
@@ -89,3 +94,14 @@
   community.general.dconf:
     key: /org/gnome/shell/extensions/user-theme/name
     value: "'nordfra'"
+
+- name: Install GResource tools
+  become: true
+  ansible.builtin.dnf:
+    name: glib2-devel
+
+- name: Install nordfra login screen
+  become: true
+  ansible.builtin.command: "{{ theme_nordfra_dir }}/install-gdm.sh"
+  register: theme_nordfra_gdm
+  changed_when: "'already up to date' not in theme_nordfra_gdm.stdout"
