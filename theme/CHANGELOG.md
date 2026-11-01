@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.3.2 - 2026-11-01
+#### Bug Fixes
+- keep dock tiles transparent and frost app folders - (edc98ac) - FjellOverflow
+
+- - -
+
 ## v0.3.1 - 2026-11-01
 #### Bug Fixes
 - make blur my shell overrides important so they win over the extension - (025a06b) - FjellOverflow
