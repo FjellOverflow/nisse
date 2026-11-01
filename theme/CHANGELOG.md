@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.3.0 - 2026-11-01
+#### Features
+- ship gdm-resource.sh and skip unchanged login screen installs - (6965d5b) - FjellOverflow
+- theme blur my shell overview and stock-white shell elements - (039d341) - FjellOverflow
+
+- - -
+
 ## v0.2.0 - 2026-11-01
 #### Features
 - theme the gdm login screen - (81432f1) - FjellOverflow
