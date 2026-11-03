@@ -5,6 +5,7 @@
     ../modules/brave.nix
     ../modules/gnupg.nix
     ../modules/mullvad.nix
+    ../modules/spotify.nix
     ../modules/syncthing.nix
   ];
 
@@ -55,7 +56,6 @@
   services.flatpak.enable = true;
   services.flatpak.packages = [
     "com.bitwarden.desktop"
-    "com.spotify.Client"
     "md.obsidian.Obsidian"
     "org.gimp.GIMP"
     "org.inkscape.Inkscape"

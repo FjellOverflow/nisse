@@ -15,6 +15,10 @@
     url = "github:nix-community/nix-index-database";
     inputs.nixpkgs.follows = "nixpkgs";
   };
+  inputs.spicetify-nix = {
+    url = "github:Gerg-L/spicetify-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
   inputs.nordfra = {
     url = "https://github.com/FjellOverflow/nordfra/releases/download/v0.3.2/nordfra.tar.gz";
     flake = false;
@@ -27,6 +31,7 @@
       nix-vscode-extensions,
       home-manager,
       nix-index-database,
+      spicetify-nix,
       nordfra,
       ...
     }:
@@ -79,7 +84,7 @@
       nixosConfigurations = nixpkgs.lib.genAttrs machines (
         host:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit variables user nordfra; };
+          specialArgs = { inherit variables user spicetify-nix nordfra; };
           modules = commonModules ++ [ ./machines/${host}/default.nix ];
         }
       );
