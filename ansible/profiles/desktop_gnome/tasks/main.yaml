@@ -1,6 +1,0 @@
----
-- name: Install GNOME flatpaks
-  community.general.flatpak:
-    method: user
-    name:
-      - com.mattjakeman.ExtensionManager

@@ -2,7 +2,3 @@
 .direnv/
 result
 result-*
-
-# ansible
-.ansible/
-host_vars/

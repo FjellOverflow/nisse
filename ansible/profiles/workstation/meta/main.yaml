@@ -1,6 +1,0 @@
----
-dependencies:
-  - role: brave
-  - role: mullvad
-  - role: syncthing
-  - role: gnupg

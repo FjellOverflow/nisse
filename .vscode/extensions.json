@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "redhat.ansible",
     "jnoortheen.nix-ide",
     "mkhl.direnv"
   ]
