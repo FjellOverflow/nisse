@@ -42,3 +42,19 @@
     --thumbnail-fg-color: {{ colors.fg_bright }};
   }
 }
+
+window.dialog.message .titlebar {
+  min-height: 12px;
+}
+
+window.dialog.message.csd .dialog-action-area {
+  padding: 18px;
+  padding-top: 12px;
+  border-spacing: 8px;
+}
+
+window.dialog.message.csd .dialog-action-area > button {
+  min-height: 20px;
+  padding: 6px 16px;
+  border-radius: 9px;
+}
