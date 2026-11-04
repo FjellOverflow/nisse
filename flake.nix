@@ -47,11 +47,23 @@
           deadnix
           nixfmt
           findutils
+          git
         ];
         text = ''
           statix check .
-          deadnix --fail .
-          find . -name '*.nix' -exec nixfmt --check {} +
+          git ls-files -z '*.nix' | xargs -0 deadnix --fail
+          git ls-files -z '*.nix' | xargs -0 nixfmt --check
+        '';
+      };
+      format = pkgs.writeShellApplication {
+        name = "format";
+        runtimeInputs = with pkgs; [
+          nixfmt
+          findutils
+          git
+        ];
+        text = ''
+          git ls-files -z '*.nix' | xargs -0 nixfmt
         '';
       };
       machines = builtins.attrNames (
@@ -70,7 +82,7 @@
       ];
     in
     {
-      packages.${system}.lint = lint;
+      packages.${system} = { inherit lint format; };
 
       devShells.${system}.default = pkgs.mkShell {
         packages = [
@@ -78,13 +90,21 @@
           pkgs.deadnix
           pkgs.nixfmt
           lint
+          format
         ];
       };
 
       nixosConfigurations = nixpkgs.lib.genAttrs machines (
         host:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit variables user spicetify-nix nordfra; };
+          specialArgs = {
+            inherit
+              variables
+              user
+              spicetify-nix
+              nordfra
+              ;
+          };
           modules = commonModules ++ [ ./machines/${host}/default.nix ];
         }
       );
