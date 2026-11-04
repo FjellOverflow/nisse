@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.3.4 - 2026-11-04
+#### Bug Fixes
+- tighten gtk3 message dialog spacing and buttons - (f3eb4a8) - FjellOverflow
+
+- - -
+
 ## v0.3.3 - 2026-11-04
 #### Bug Fixes
 - tighten gtk message dialog spacing and buttons - (659d0eb) - FjellOverflow
