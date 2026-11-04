@@ -44,3 +44,20 @@ decoration:backdrop {
   border-radius: 0;
   box-shadow: none;
 }
+
+messagedialog .titlebar,
+messagedialog .titlebar:backdrop {
+  min-height: 12px;
+}
+
+messagedialog.csd .dialog-action-area {
+  padding: 12px 14px 18px 14px;
+}
+
+messagedialog.csd .dialog-action-area button {
+  min-height: 20px;
+  padding: 6px 16px;
+  margin: 0 4px;
+  border-radius: 9px;
+  -gtk-outline-radius: 7px;
+}
