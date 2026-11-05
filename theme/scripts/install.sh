@@ -39,9 +39,18 @@ remove_file() {
   fi
 }
 
+reload_icon_theme() {
+  command -v gsettings > /dev/null || return 0
+  [ "$(gsettings get org.gnome.desktop.interface icon-theme 2> /dev/null)" = "'nordfra'" ] || return 0
+  gsettings set org.gnome.desktop.interface icon-theme Adwaita || return 0
+  sleep 1
+  gsettings set org.gnome.desktop.interface icon-theme nordfra
+}
+
 case "${1:-}" in
   "")
     each_file install_file
+    reload_icon_theme
     echo "nordfra installed"
     if [ -e "$HOME/.themes/nordfra" ]; then
       echo "warning: $HOME/.themes/nordfra shadows the installed Shell theme; remove it to use this one" >&2
