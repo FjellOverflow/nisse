@@ -25,24 +25,40 @@ gnome-shell.css data/themes/nordfra/gnome-shell/gnome-shell.css
 icons/index.theme data/icons/nordfra/index.theme
 EOF
 
+require_glyph() {
+  if [ "$(head -n 1 "$1")" != '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">' ] ||
+    [ "$(tail -n 1 "$1")" != '</svg>' ]; then
+    echo "$1: not a glyph; create it with scripts/import-glyph.py" >&2
+    exit 1
+  fi
+}
+
+without_svg_wrapper() {
+  sed '1d;$d' "$1"
+}
+
 compose() {
+  template_file=$1 glyph_file=$2
   while IFS= read -r line; do
     if [ "$line" = "{{ glyph }}" ]; then
-      sed '1d;$d' "$2"
+      without_svg_wrapper "$glyph_file"
     else
       printf '%s\n' "$line"
     fi
-  done < "templates/icons/$1" | sed "$substitutions"
+  done < "templates/icons/$template_file" | sed "$substitutions"
 }
 
 icons=$out/data/icons/nordfra/scalable
-mkdir -p "$icons/apps" "$icons/places"
-for glyph in icons/apps/*.svg; do
-  compose app.svg "$glyph" > "$icons/apps/${glyph##*/}"
-done
-for glyph in icons/places/*.svg; do
-  compose folder.svg "$glyph" > "$icons/places/${glyph##*/}"
-done
+while read -r context template; do
+  mkdir -p "$icons/$context"
+  for glyph in "icons/$context"/*.svg; do
+    require_glyph "$glyph"
+    compose "$template" "$glyph" > "$icons/$context/${glyph##*/}"
+  done
+done <<EOF
+apps app.svg
+places folder.svg
+EOF
 
 cp scripts/install.sh scripts/install-gdm.sh scripts/gdm-resource.sh "$out/"
 

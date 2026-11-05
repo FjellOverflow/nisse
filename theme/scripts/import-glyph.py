@@ -13,18 +13,39 @@ import xml.etree.ElementTree as ET
 SKIP = {"metadata", "title", "desc", "namedview", "RDF", "style", "script"}
 PAINT_SERVERS = {"linearGradient", "radialGradient", "filter"}
 XLINK = "{http://www.w3.org/1999/xlink}"
-PAINT = re.compile(r"(^|;)\s*(fill|stroke|color)\s*:\s*([^;]*)")
+UNUSED_COLOURS = {"color", "solid-color", "text-decoration-color"}
+TEXT_LAYOUT = {"letter-spacing", "word-spacing", "writing-mode", "direction", "baseline-shift",
+               "block-progression", "line-height", "shape-padding", "dominant-baseline"}
+DEFAULTS = {("display", "inline"), ("visibility", "visible"), ("overflow", "visible"), ("marker", "none"),
+            ("vector-effect", "none"), ("isolation", "auto"), ("mix-blend-mode", "normal")}
 
 
-def clean_style(style):
-    def keep(m):
-        prop, value = m.group(2), m.group(3).strip()
-        if prop == "color" or (prop == "fill" and value != "none" and not value.startswith("url")):
-            return m.group(1)
-        if prop == "stroke" and value != "none" and not value.startswith("url"):
-            return f"{m.group(1)}stroke:currentColor"
-        return m.group(0)
-    return ";".join(p for p in PAINT.sub(keep, style).split(";") if p.strip())
+def is_inert(prop, value):
+    return (prop in TEXT_LAYOUT or prop.startswith(("font", "text-", "-inkscape"))
+            or (prop, value) in DEFAULTS)
+
+
+def repaint(prop, value, silhouette):
+    value = value.strip()
+    is_paint = value != "none" and (silhouette or not value.startswith("url"))
+    if prop in UNUSED_COLOURS or is_inert(prop, value) or (prop == "fill" and is_paint):
+        return None
+    if prop == "stroke" and is_paint or prop == "stop-color":
+        return "currentColor"
+    return value
+
+
+def clean_style(style, silhouette):
+    declarations = []
+    for declaration in style.split(";"):
+        prop, _, value = declaration.partition(":")
+        prop = prop.strip()
+        if not prop:
+            continue
+        value = repaint(prop, value, silhouette)
+        if value is not None:
+            declarations.append(f"{prop}:{value}")
+    return ";".join(declarations)
 
 
 def serialize(el, silhouette):
@@ -35,20 +56,16 @@ def serialize(el, silhouette):
     for key, value in el.attrib.items():
         if key == f"{XLINK}href":
             key = "href"
-        elif "}" in key or ":" in key or key in ("class", "color"):
+        elif "}" in key or ":" in key or key == "class":
             continue
         if silhouette and key == "filter":
             continue
-        if silhouette and key in ("fill", "stroke") and value.startswith("url"):
-            value = "currentColor"
-        if key == "fill" and value != "none" and not value.startswith("url"):
-            continue
-        if key == "stroke" and value != "none" and not value.startswith("url"):
-            value = "currentColor"
         if key == "style":
-            value = clean_style(value)
-            if not value:
-                continue
+            value = clean_style(value, silhouette)
+        else:
+            value = repaint(key, value, silhouette)
+        if not value:
+            continue
         attrs.append(f'{key}="{value}"')
     children = "".join(serialize(child, silhouette) for child in el)
     text = (el.text or "").strip() if tag in ("text", "tspan") else ""

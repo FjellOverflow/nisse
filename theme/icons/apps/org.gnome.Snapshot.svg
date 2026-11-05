@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
 <filter id="a" height="100%" width="100%" x="0%" y="0%"><feColorMatrix in="SourceGraphic" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/></filter>
 <mask id="e"><g filter="url(#a)"><path fill-opacity=".716" d="M0 0h16v16H0z"/></g></mask>
-<linearGradient id="b" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#99c1f1"/><stop offset="1" stop-color="#3584e4" stop-opacity="0"/></linearGradient>
+<linearGradient id="b" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient>
 <linearGradient id="f" gradientTransform="matrix(0 .8025 .8025 0 -165.54 102.798)" x1="-58.316" x2="34.192" href="#b" y1="296" y2="296"/>
 <clipPath id="d"><path d="M0 0h192v152H0z"/></clipPath>
 <mask id="h"><g filter="url(#a)"><path fill-opacity=".664" d="M0 0h16v16H0z"/></g></mask>
-<linearGradient id="c" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="c" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient>
 <linearGradient id="i" gradientTransform="matrix(.66 0 0 -.66 -139.2 91.88)" x1="320" x2="320" href="#c" y1="93" y2="13"/>
 <clipPath id="g"><path d="M0 0h192v152H0z"/></clipPath>
 <mask id="k"><g filter="url(#a)"><path fill-opacity=".716" d="M0 0h16v16H0z"/></g></mask>

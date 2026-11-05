@@ -92,9 +92,9 @@ This restores the backed-up files.
 mise release    # builds, tags and publishes a release
 ```
 
-Colours live in [`tokens.json`](tokens.json); templates in [`templates/`](templates/) reference them as `{{ colors.key }}`.
+Colours live in [`tokens.json`](tokens.json); templates in [`templates/`](templates/) reference them as `{{ group.key }}`.
 
-To add an icon, import a glyph named after the app's `Icon=` value (`--silhouette` for a full-colour source):
+Icon glyphs in [`icons/`](icons/) fill the `{{ glyph }}` slot of [`templates/icons/`](templates/icons/). To add one, import it under the app's `Icon=` name (`--silhouette` for a full-colour source):
 
 ```sh
 scripts/import-glyph.py /usr/share/icons/hicolor/symbolic/apps/org.gnome.Maps-symbolic.svg icons/apps/org.gnome.Maps.svg
