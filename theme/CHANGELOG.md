@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.4.0 - 2026-11-05
+#### Features
+- add nordfra icon theme for apps and folders - (a92c719) - FjellOverflow
+#### Bug Fixes
+- reload icon theme after install - (648d16f) - FjellOverflow
+- enlarge icon glyphs - (9d1c29d) - FjellOverflow
+- tidy icon glyphs, tokens and build checks - (a7b2557) - FjellOverflow
+
+- - -
+
 ## v0.3.4 - 2026-11-04
 #### Bug Fixes
 - tighten gtk3 message dialog spacing and buttons - (f3eb4a8) - FjellOverflow
