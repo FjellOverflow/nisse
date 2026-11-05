@@ -2,7 +2,7 @@
 <path fill="{{ colors.accent_bg }}" d="M8 14a4 4 0 0 1 4-4h12.5a4 4 0 0 1 3 1.4L30.5 15H52a4 4 0 0 1 4 4v4H8z"/>
 <rect fill="{{ icons.bg }}" x="6" y="19" width="52" height="36" rx="5"/>
 <rect fill="{{ colors.fg_bright }}" opacity="0.18" x="6" y="19" width="52" height="1.5"/>
-<svg x="24" y="29" width="16" height="16" viewBox="0 0 16 16" fill="{{ colors.bg0 }}" color="{{ colors.bg0 }}" opacity="0.8">
+<svg x="21" y="26" width="22" height="22" viewBox="0 0 16 16" fill="{{ colors.bg0 }}" color="{{ colors.bg0 }}" opacity="0.8">
 {{ glyph }}
 </svg>
 </svg>
