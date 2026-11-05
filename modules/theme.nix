@@ -35,9 +35,11 @@ in
     xdg.configFile."gtk-3.0/gtk.css".source = "${nordfra}/config/gtk-3.0/gtk.css";
     xdg.configFile."gtk-4.0/gtk.css".source = "${nordfra}/config/gtk-4.0/gtk.css";
     xdg.dataFile."themes/nordfra".source = "${nordfra}/data/themes/nordfra";
+    xdg.dataFile."icons/nordfra".source = "${nordfra}/data/icons/nordfra";
 
     dconf.settings."org/gnome/desktop/interface" = {
       gtk-theme = "adw-gtk3-dark";
+      icon-theme = "nordfra";
       accent-color = tokens.gnome_accent;
     };
 
