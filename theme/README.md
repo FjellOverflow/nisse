@@ -14,7 +14,7 @@
 
 > *Nordfra* (Norwegian: [ˈnuːrfrɑː]) means "from the north".
 
-Themes GNOME Shell, GTK 4 / libadwaita and GTK 3 apps. Dark mode only.
+Themes GNOME Shell, GTK 4 / libadwaita and GTK 3 apps, plus app and folder icons. Dark mode only.
 
 ## Requirements
 
@@ -38,13 +38,14 @@ gsettings set org.gnome.desktop.interface accent-color slate
 gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
 gsettings set org.gnome.shell.extensions.user-theme name nordfra
+gsettings set org.gnome.desktop.interface icon-theme nordfra
 ```
 
 Or in the GUI:
 
 1. **Settings → Appearance**: choose *Dark* and the *Slate* accent.
 2. **Extensions**: turn on *User Themes*.
-3. **Tweaks → Appearance**: set *Legacy Applications* to `adw-gtk3-dark` and *Shell* to `nordfra`.
+3. **Tweaks → Appearance**: set *Legacy Applications* to `adw-gtk3-dark`, *Shell* and *Icons* to `nordfra`.
 
 For Flatpak apps (or in [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal): *All Applications → Filesystem*, add `xdg-config/gtk-3.0:ro` and `xdg-config/gtk-4.0:ro`):
 
@@ -54,6 +55,10 @@ flatpak install flathub org.gtk.Gtk3theme.adw-gtk3-dark
 ```
 
 The installer replaces `~/.config/gtk-3.0/gtk.css` and `~/.config/gtk-4.0/gtk.css` and backs up the originals as `*.nordfra-backup`.
+
+### Icons
+
+Apps without a nordfra icon fall back to Adwaita.
 
 ### Blur my Shell
 
@@ -88,5 +93,11 @@ mise release    # builds, tags and publishes a release
 ```
 
 Colours live in [`tokens.json`](tokens.json); templates in [`templates/`](templates/) reference them as `{{ colors.key }}`.
+
+To add an icon, import a glyph named after the app's `Icon=` value (`--silhouette` for a full-colour source):
+
+```sh
+scripts/import-glyph.py /usr/share/icons/hicolor/symbolic/apps/org.gnome.Maps-symbolic.svg icons/apps/org.gnome.Maps.svg
+```
 
 The Shell theme targets one GNOME Shell version, pinned as `shell_version` in `scripts/check-shell-selectors.sh`. CI fails if a selector no longer exists in that version.

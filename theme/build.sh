@@ -22,7 +22,27 @@ done <<EOF
 gtk-3.0.css config/gtk-3.0/gtk.css
 gtk-4.0.css config/gtk-4.0/gtk.css
 gnome-shell.css data/themes/nordfra/gnome-shell/gnome-shell.css
+icons/index.theme data/icons/nordfra/index.theme
 EOF
+
+compose() {
+  while IFS= read -r line; do
+    if [ "$line" = "{{ glyph }}" ]; then
+      sed '1d;$d' "$2"
+    else
+      printf '%s\n' "$line"
+    fi
+  done < "templates/icons/$1" | sed "$substitutions"
+}
+
+icons=$out/data/icons/nordfra/scalable
+mkdir -p "$icons/apps" "$icons/places"
+for glyph in icons/apps/*.svg; do
+  compose app.svg "$glyph" > "$icons/apps/${glyph##*/}"
+done
+for glyph in icons/places/*.svg; do
+  compose folder.svg "$glyph" > "$icons/places/${glyph##*/}"
+done
 
 cp scripts/install.sh scripts/install-gdm.sh scripts/gdm-resource.sh "$out/"
 

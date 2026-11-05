@@ -50,6 +50,8 @@ case "${1:-}" in
   -r | --remove)
     each_file remove_file
     rmdir "$data/themes/nordfra/gnome-shell" "$data/themes/nordfra" 2> /dev/null || true
+    rmdir "$data/icons/nordfra/scalable/apps" "$data/icons/nordfra/scalable/places" \
+      "$data/icons/nordfra/scalable" "$data/icons/nordfra" 2> /dev/null || true
     echo "nordfra removed"
     ;;
   -h | --help)
