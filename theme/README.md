@@ -14,7 +14,7 @@
 
 > *Nordfra* (Norwegian: [ˈnuːrfrɑː]) means "from the north".
 
-Themes GNOME Shell, GTK 4 / libadwaita and GTK 3 apps, plus app and folder icons. Dark mode only.
+Themes GNOME Shell, GTK 4 / libadwaita and GTK 3 apps, plus app, folder and file icons. Dark mode only.
 
 ## Requirements
 
@@ -99,5 +99,7 @@ Icon glyphs in [`icons/`](icons/) fill the `{{ glyph }}` slot of [`templates/ico
 ```sh
 scripts/import-glyph.py /usr/share/icons/hicolor/symbolic/apps/org.gnome.Maps-symbolic.svg icons/apps/org.gnome.Maps.svg
 ```
+
+File icons in [`icons/mimetypes/`](icons/mimetypes/) are Adwaita's, recoloured with `scripts/import-mimetype.py`.
 
 The Shell theme targets one GNOME Shell version, pinned as `shell_version` in `scripts/check-shell-selectors.sh`. CI fails if a selector no longer exists in that version.

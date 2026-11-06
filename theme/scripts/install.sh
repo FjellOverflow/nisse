@@ -23,7 +23,7 @@ each_file() {
 install_file() {
   source=$1 target=$2
   mkdir -p "$(dirname "$target")"
-  if [ -f "$target" ] && [ ! -e "$target.nordfra-backup" ] && ! cmp -s "$source" "$target"; then
+  if [ "${source%%/*}" = config ] && [ -f "$target" ] && [ ! -e "$target.nordfra-backup" ] && ! cmp -s "$source" "$target"; then
     mv "$target" "$target.nordfra-backup"
     echo "backed up $target to $target.nordfra-backup"
   fi
@@ -60,7 +60,7 @@ case "${1:-}" in
     each_file remove_file
     rmdir "$data/themes/nordfra/gnome-shell" "$data/themes/nordfra" 2> /dev/null || true
     rmdir "$data/icons/nordfra/scalable/apps" "$data/icons/nordfra/scalable/places" \
-      "$data/icons/nordfra/scalable" "$data/icons/nordfra" 2> /dev/null || true
+      "$data/icons/nordfra/scalable/mimetypes" "$data/icons/nordfra/scalable" "$data/icons/nordfra" 2> /dev/null || true
     echo "nordfra removed"
     ;;
   -h | --help)

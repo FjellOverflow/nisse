@@ -1,8 +1,8 @@
 [Icon Theme]
 Name=nordfra
-Comment=Nord app and folder icons
+Comment=Nord app, folder and file icons
 Inherits=Adwaita,hicolor
-Directories=scalable/apps,scalable/places
+Directories=scalable/apps,scalable/places,scalable/mimetypes
 
 [scalable/apps]
 Context=Applications
@@ -13,6 +13,13 @@ Type=Scalable
 
 [scalable/places]
 Context=Places
+Size=64
+MinSize=16
+MaxSize=512
+Type=Scalable
+
+[scalable/mimetypes]
+Context=MimeTypes
 Size=64
 MinSize=16
 MaxSize=512

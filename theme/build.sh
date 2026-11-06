@@ -59,6 +59,15 @@ done <<EOF
 apps app.svg
 places folder.svg
 EOF
+mkdir -p "$icons/mimetypes"
+cp icons/mimetypes/*.svg "$icons/mimetypes/"
+while read -r alias source; do
+  cp "$icons/$source" "$icons/mimetypes/$alias.svg"
+done <<EOF
+inode-directory places/folder.svg
+x-office-address-book mimetypes/x-office-addressbook.svg
+text-x-generic-template mimetypes/text-x-generic.svg
+EOF
 
 cp scripts/install.sh scripts/install-gdm.sh scripts/gdm-resource.sh "$out/"
 
