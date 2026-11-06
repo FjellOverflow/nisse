@@ -41,6 +41,13 @@ in
       gtk-theme = "adw-gtk3-dark";
       icon-theme = "nordfra";
       accent-color = tokens.gnome_accent;
+      font-name = "Recursive Sans Linear Static 11";
+      document-font-name = "Recursive Sans Linear Static 12";
+      monospace-font-name = "Recursive Mono Linear Static 11";
+    };
+
+    dconf.settings."org/gnome/desktop/wm/preferences" = {
+      titlebar-font = "Recursive Sans Linear Static SemiBold 11";
     };
 
     dconf.settings."org/gnome/shell/extensions/user-theme" = {

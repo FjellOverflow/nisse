@@ -16,8 +16,9 @@
           jeanp413.open-remote-ssh
         ];
         profiles.default.userSettings = {
-          "editor.fontFamily" = "'FiraCode Nerd Font Mono'";
-          "editor.fontLigatures" = true;
+          "editor.fontFamily" = "'Recursive Mono Linear Static', 'Symbols Nerd Font Mono'";
+          "editor.fontSize" = 17.8;
+          "editor.fontLigatures" = "'dlig'";
           "editor.wordWrap" = "on";
           "telemetry.telemetryLevel" = "off";
           "workbench.enableExperiments" = false;
@@ -27,6 +28,7 @@
           "workbench.iconTheme" = "vscode-icons";
           "vsicons.dontShowNewVersionMessage" = true;
           "window.dialogStyle" = "custom";
+          "window.zoomLevel" = 1;
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "nil";
           "nix.formatterPath" = [ "${pkgs.nixfmt}/bin/nixfmt" ];
