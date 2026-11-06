@@ -14,7 +14,7 @@
 
 > *Nordfra* (Norwegian: [ˈnuːrfrɑː]) means "from the north".
 
-Themes GNOME Shell, GTK 4 / libadwaita and GTK 3 apps, plus app, folder and file icons. Dark mode only.
+Themes GNOME Shell, GTK 4 / libadwaita and GTK 3 apps, plus app, folder and file icons, in dark and light mode.
 
 ## Requirements
 
@@ -27,32 +27,33 @@ Themes GNOME Shell, GTK 4 / libadwaita and GTK 3 apps, plus app, folder and file
 ```sh
 curl -fLO https://github.com/FjellOverflow/nordfra/releases/latest/download/nordfra.tar.gz
 tar -xzf nordfra.tar.gz
-./nordfra/install.sh
+./nordfra/install.sh --dark   # or --light
 ```
 
 Then select the theme and restart open apps:
 
 ```sh
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface accent-color slate
-gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
-gsettings set org.gnome.shell.extensions.user-theme name nordfra
 gsettings set org.gnome.desktop.interface icon-theme nordfra
 ```
 
 Or in the GUI:
 
-1. **Settings → Appearance**: choose *Dark* and the *Slate* accent.
+1. **Settings → Appearance**: choose the *Slate* accent.
 2. **Extensions**: turn on *User Themes*.
-3. **Tweaks → Appearance**: set *Legacy Applications* to `adw-gtk3-dark`, *Shell* and *Icons* to `nordfra`.
+3. **Tweaks → Appearance**: set *Icons* to `nordfra`.
 
 For Flatpak apps (or in [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal): *All Applications → Filesystem*, add `xdg-config/gtk-3.0:ro` and `xdg-config/gtk-4.0:ro`):
 
 ```sh
 flatpak override --user --filesystem=xdg-config/gtk-3.0:ro --filesystem=xdg-config/gtk-4.0:ro
-flatpak install flathub org.gtk.Gtk3theme.adw-gtk3-dark
+flatpak install flathub org.gtk.Gtk3theme.adw-gtk3-dark org.gtk.Gtk3theme.adw-gtk3
 ```
+
+### Light and dark mode
+
+`--dark` and `--light` switch the colour scheme, *Legacy Applications* (`adw-gtk3-dark` / `adw-gtk3`) and the Shell theme (`nordfra` / `nordfra-light`). Rerun with the other option to switch. GTK 4 apps follow the quick-settings toggle; GTK 3 and the Shell don't, and the light Shell needs the `prefer-light` scheme that `--light` sets (the toggle sets `default`, which GNOME Shell treats as dark). As in stock GNOME, the top bar, overview, on-screen popups, lock and login screens stay dark in light mode. Without an option, the installer keeps the current mode.
 
 The installer replaces `~/.config/gtk-3.0/gtk.css` and `~/.config/gtk-4.0/gtk.css` and backs up the originals as `*.nordfra-backup`.
 
@@ -92,7 +93,7 @@ This restores the backed-up files.
 mise release    # builds, tags and publishes a release
 ```
 
-Colours live in [`tokens.json`](tokens.json); templates in [`templates/`](templates/) reference them as `{{ group.key }}`.
+Colours live in [`tokens.json`](tokens.json); templates in [`templates/`](templates/) reference them as `{{ group.key }}`. `colors_light` overrides `colors` in the light variant. `build.sh` adds `{{ dark.key }}` (always the dark palette, for parts of the Shell that stay dark) and `{{ variant }}` (`dark` or `light`); icons always use the dark palette.
 
 Icon glyphs in [`icons/`](icons/) fill the `{{ glyph }}` slot of [`templates/icons/`](templates/icons/). To add one, import it under the app's `Icon=` name (`--silhouette` for a full-colour source):
 

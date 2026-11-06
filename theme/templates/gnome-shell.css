@@ -1,24 +1,24 @@
 #panel,
 #panel.solid,
 #panel.bottom-panel {
-  background-color: {{ colors.bg0 }};
+  background-color: {{ dark.bg0 }};
 }
 
 #panel .panel-button,
 #panel:overview .panel-button {
-  color: {{ colors.fg_bright }};
+  color: {{ dark.fg_bright }};
 }
 
 #panel .panel-button#panelActivities .workspace-dot,
 #panel:overview .panel-button#panelActivities .workspace-dot {
-  background-color: {{ colors.fg_bright }};
+  background-color: {{ dark.fg_bright }};
 }
 
 #panel .panel-button:hover,
 #panel .panel-button:focus,
 #panel .panel-button.clock-display:hover .clock,
 #panel .panel-button.clock-display:focus .clock {
-  box-shadow: inset 0 0 0 100px {{ colors.bg2 }};
+  box-shadow: inset 0 0 0 100px {{ dark.bg2 }};
 }
 
 #panel .panel-button:active,
@@ -27,45 +27,45 @@
 #panel .panel-button:checked:hover,
 #panel .panel-button.clock-display:active .clock,
 #panel .panel-button.clock-display:checked .clock {
-  box-shadow: inset 0 0 0 100px {{ colors.bg3 }};
+  box-shadow: inset 0 0 0 100px {{ dark.bg3 }};
 }
 
 #panel .window-list-workspace-indicator.name-label {
-  box-shadow: inset 0 0 0 100px {{ colors.bg2 }} !important;
+  box-shadow: inset 0 0 0 100px {{ dark.bg2 }} !important;
 }
 
 #panel .window-list-workspace-indicator.name-label:hover,
 #panel .window-list-workspace-indicator.name-label:focus,
 #panel .window-list-workspace-indicator.name-label:active {
-  box-shadow: inset 0 0 0 100px {{ colors.bg3 }} !important;
+  box-shadow: inset 0 0 0 100px {{ dark.bg3 }} !important;
 }
 
 #panel .window-button > StWidget {
-  color: {{ colors.fg_bright }};
+  color: {{ dark.fg_bright }};
 }
 
 #panel .window-button:hover > StWidget {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 #panel .window-button:active > StWidget,
 #panel .window-button:focus > StWidget,
 #panel .window-button.focused > StWidget,
 #panel .window-button.focused:hover > StWidget {
-  background-color: {{ colors.bg3 }};
+  background-color: {{ dark.bg3 }};
 }
 
 #panel .window-button.minimized > StWidget {
-  color: {{ colors.bg3 }};
-  background-color: {{ colors.bg0 }};
+  color: {{ dark.bg3 }};
+  background-color: {{ dark.bg0 }};
 }
 
 #panel .window-list-workspace-indicator .workspace {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 #panel .window-list-workspace-indicator .workspace.active {
-  border-color: {{ colors.accent }};
+  border-color: {{ dark.accent }};
 }
 
 .popup-menu {
@@ -141,36 +141,36 @@
 }
 
 #overviewGroup {
-  background-color: {{ colors.bg0 }};
+  background-color: {{ dark.bg0 }};
 }
 
 .workspace-thumbnails .workspace-thumbnail {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 .workspace-thumbnail-indicator {
-  border-color: {{ colors.accent }};
+  border-color: {{ dark.accent }};
 }
 
 #dash .dash-background {
-  background-color: {{ colors.bg1 }};
+  background-color: {{ dark.bg1 }};
 }
 
 #dash .dash-item-container .overview-tile .overview-icon,
 #dash .dash-item-container .show-apps .overview-icon {
-  background-color: {{ colors.bg1 }};
+  background-color: {{ dark.bg1 }};
 }
 
 #dash .dash-item-container .overview-tile:hover .overview-icon,
 #dash .dash-item-container .show-apps:hover .overview-icon {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 #dash .dash-item-container .overview-tile:active .overview-icon,
 #dash .dash-item-container .overview-tile:checked .overview-icon,
 #dash .dash-item-container .show-apps:active .overview-icon,
 #dash .dash-item-container .show-apps:checked .overview-icon {
-  background-color: {{ colors.bg3 }};
+  background-color: {{ dark.bg3 }};
 }
 
 #dash .dash-item-container .overview-tile,
@@ -186,40 +186,40 @@
 }
 
 .app-grid-running-dot {
-  background-color: {{ colors.accent }};
+  background-color: {{ dark.accent }};
 }
 
 .page-indicator .page-indicator-icon {
-  background-color: {{ colors.fg_bright }};
+  background-color: {{ dark.fg_bright }};
 }
 
 .page-navigation-arrow,
 .page-navigation-arrow > StIcon {
-  color: {{ colors.fg_bright }};
+  color: {{ dark.fg_bright }};
 }
 
 .page-navigation-arrow {
-  background-color: {{ colors.bg1 }};
+  background-color: {{ dark.bg1 }};
 }
 
 .page-navigation-arrow:hover,
 .app-folder-dialog .page-navigation-arrow {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 .page-navigation-arrow:active,
 .page-navigation-arrow:active:hover,
 .app-folder-dialog .page-navigation-arrow:hover,
 .app-folder-dialog .page-navigation-arrow:active {
-  background-color: {{ colors.bg3 }};
+  background-color: {{ dark.bg3 }};
 }
 
 .search-entry {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 .search-entry:focus {
-  box-shadow: inset 0 0 0 2px {{ colors.accent }} !important;
+  box-shadow: inset 0 0 0 2px {{ dark.accent }} !important;
 }
 
 .message {
@@ -271,12 +271,12 @@
 }
 
 .app-folder {
-  background-color: {{ colors.card_bg }};
+  background-color: {{ dark.card_bg }};
 }
 
 .overview-tile:hover,
 .app-folder:hover {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 .overview-tile:active,
@@ -287,26 +287,26 @@
 .app-folder:checked,
 .app-folder:selected,
 .app-folder:highlighted {
-  background-color: {{ colors.bg3 }};
+  background-color: {{ dark.bg3 }};
 }
 
 .app-folder-dialog {
-  background-color: {{ colors.bg1 }};
+  background-color: {{ dark.bg1 }};
 }
 
 .app-folder-dialog .folder-name-entry,
 .app-folder-dialog .icon-button {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 .app-folder-dialog .overview-tile:hover {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 .app-folder-dialog .overview-tile:active,
 .app-folder-dialog .overview-tile:checked,
 .app-folder-dialog .overview-tile:selected {
-  background-color: {{ colors.bg3 }};
+  background-color: {{ dark.bg3 }};
 }
 
 .modal-dialog {
@@ -333,54 +333,60 @@ StEntry:focus {
   background-color: {{ colors.bg3 }};
 }
 
+.search-entry:hover,
+.search-entry:focus {
+  background-color: {{ dark.bg3 }};
+  color: {{ dark.fg_bright }};
+}
+
 .osd-window,
 .resize-popup,
 .workspace-switcher,
 .switcher-list,
 .screenshot-ui-panel {
-  background-color: {{ colors.bg1 }};
-  border-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg1 }};
+  border-color: {{ dark.bg2 }};
 }
 
 .osd-window .level {
-  -barlevel-background-color: {{ colors.bg3 }};
-  -barlevel-active-background-color: {{ colors.fg_bright }};
-  -barlevel-overdrive-color: {{ colors.error }};
+  -barlevel-background-color: {{ dark.bg3 }};
+  -barlevel-active-background-color: {{ dark.fg_bright }};
+  -barlevel-overdrive-color: {{ dark.error }};
 }
 
 .osd-monitor-label,
 .osd-break-countdown-label {
-  background-color: {{ colors.accent_bg }};
-  color: {{ colors.accent_fg }};
+  background-color: {{ dark.accent_bg }};
+  color: {{ dark.accent_fg }};
 }
 
 .ws-switcher-indicator {
-  background-color: {{ colors.bg3 }};
+  background-color: {{ dark.bg3 }};
 }
 
 .ws-switcher-indicator:active {
-  background-color: {{ colors.fg_bright }};
+  background-color: {{ dark.fg_bright }};
 }
 
 .switcher-list .item-box:selected {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 .screenshot-ui-type-button {
-  background-color: {{ colors.bg1 }};
+  background-color: {{ dark.bg1 }};
 }
 
 .screenshot-ui-type-button:hover {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 .screenshot-ui-type-button:active,
 .screenshot-ui-type-button:checked {
-  background-color: {{ colors.bg3 }};
+  background-color: {{ dark.bg3 }};
 }
 
 .screenshot-ui-shot-cast-container {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 
@@ -628,28 +634,28 @@ StEntry,
 }
 
 .screenshot-ui-window-selector-window:hover .screenshot-ui-window-selector-window-border {
-  border-color: st-darken({{ colors.accent_bg }}, 15%);
+  border-color: st-darken({{ dark.accent_bg }}, 15%);
 }
 
 .screenshot-ui-window-selector-window:checked .screenshot-ui-window-selector-window-border {
-  border-color: {{ colors.accent_bg }};
-  background-color: st-transparentize({{ colors.accent_bg }}, 0.8);
+  border-color: {{ dark.accent_bg }};
+  background-color: st-transparentize({{ dark.accent_bg }}, 0.8);
 }
 
 .search-section-content {
-  background-color: {{ colors.bg1 }};
-  color: {{ colors.fg_bright }};
+  background-color: {{ dark.bg1 }};
+  color: {{ dark.fg_bright }};
 }
 
 .list-search-result,
 .search-provider-icon,
 .search-provider-icon .list-search-provider-content .list-search-provider-details {
-  color: {{ colors.fg_bright }};
+  color: {{ dark.fg_bright }};
 }
 
 .list-search-result .list-search-result-description,
 .search-statustext {
-  color: {{ colors.fg }};
+  color: {{ dark.fg }};
 }
 
 .list-search-result:hover,
@@ -660,7 +666,7 @@ StEntry,
 .search-provider-icon:selected,
 .list-search-result:checked,
 .search-provider-icon:checked {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 .list-search-result:active,
@@ -671,19 +677,19 @@ StEntry,
 .search-provider-icon:selected:hover,
 .list-search-result:checked:hover,
 .search-provider-icon:checked:hover {
-  background-color: {{ colors.bg3 }};
+  background-color: {{ dark.bg3 }};
 }
 
 .dash-label,
 .window-caption,
 .screenshot-ui-tooltip {
-  background-color: {{ colors.bg2 }};
-  border-color: {{ colors.bg3 }};
-  color: {{ colors.fg_bright }};
+  background-color: {{ dark.bg2 }};
+  border-color: {{ dark.bg3 }};
+  color: {{ dark.fg_bright }};
 }
 
 #lockDialogGroup {
-  background-color: {{ colors.bg0 }};
+  background-color: {{ dark.bg0 }};
 }
 
 .login-dialog,
@@ -695,48 +701,48 @@ StEntry,
 .unlock-dialog .caps-lock-warning-label,
 .login-dialog .login-dialog-message-warning,
 .unlock-dialog .login-dialog-message-warning {
-  color: {{ colors.fg_bright }};
+  color: {{ dark.fg_bright }};
 }
 
 .login-dialog-message,
 .login-dialog-message-hint,
 .login-dialog-banner-view .login-dialog-banner {
-  color: {{ colors.fg }};
+  color: {{ dark.fg }};
 }
 
 .login-dialog .login-dialog-prompt-entry,
 .unlock-dialog .login-dialog-prompt-entry {
-  background-color: {{ colors.bg1 }};
-  color: {{ colors.fg }};
+  background-color: {{ dark.bg1 }};
+  color: {{ dark.fg }};
 }
 
 .login-dialog .login-dialog-prompt-entry:hover,
 .unlock-dialog .login-dialog-prompt-entry:hover {
-  background-color: {{ colors.bg2 }};
-  color: {{ colors.fg_bright }};
+  background-color: {{ dark.bg2 }};
+  color: {{ dark.fg_bright }};
 }
 
 .login-dialog .login-dialog-prompt-entry:focus,
 .unlock-dialog .login-dialog-prompt-entry:focus {
-  background-color: {{ colors.bg2 }};
-  color: {{ colors.fg_bright }};
-  box-shadow: inset 0 0 0 2px st-transparentize({{ colors.accent }}, 0.2) !important;
+  background-color: {{ dark.bg2 }};
+  color: {{ dark.fg_bright }};
+  box-shadow: inset 0 0 0 2px st-transparentize({{ dark.accent }}, 0.2) !important;
 }
 
 .login-dialog .login-dialog-prompt-entry:insensitive,
 .unlock-dialog .login-dialog-prompt-entry:insensitive {
-  background-color: {{ colors.bg1 }};
-  color: st-transparentize({{ colors.fg }}, 0.5);
+  background-color: {{ dark.bg1 }};
+  color: st-transparentize({{ dark.fg }}, 0.5);
 }
 
 .login-dialog .user-widget .user-icon {
-  background-color: st-transparentize({{ colors.fg_bright }}, 0.85);
-  color: {{ colors.fg_bright }};
+  background-color: st-transparentize({{ dark.fg_bright }}, 0.85);
+  color: {{ dark.fg_bright }};
 }
 
 .login-dialog .login-dialog-prompt-entry StLabel.hint-text,
 .unlock-dialog .login-dialog-prompt-entry StLabel.hint-text {
-  color: {{ colors.fg }};
+  color: {{ dark.fg }};
 }
 
 .unlock-dialog .user-widget .user-icon,
@@ -748,8 +754,8 @@ StEntry,
 .unlock-dialog .login-dialog-button.switch-user-button,
 .unlock-dialog .login-dialog-button.a11y-button,
 .unlock-dialog-notification-count-text {
-  background-color: {{ colors.bg2 }};
-  color: {{ colors.fg_bright }};
+  background-color: {{ dark.bg2 }};
+  color: {{ dark.fg_bright }};
 }
 
 .login-dialog .login-dialog-button.cancel-button:hover,
@@ -759,13 +765,13 @@ StEntry,
 .unlock-dialog .login-dialog-button.cancel-button:hover,
 .unlock-dialog .login-dialog-button.switch-user-button:hover,
 .unlock-dialog .login-dialog-button.a11y-button:hover {
-  background-color: {{ colors.bg3 }};
+  background-color: {{ dark.bg3 }};
 }
 
 .login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item,
 .login-dialog .login-dialog-auth-list-item {
-  background-color: {{ colors.bg1 }};
-  color: {{ colors.fg_bright }};
+  background-color: {{ dark.bg1 }};
+  color: {{ dark.fg_bright }};
 }
 
 .login-dialog-not-listed-button {
@@ -780,7 +786,7 @@ StEntry,
 .login-dialog .login-dialog-auth-list-item:focus,
 .login-dialog-not-listed-button:hover,
 .login-dialog-not-listed-button:focus {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
 
 .login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:active,
@@ -801,7 +807,7 @@ StEntry,
 .login-dialog .login-dialog-button.switch-user-button:active,
 .login-dialog .login-dialog-button.a11y-button:active,
 .login-dialog .login-dialog-button.login-dialog-session-list-button:active {
-  background-color: {{ colors.bg3 }};
+  background-color: {{ dark.bg3 }};
 }
 
 .login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:selected,
@@ -809,24 +815,24 @@ StEntry,
 .login-dialog .login-dialog-auth-list-item:selected,
 .login-dialog .login-dialog-auth-list-item:focus,
 .login-dialog-not-listed-button:focus {
-  box-shadow: inset 0 0 0 2px st-transparentize({{ colors.accent }}, 0.2) !important;
+  box-shadow: inset 0 0 0 2px st-transparentize({{ dark.accent }}, 0.2) !important;
 }
 
 .login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:logged-in .user-icon {
-  border-color: {{ colors.accent }};
+  border-color: {{ dark.accent }};
 }
 
 .login-dialog-user-list-view .login-dialog-user-list .login-dialog-user-list-item:logged-in .user-icon StIcon {
-  background-color: st-transparentize({{ colors.accent }}, 0.7);
+  background-color: st-transparentize({{ dark.accent }}, 0.7);
 }
 
 .unlock-dialog-notifications-container .message,
 .unlock-dialog-notifications-container .unlock-dialog-notification-source {
-  background-color: {{ colors.bg1 }};
-  color: {{ colors.fg_bright }};
+  background-color: {{ dark.bg1 }};
+  color: {{ dark.fg_bright }};
 }
 
 .unlock-dialog-notifications-container .message.critical,
 .unlock-dialog-notifications-container .unlock-dialog-notification-source.critical {
-  background-color: {{ colors.bg2 }};
+  background-color: {{ dark.bg2 }};
 }
