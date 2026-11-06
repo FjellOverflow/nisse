@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.6.0 - 2026-11-06
+#### Features
+- add light mode - (6828f46) - FjellOverflow
+
+- - -
+
 ## v0.5.0 - 2026-11-06
 #### Features
 - add nord file icons for mimetypes - (4d5f72a) - FjellOverflow
