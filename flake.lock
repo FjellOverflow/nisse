@@ -96,14 +96,14 @@
     "nordfra": {
       "flake": false,
       "locked": {
-        "lastModified": 1793966602,
-        "narHash": "sha256-3ZmcVW3jDEAVtwSLMSGrobbkiwcFoYRRkWmstsDfGfI=",
+        "lastModified": 1794065760,
+        "narHash": "sha256-TsyAV7a/JvZyfzERS81F15/L9h93eyD/bHWIC7e1Maw=",
         "type": "tarball",
-        "url": "https://github.com/FjellOverflow/nordfra/releases/download/v0.5.0/nordfra.tar.gz"
+        "url": "https://github.com/FjellOverflow/nordfra/releases/download/v0.7.0/nordfra.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/FjellOverflow/nordfra/releases/download/v0.5.0/nordfra.tar.gz"
+        "url": "https://github.com/FjellOverflow/nordfra/releases/download/v0.7.0/nordfra.tar.gz"
       }
     },
     "root": {

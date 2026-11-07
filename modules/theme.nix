@@ -7,6 +7,7 @@
 
 let
   tokens = builtins.fromJSON (builtins.readFile "${nordfra}/tokens.json");
+  uiFont = "Recursive Sans Linear Static 11";
 in
 {
   environment.systemPackages = with pkgs; [
@@ -27,6 +28,10 @@ in
     })
   ];
 
+  programs.dconf.profiles.gdm.databases = [
+    { settings."org/gnome/desktop/interface".font-name = uiFont; }
+  ];
+
   services.flatpak.enable = true;
   services.flatpak.packages = [ "org.gtk.Gtk3theme.adw-gtk3-dark" ];
   services.flatpak.overrides.global.Context.filesystems = [
@@ -36,7 +41,7 @@ in
   ];
 
   home-manager.users.${user} = _: {
-    xdg.configFile."gtk-3.0/gtk.css".source = "${nordfra}/config/gtk-3.0/gtk.css";
+    xdg.configFile."gtk-3.0/gtk.css".source = "${nordfra}/variants/dark/config/gtk-3.0/gtk.css";
     xdg.configFile."gtk-4.0/gtk.css".source = "${nordfra}/config/gtk-4.0/gtk.css";
     xdg.dataFile."themes/nordfra".source = "${nordfra}/data/themes/nordfra";
     xdg.dataFile."icons/nordfra".source = "${nordfra}/data/icons/nordfra";
@@ -53,7 +58,7 @@ in
       gtk-theme = "adw-gtk3-dark";
       icon-theme = "nordfra";
       accent-color = tokens.gnome_accent;
-      font-name = "Recursive Sans Linear Static 11";
+      font-name = uiFont;
       document-font-name = "Recursive Sans Linear Static 12";
       monospace-font-name = "Recursive Mono Linear Static 11";
     };
@@ -72,6 +77,14 @@ in
 
     dconf.settings."org/gnome/shell/extensions/blur-my-shell/appfolder" = {
       style-dialogs = 0;
+    };
+
+    dconf.settings."org/gnome/shell/extensions/blur-my-shell/popup" = {
+      blur = false;
+    };
+
+    dconf.settings."org/gnome/shell/extensions/blur-my-shell/panel" = {
+      blur = false;
     };
   };
 }
