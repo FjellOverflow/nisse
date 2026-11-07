@@ -9,7 +9,10 @@ let
   tokens = builtins.fromJSON (builtins.readFile "${nordfra}/tokens.json");
 in
 {
-  environment.systemPackages = with pkgs; [ adw-gtk3 ];
+  environment.systemPackages = with pkgs; [
+    adw-gtk3
+    gnomeExtensions.blur-my-shell
+  ];
 
   # GDM's theme lives in gnome-shell's own gresource, so it needs patching here.
   nixpkgs.overlays = [
@@ -24,6 +27,7 @@ in
     })
   ];
 
+  services.flatpak.enable = true;
   services.flatpak.packages = [ "org.gtk.Gtk3theme.adw-gtk3-dark" ];
   services.flatpak.overrides.global.Context.filesystems = [
     "xdg-config/gtk-3.0:ro"
@@ -37,7 +41,15 @@ in
     xdg.dataFile."themes/nordfra".source = "${nordfra}/data/themes/nordfra";
     xdg.dataFile."icons/nordfra".source = "${nordfra}/data/icons/nordfra";
 
+    # merged with the list in gnome.nix
+    dconf.settings."org/gnome/shell".enabled-extensions = [
+      "user-theme@gnome-shell-extensions.gcampax.github.com"
+      "blur-my-shell@aunetx"
+    ];
+
     dconf.settings."org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      cursor-theme = "Adwaita";
       gtk-theme = "adw-gtk3-dark";
       icon-theme = "nordfra";
       accent-color = tokens.gnome_accent;

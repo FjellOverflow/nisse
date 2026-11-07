@@ -19,7 +19,6 @@
     dconf-editor
     decibels
     gnome-shell-extensions
-    gnomeExtensions.blur-my-shell
     gnome-calculator
     gnome-connections
     gnome-disk-utility
@@ -39,8 +38,6 @@
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
   ];
-
-  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gnome3;
 
   programs.kdeconnect = {
     enable = true;
@@ -64,8 +61,6 @@
     dconf.settings."org/gnome/desktop/interface" = {
       clock-format = "24h";
       clock-show-weekday = true;
-      color-scheme = "prefer-dark";
-      cursor-theme = "Adwaita";
     };
 
     dconf.settings."org/gnome/desktop/calendar" = {
@@ -149,8 +144,6 @@
     dconf.settings."org/gnome/shell" = {
       enabled-extensions = [
         "window-list@gnome-shell-extensions.gcampax.github.com"
-        "user-theme@gnome-shell-extensions.gcampax.github.com"
-        "blur-my-shell@aunetx"
         "gsconnect@andyholmes.github.io"
       ];
       favorite-apps = [

@@ -3,7 +3,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../profiles/desktop-gnome.nix
     ../../profiles/workstation.nix
   ];
 
