@@ -13,14 +13,30 @@ usage() {
   echo "Without an option, nordfra is installed in the mode of the current Shell theme."
 }
 
+shell_theme() {
+  case $1 in
+    light) echo nordfra-light ;;
+    *) echo nordfra ;;
+  esac
+}
+
+target_for() {
+  case $1 in
+    config/*) echo "$config/${1#config/}" ;;
+    data/*) echo "$data/${1#data/}" ;;
+    variants/*/config/*) echo "$config/${1#variants/*/config/}" ;;
+  esac
+}
+
 each_file() {
-  find config data "variants/$mode" -type f | while read -r source; do
-    case $source in
-      config/*) target="$config/${source#config/}" ;;
-      data/*) target="$data/${source#data/}" ;;
-      variants/*/config/*) target="$config/${source#variants/*/config/}" ;;
-    esac
-    "$1" "$source" "$target"
+  find config data "variants/$mode/config" -type f | while read -r source; do
+    "$1" "$source" "$(target_for "$source")"
+  done
+}
+
+remove_empty_dirs() {
+  find config data "variants/$mode/config" -mindepth 1 -type d | sort -r | while read -r source; do
+    rmdir "$(target_for "$source")" 2> /dev/null || true
   done
 }
 
@@ -56,7 +72,7 @@ reload_shell_theme() {
   command -v gsettings > /dev/null || return 0
   theme=$(gsettings get org.gnome.shell.extensions.user-theme name 2> /dev/null) || return 0
   case $theme in
-    "'nordfra'" | "'nordfra-light'") ;;
+    "'$(shell_theme dark)'" | "'$(shell_theme light)'") ;;
     *) return 0 ;;
   esac
   gsettings set org.gnome.shell.extensions.user-theme name ''
@@ -65,7 +81,7 @@ reload_shell_theme() {
 
 current_mode() {
   if command -v gsettings > /dev/null &&
-    [ "$(gsettings get org.gnome.shell.extensions.user-theme name 2> /dev/null)" = "'nordfra-light'" ]; then
+    [ "$(gsettings get org.gnome.shell.extensions.user-theme name 2> /dev/null)" = "'$(shell_theme light)'" ]; then
     echo light
   else
     echo dark
@@ -78,13 +94,13 @@ apply_mode() {
     exit 1
   fi
   case $mode in
-    light) scheme=prefer-light gtk_theme=adw-gtk3 shell_theme=nordfra-light ;;
-    dark) scheme=prefer-dark gtk_theme=adw-gtk3-dark shell_theme=nordfra ;;
+    light) scheme=prefer-light gtk_theme=adw-gtk3 ;;
+    dark) scheme=prefer-dark gtk_theme=adw-gtk3-dark ;;
   esac
   gsettings set org.gnome.desktop.interface color-scheme "$scheme"
   gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
-  if ! gsettings set org.gnome.shell.extensions.user-theme name "$shell_theme" 2> /dev/null; then
-    echo "warning: User Themes extension not found; set the Shell theme to $shell_theme yourself" >&2
+  if ! gsettings set org.gnome.shell.extensions.user-theme name "$(shell_theme "$mode")" 2> /dev/null; then
+    echo "warning: User Themes extension not found; set the Shell theme to $(shell_theme "$mode") yourself" >&2
   fi
   echo "switched to $mode mode; restart open apps"
 }
@@ -94,7 +110,7 @@ install_theme() {
   reload_icon_theme
   reload_shell_theme
   echo "nordfra installed ($mode)"
-  for theme in nordfra nordfra-light; do
+  for theme in "$(shell_theme dark)" "$(shell_theme light)"; do
     if [ -e "$HOME/.themes/$theme" ]; then
       echo "warning: $HOME/.themes/$theme shadows the installed Shell theme; remove it to use this one" >&2
     fi
@@ -114,10 +130,7 @@ case "${1:-}" in
   -r | --remove)
     mode=$(current_mode)
     each_file remove_file
-    rmdir "$data/themes/nordfra/gnome-shell" "$data/themes/nordfra" \
-      "$data/themes/nordfra-light/gnome-shell" "$data/themes/nordfra-light" 2> /dev/null || true
-    rmdir "$data/icons/nordfra/scalable/apps" "$data/icons/nordfra/scalable/places" \
-      "$data/icons/nordfra/scalable/mimetypes" "$data/icons/nordfra/scalable" "$data/icons/nordfra" 2> /dev/null || true
+    remove_empty_dirs
     echo "nordfra removed"
     ;;
   -h | --help)

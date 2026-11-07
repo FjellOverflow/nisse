@@ -37,7 +37,9 @@ printf '\n%s\n' "$marker" >> "$stylesheet"
 cat "$release_dir/data/themes/nordfra/gnome-shell/gnome-shell.css" >> "$stylesheet"
 
 glib-compile-resources --sourcedir="$work" --target="$work/theme.gresource" "$work/theme.xml"
-if ! gresource extract "$work/theme.gresource" "$prefix/gnome-shell-dark.css" | grep -qF "$marker"; then
+# install-gdm.sh detects a themed file by grepping its raw bytes, so the stylesheet must stay uncompressed.
+if ! gresource extract "$work/theme.gresource" "$prefix/gnome-shell-dark.css" | grep -qF "$marker" ||
+  ! grep -qaF "$marker" "$work/theme.gresource"; then
   echo "error: the rebuilt theme failed verification" >&2
   exit 1
 fi

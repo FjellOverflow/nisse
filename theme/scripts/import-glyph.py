@@ -2,9 +2,11 @@
 """Normalise an SVG into a nordfra glyph: 16x16 viewBox, colours stripped so the template's fill applies.
 
 Usage: import-glyph.py [--silhouette] SOURCE.svg DEST.svg
+       import-glyph.py --check GLYPH.svg...
 
 --silhouette  for a full-colour icon: drop gradients and filters, fill every shape and fit the
               drawn area to the glyph box (needs librsvg's Python bindings)
+--check       fail unless each file is a glyph the icon templates can nest
 """
 import re
 import sys
@@ -13,6 +15,9 @@ import xml.etree.ElementTree as ET
 SKIP = {"metadata", "title", "desc", "namedview", "RDF", "style", "script"}
 PAINT_SERVERS = {"linearGradient", "radialGradient", "filter"}
 XLINK = "{http://www.w3.org/1999/xlink}"
+SVG = "{http://www.w3.org/2000/svg}"
+PAINTS = {"fill", "stroke", "stop-color"}
+UNPAINTED = re.compile(r"none|currentColor|url\(#[^)]*\)")
 UNUSED_COLOURS = {"color", "solid-color", "text-decoration-color"}
 TEXT_LAYOUT = {"letter-spacing", "word-spacing", "writing-mode", "direction", "baseline-shift",
                "block-progression", "line-height", "shape-padding", "dominant-baseline"}
@@ -109,8 +114,49 @@ def main(source, dest, silhouette=False):
         out.write("</svg>\n")
 
 
+def paints(el):
+    for key, value in el.attrib.items():
+        if key in PAINTS:
+            yield value
+        elif key == "style":
+            for declaration in value.split(";"):
+                prop, _, paint = declaration.partition(":")
+                if prop.strip() in PAINTS:
+                    yield paint
+
+
+def problems(path):
+    with open(path) as f:
+        if not f.read().startswith("<svg"):
+            yield "must start with <svg"
+    root = ET.parse(path).getroot()
+    if root.tag != f"{SVG}svg" or root.get("viewBox") != "0 0 16 16" or "width" in root.attrib or "height" in root.attrib:
+        yield 'root must be <svg viewBox="0 0 16 16"> without width or height'
+
+    def walk(el):
+        if el.tag == f"{SVG}mask":
+            return
+        for paint in paints(el):
+            if not UNPAINTED.fullmatch(paint.strip()):
+                yield f"paints {paint.strip()}; the template's fill must apply"
+        for child in el:
+            yield from walk(child)
+    yield from walk(root)
+
+
+def check(paths):
+    failed = False
+    for path in paths:
+        for problem in problems(path):
+            print(f"{path}: {problem}; re-import it with scripts/import-glyph.py", file=sys.stderr)
+            failed = True
+    sys.exit(1 if failed else 0)
+
+
 if __name__ == "__main__":
     args = sys.argv[1:]
+    if args[:1] == ["--check"]:
+        check(args[1:])
     silhouette = "--silhouette" in args
     paths = [a for a in args if a != "--silhouette"]
     if len(paths) != 2:

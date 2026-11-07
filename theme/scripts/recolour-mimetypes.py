@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Recolour a full-colour mimetype icon into the Nord palette from tokens.json.
+"""Recolour full-colour mimetype icons into the dark Nord palette from tokens.json.
 
-Usage: import-mimetype.py SOURCE.svg DEST.svg
+Usage: recolour-mimetypes.py OUT_DIR SOURCE.svg...
 
 Greys map onto a polar night to snow storm ramp, every other hue onto a frost ramp, both by lightness.
 """
@@ -66,18 +66,20 @@ def recolour(svg, grey, frost):
     return HASH.sub(replace, svg)
 
 
-def main(source, dest):
-    with open(source) as f:
-        svg = f.read()
-    try:
-        svg = recolour(svg, *ramps())
-    except ValueError as error:
-        sys.exit(f"{source}: {error}")
-    with open(dest, "w") as f:
-        f.write(svg)
+def main(out_dir, sources):
+    grey, frost = ramps()
+    for source in sources:
+        with open(source) as f:
+            svg = f.read()
+        try:
+            svg = recolour(svg, grey, frost)
+        except ValueError as error:
+            sys.exit(f"{source}: {error}")
+        with open(os.path.join(out_dir, os.path.basename(source)), "w") as f:
+            f.write(svg)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
+    if len(sys.argv) < 3:
         sys.exit(__doc__.strip())
-    main(*sys.argv[1:])
+    main(sys.argv[1], sys.argv[2:])

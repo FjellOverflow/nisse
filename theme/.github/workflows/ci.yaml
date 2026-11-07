@@ -13,5 +13,6 @@ jobs:
       - uses: actions/checkout@v7
       - run: sudo apt-get update && sudo apt-get install --yes jq shellcheck
       - run: ./build.sh
+      - run: ./scripts/test-install.sh
       - run: shellcheck build.sh scripts/*.sh
       - run: ./scripts/check-shell-selectors.sh
