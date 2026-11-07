@@ -1,0 +1,7 @@
+[tools]
+cocogitto = "7.0.0"
+
+[tasks."theme:release"]
+description = "Bump the theme version from the commit history, commit the changelog and tag it (not pushed)"
+confirm = "Bump and tag a new theme release?"
+run = "cog bump --package theme --auto"

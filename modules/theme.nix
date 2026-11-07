@@ -6,7 +6,7 @@
 }:
 
 let
-  tokens = builtins.fromJSON (builtins.readFile "${nordfra}/tokens.json");
+  tokens = builtins.fromJSON (builtins.readFile ../theme/tokens.json);
   uiFont = "Recursive Sans Linear Static 11";
 in
 {

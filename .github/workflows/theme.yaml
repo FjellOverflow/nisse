@@ -1,10 +1,20 @@
 ---
-name: ci
+name: theme
 
 on:
   push:
+    paths:
+      - "theme/**"
+      - ".github/workflows/theme.yaml"
   pull_request:
+    paths:
+      - "theme/**"
+      - ".github/workflows/theme.yaml"
   workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: theme
 
 jobs:
   check:

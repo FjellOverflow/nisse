@@ -18,3 +18,4 @@ jobs:
       - uses: cachix/install-nix-action@v31
       - run: nix run .#lint
       - run: nix flake check
+      - run: nix build .#theme

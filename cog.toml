@@ -1,0 +1,13 @@
+tag_prefix = "v"
+monorepo_version_separator = "-"
+generate_mono_repository_global_tag = false
+branch_whitelist = ["main"]
+
+[monorepo.packages.theme]
+path = "theme"
+changelog_path = "theme/CHANGELOG.md"
+pre_bump_hooks = ["./build.sh"]
+post_bump_hooks = [
+  "git tag --force --sign --message {{version_tag}} {{version_tag}}",
+  "echo 'Publish with: git push --atomic origin HEAD {{version_tag}}'",
+]

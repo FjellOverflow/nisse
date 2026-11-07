@@ -97,20 +97,24 @@ The configuration is organized in four layers:
 | `modules`  | `modules/<name>.nix`  |
 | `profiles` | `profiles/<name>.nix` |
 | host       | `machines/<host>/`    |
+| theme      | `theme/`              |
 
 Everything in `base` lands on every machine. A _module_ configures one feature and owns everything about it (package, enable, settings); `theme.nix` owns everything visual. A _profile_ bundles modules that belong together, plus the odd one-liner that doesn't deserve a module. A machine holds hardware facts and picks one or more profiles.
 
+`theme/` is the [nordfra](theme/README.md) GNOME theme. It is self-contained and Nix-free (`cd theme && ./build.sh` needs only `sh`, `jq` and `python3`) and ships its own tagged release tarballs (`theme-vX.Y.Z`) for non-NixOS machines. `flake.nix` builds it as `.#theme`, and `modules/theme.nix` reads only that build plus `theme/tokens.json`.
+
 ## Development
 
-With [direnv](https://direnv.net/), the repository root loads a devShell containing `statix`, `deadnix`, `nixfmt` and a `lint` script.
+With [direnv](https://direnv.net/), the repository root loads a devShell containing `statix`, `deadnix`, `nixfmt`, a `lint` script, and `jq`, `python3` and `shellcheck` for `theme/`.
 
 ```sh
 nix run .#lint    # statix + deadnix + nixfmt
 nix flake check   # evaluate configurations
+nix build .#theme # build theme/ in the Nix sandbox
 ```
 
 ### CI
 
-`.github/workflows/nix.yaml` runs `nix run .#lint` and `nix flake check` on every change except Markdown-only ones.
+`.github/workflows/nix.yaml` runs `nix run .#lint`, `nix flake check` and `nix build .#theme` on every change except Markdown-only ones. `.github/workflows/theme.yaml` builds, tests and shellchecks `theme/` without Nix whenever it changes, and `theme-release.yaml` publishes a release for every `theme-v*` tag.
 
 While the CI can't verify actual runtime behaviour, a green run signals well-formed & formatted code and that all configurations evaluate.

@@ -19,10 +19,6 @@
     url = "github:Gerg-L/spicetify-nix";
     inputs.nixpkgs.follows = "nixpkgs";
   };
-  inputs.nordfra = {
-    url = "https://github.com/FjellOverflow/nordfra/releases/download/v0.7.0/nordfra.tar.gz";
-    flake = false;
-  };
 
   outputs =
     {
@@ -32,7 +28,6 @@
       home-manager,
       nix-index-database,
       spicetify-nix,
-      nordfra,
       ...
     }:
     let
@@ -66,6 +61,16 @@
           git ls-files -z '*.nix' | xargs -0 nixfmt
         '';
       };
+      theme = pkgs.stdenvNoCC.mkDerivation {
+        name = "nordfra";
+        src = ./theme;
+        nativeBuildInputs = [
+          pkgs.jq
+          pkgs.python3
+        ];
+        buildPhase = "patchShebangs scripts && sh build.sh";
+        installPhase = "cp -r dist/nordfra $out";
+      };
       machines = builtins.attrNames (
         nixpkgs.lib.filterAttrs (_: type: type == "directory") (builtins.readDir ./machines)
       );
@@ -82,13 +87,16 @@
       ];
     in
     {
-      packages.${system} = { inherit lint format; };
+      packages.${system} = { inherit lint format theme; };
 
       devShells.${system}.default = pkgs.mkShell {
         packages = [
           pkgs.statix
           pkgs.deadnix
           pkgs.nixfmt
+          pkgs.jq
+          pkgs.python3
+          pkgs.shellcheck
           lint
           format
         ];
@@ -102,8 +110,8 @@
               variables
               user
               spicetify-nix
-              nordfra
               ;
+            nordfra = theme;
           };
           modules = commonModules ++ [ ./machines/${host}/default.nix ];
         }

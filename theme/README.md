@@ -5,14 +5,16 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/nordfra/ci.yaml?branch=main&label=CI"/>
+  <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/nisse/theme.yaml?branch=main&label=CI"/>
   &ensp;
-  <img src="https://img.shields.io/github/v/tag/FjellOverflow/nordfra?label=Version"/>
+  <img src="https://img.shields.io/github/v/tag/FjellOverflow/nisse?filter=theme-v*&label=Version"/>
   &ensp;
-  <img src="https://img.shields.io/github/license/FjellOverflow/nordfra?label=License"/>
+  <img src="https://img.shields.io/github/license/FjellOverflow/nisse?label=License"/>
 </p>
 
 > *Nordfra* (Norwegian: [ˈnuːrfrɑː]) means "from the north".
+
+The theme lives in the [nisse](https://github.com/FjellOverflow/nisse) repository under `theme/`; its releases are tagged `theme-vX.Y.Z`.
 
 Themes GNOME Shell, GTK 4 / libadwaita and GTK 3 apps, plus app, folder and file icons, in dark and light mode.
 
@@ -24,8 +26,10 @@ Themes GNOME Shell, GTK 4 / libadwaita and GTK 3 apps, plus app, folder and file
 
 ## Install
 
+Replace `X.Y.Z` with the latest `theme-v*` [release](https://github.com/FjellOverflow/nisse/releases).
+
 ```sh
-curl -fLO https://github.com/FjellOverflow/nordfra/releases/latest/download/nordfra.tar.gz
+curl -fLO https://github.com/FjellOverflow/nisse/releases/download/theme-vX.Y.Z/nordfra.tar.gz
 tar -xzf nordfra.tar.gz
 ./nordfra/install.sh --dark   # or --light
 ```
@@ -99,7 +103,7 @@ This restores the backed-up files.
 
 ```sh
 ./build.sh      # renders the theme into dist/nordfra (needs jq and python3)
-mise release    # builds, tags and publishes a release
+mise run theme:release  # from the nisse root: builds, updates CHANGELOG.md, commits and tags the next version; pushing the tag publishes it
 ```
 
 Colours live in [`tokens.json`](tokens.json); templates in [`templates/`](templates/) reference them as `{{ group.key }}`. `colors_light` overrides `colors` in the light variant, and `build.sh` adds `{{ variant }}` (`dark` or `light`). The parts of the Shell that stay dark live in [`templates/shell/always-dark.css`](templates/shell/always-dark.css), which, like the icons, always gets the dark palette; it loads after [`themed.css`](templates/shell/themed.css) so its overrides win.
