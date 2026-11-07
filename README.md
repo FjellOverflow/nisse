@@ -97,7 +97,6 @@ The configuration is organized in four layers:
 | `modules`  | `modules/<name>.nix`  |
 | `profiles` | `profiles/<name>.nix` |
 | host       | `machines/<host>/`    |
-| theme      | `theme/`              |
 
 Everything in `base` lands on every machine. A _module_ configures one feature and owns everything about it (package, enable, settings); `theme.nix` owns everything visual. A _profile_ bundles modules that belong together, plus the odd one-liner that doesn't deserve a module. A machine holds hardware facts and picks one or more profiles.
 

@@ -61,13 +61,14 @@
           git ls-files -z '*.nix' | xargs -0 nixfmt
         '';
       };
+      themeTools = [
+        pkgs.jq
+        pkgs.python3
+      ];
       theme = pkgs.stdenvNoCC.mkDerivation {
         name = "nordfra";
         src = ./theme;
-        nativeBuildInputs = [
-          pkgs.jq
-          pkgs.python3
-        ];
+        nativeBuildInputs = themeTools;
         buildPhase = "patchShebangs scripts && sh build.sh";
         installPhase = "cp -r dist/nordfra $out";
       };
@@ -90,12 +91,10 @@
       packages.${system} = { inherit lint format theme; };
 
       devShells.${system}.default = pkgs.mkShell {
-        packages = [
+        packages = themeTools ++ [
           pkgs.statix
           pkgs.deadnix
           pkgs.nixfmt
-          pkgs.jq
-          pkgs.python3
           pkgs.shellcheck
           lint
           format
