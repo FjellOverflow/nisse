@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.7.0 - 2026-11-07
+#### Features
+- target gnome 51 and theme overview search results - (59a528f) - FjellOverflow
+
+- - -
+
 ## v0.6.0 - 2026-11-06
 #### Features
 - add light mode - (6828f46) - FjellOverflow
