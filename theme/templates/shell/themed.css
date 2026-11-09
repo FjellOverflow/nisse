@@ -57,7 +57,9 @@
   color: {{ colors.accent_fg }};
 }
 
-.quick-toggle-menu {
+/* the menu box is non-reactive, so St always gives it :insensitive */
+.quick-toggle-menu,
+.quick-toggle-menu:insensitive {
   background-color: {{ colors.bg2 }};
 }
 
