@@ -16,7 +16,7 @@ usage() {
 shell_theme() {
   case $1 in
     light) echo nordix-light ;;
-    *) echo nordix ;;
+    *) echo nordix-dark ;;
   esac
 }
 
@@ -62,10 +62,10 @@ remove_file() {
 
 reload_icon_theme() {
   command -v gsettings > /dev/null || return 0
-  [ "$(gsettings get org.gnome.desktop.interface icon-theme 2> /dev/null)" = "'nordix'" ] || return 0
+  [ "$(gsettings get org.gnome.desktop.interface icon-theme 2> /dev/null)" = "'nordix-icons'" ] || return 0
   gsettings set org.gnome.desktop.interface icon-theme Adwaita || return 0
   sleep 1
-  gsettings set org.gnome.desktop.interface icon-theme nordix
+  gsettings set org.gnome.desktop.interface icon-theme nordix-icons
 }
 
 reload_shell_theme() {

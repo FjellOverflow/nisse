@@ -37,14 +37,14 @@ Then select the theme and restart open apps:
 ```sh
 gsettings set org.gnome.desktop.interface accent-color slate
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
-gsettings set org.gnome.desktop.interface icon-theme nordix
+gsettings set org.gnome.desktop.interface icon-theme nordix-icons
 ```
 
 Or in the GUI:
 
 1. **Settings → Appearance**: choose the *Slate* accent.
 2. **Extensions**: turn on *User Themes*.
-3. **Tweaks → Appearance**: set *Icons* to `nordix`.
+3. **Tweaks → Appearance**: set *Icons* to `nordix-icons`.
 
 For Flatpak apps (or in [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal): *All Applications → Filesystem*, add `xdg-config/gtk-3.0:ro` and `xdg-config/gtk-4.0:ro`):
 
@@ -55,7 +55,7 @@ flatpak install flathub org.gtk.Gtk3theme.adw-gtk3-dark org.gtk.Gtk3theme.adw-gt
 
 ### Light and dark mode
 
-`--dark` and `--light` switch the colour scheme, *Legacy Applications* (`adw-gtk3-dark` / `adw-gtk3`) and the Shell theme (`nordix` / `nordix-light`). Rerun with the other option to switch. GTK 4 apps follow the quick-settings toggle; GTK 3 and the Shell don't, and the light Shell needs the `prefer-light` scheme that `--light` sets (the toggle sets `default`, which GNOME Shell treats as dark). As in stock GNOME, the top bar, overview, on-screen popups, lock and login screens stay dark in light mode. Without an option, the installer keeps the current mode.
+`--dark` and `--light` switch the colour scheme, *Legacy Applications* (`adw-gtk3-dark` / `adw-gtk3`) and the Shell theme (`nordix-dark` / `nordix-light`). Rerun with the other option to switch. GTK 4 apps follow the quick-settings toggle; GTK 3 and the Shell don't, and the light Shell needs the `prefer-light` scheme that `--light` sets (the toggle sets `default`, which GNOME Shell treats as dark). As in stock GNOME, the top bar, overview, on-screen popups, lock and login screens stay dark in light mode. Without an option, the installer keeps the current mode.
 
 The installer replaces `~/.config/gtk-3.0/gtk.css` and `~/.config/gtk-4.0/gtk.css` and backs up the originals as `*.nordix-backup`.
 

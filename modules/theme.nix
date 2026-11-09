@@ -43,8 +43,8 @@ in
   home-manager.users.${user} = _: {
     xdg.configFile."gtk-3.0/gtk.css".source = "${nordix-theme}/variants/dark/config/gtk-3.0/gtk.css";
     xdg.configFile."gtk-4.0/gtk.css".source = "${nordix-theme}/config/gtk-4.0/gtk.css";
-    xdg.dataFile."themes/nordix".source = "${nordix-theme}/data/themes/nordix";
-    xdg.dataFile."icons/nordix".source = "${nordix-theme}/data/icons/nordix";
+    xdg.dataFile."themes/nordix-dark".source = "${nordix-theme}/data/themes/nordix-dark";
+    xdg.dataFile."icons/nordix-icons".source = "${nordix-theme}/data/icons/nordix-icons";
 
     # merged with the list in gnome.nix
     dconf.settings."org/gnome/shell".enabled-extensions = [
@@ -56,7 +56,7 @@ in
       color-scheme = "prefer-dark";
       cursor-theme = "Adwaita";
       gtk-theme = "adw-gtk3-dark";
-      icon-theme = "nordix";
+      icon-theme = "nordix-icons";
       accent-color = tokens.gnome_accent;
       font-name = uiFont;
       document-font-name = "Recursive Sans Linear Static 12";
@@ -68,7 +68,7 @@ in
     };
 
     dconf.settings."org/gnome/shell/extensions/user-theme" = {
-      name = "nordix";
+      name = "nordix-dark";
     };
 
     dconf.settings."org/gnome/shell/extensions/blur-my-shell/overview" = {
