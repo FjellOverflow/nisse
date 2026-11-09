@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## theme-v0.8.0 - 2026-11-09
+#### Features
+- <span style="background-color: #d73a49; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold; font-size: 0.85em;">BREAKING</span>(**theme**) name the shell themes nordix-dark and nordix-light and the icon theme nordix-icons - (a28774c) - FjellOverflow
+- <span style="background-color: #d73a49; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold; font-size: 0.85em;">BREAKING</span>(**theme**) rename the project and installed identifiers to nordix - (426ab5b) - FjellOverflow
+#### Refactoring
+- (**theme**) build the theme in-tree, drop the nordfra input and release it from nisse - (def5451) - FjellOverflow
+
+- - -
+
 ## v0.7.0 - 2026-11-07
 #### Features
 - target gnome 51 and theme overview search results - (59a528f) - FjellOverflow
