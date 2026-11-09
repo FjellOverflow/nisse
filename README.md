@@ -1,10 +1,7 @@
-<h1 align="center">
-  <img src="./.github/logo.svg" height="64" align="middle" alt="" />
-  &nbsp;nordix
-</h1>
+<h1 align="center">nordix</h1>
 
 <p align="center">
-  Fully automated provision & configuration for fresh NixOS installs
+  Opinionated NixOS setup for a full GNOME desktop, themed in Nord
 </p>
 
 <p align="center">
@@ -12,36 +9,45 @@
   &ensp;
   <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/nordix/nix.yaml?branch=main&label=CI"/>
   &ensp;
-  <img src="https://img.shields.io/github/v/tag/FjellOverflow/nordix?label=Version"/>
+  <img src="https://img.shields.io/github/v/tag/FjellOverflow/nordix?filter=theme-v*&label=Theme"/>
   &ensp;
   <img src="https://img.shields.io/github/license/FjellOverflow/nordix?label=License"/>
 </p>
 
 <p align="center">
+  <a href="#overview">Overview</a> |
   <a href="#installation">Installation</a> |
   <a href="#usage">Usage</a> |
   <a href="#structure">Structure</a> |
   <a href="#development">Development</a>
 </p>
 
+## Overview
+
+- NixOS flake: fresh install to finished GNOME desktop.
+- [nordix theme](theme/README.md): GNOME Shell, GTK 3/4, icons and login screen. Works without Nix on any GNOME distro via a [release](https://github.com/FjellOverflow/nordix/releases) tarball.
+
+| Machine    | Profiles                               |
+| ---------- | -------------------------------------- |
+| `gigabyte` | `workstation`, `development`, `gaming` |
+| `thinkpad` | `workstation`, `development`           |
+| `vm`       | `workstation`                          |
+
 ## Installation
 
-It is assumed that the autoconfiguration takes place on a freshly installed machine, with a working internet connection and no manual setup beyond that. Installing the operating system and partitioning disks are out of scope, everything from there on is handled here.
+Starts from a fresh NixOS install with internet.
 
 > [!IMPORTANT]
-> Don't forget to adjust/replace hardcoded values in [`variables.nix`](variables.nix) before running the configuration for the first time.
+> Replace the values in [`variables.nix`](variables.nix) first.
 
-1. Set up repository
+1. Clone
 
 ```sh
 nix-shell -p git
 git clone https://github.com/FjellOverflow/nordix.git ~/.nordix && cd ~/.nordix
 ```
 
-2. Copy pre-generated configs
-
-> [!NOTE]
-> This assumes that the configs generated during installation (`/etc/nixos/configuration.nix` and `/etc/nixos/hardware-configuration.nix`) are still in place.
+2. Copy the generated configs
 
 ```sh
 mkdir machines/<host>
@@ -50,16 +56,16 @@ sudo cp /etc/nixos/hardware-configuration.nix machines/<host>/hardware-configura
 sudo chown $(whoami): machines/<host>/*
 ```
 
-3. Adjust `machines/<host>/default.nix` (same pattern as already existing `machines/<existingHost>/default.nix`)
+3. Reduce `machines/<host>/default.nix` to hardware facts and profile imports, like the existing machines
 
-4. Activate config
+4. Switch
 
 ```sh
-git add .
+git add .   # flakes only see tracked files
 sudo nixos-rebuild switch --flake ~/.nordix#<host>
 ```
 
-5. Wire in new config, once the activation above succeeded
+5. Link `/etc/nixos` to the repository
 
 ```sh
 sudo rm -rf /etc/nixos
@@ -67,51 +73,47 @@ sudo ln -s ~/.nordix /etc/nixos
 ```
 
 > [!NOTE]
-> After symlinking `/etc/nixos` to it, `~/.nordix` should not be deleted or moved, otherwise the symlink needs updating.
+> Don't move `~/.nordix` afterwards.
 
 ## Usage
 
-Once set up, the configuration can be re-run at any time.
-
-1. Update the repository
-
 ```sh
 cd ~/.nordix && git pull
-```
-
-2. Apply new changes
-
-```sh
 nh os switch
 ```
 
 ## Structure
 
-The configuration is organized in four layers:
+| Layer      | Path                  | Contains                                |
+| ---------- | --------------------- | --------------------------------------- |
+| `base`     | `base/common.nix`     | what every machine gets                 |
+| `modules`  | `modules/<name>.nix`  | one feature, everything about it        |
+| `profiles` | `profiles/<name>.nix` | related modules, plus one-liners        |
+| host       | `machines/<host>/`    | hardware facts, profile imports         |
+| theme      | `theme/`              | the theme, Nix-free                     |
 
-| Layer      | Path                  |
-| ---------- | --------------------- |
-| `base`     | `base/common.nix`     |
-| `modules`  | `modules/<name>.nix`  |
-| `profiles` | `profiles/<name>.nix` |
-| host       | `machines/<host>/`    |
+`modules/theme.nix` owns everything visual.
 
-Everything in `base` lands on every machine. A _module_ configures one feature and owns everything about it (package, enable, settings); `theme.nix` owns everything visual. A _profile_ bundles modules that belong together, plus the odd one-liner that doesn't deserve a module. A machine holds hardware facts and picks one or more profiles.
-
-`theme/` is the [nordix](theme/README.md) GNOME theme. It is self-contained and Nix-free (`cd theme && ./build.sh` needs only `sh`, `jq` and `python3`) and ships its own tagged release tarballs (`theme-vX.Y.Z`) for non-NixOS machines. `flake.nix` builds it as `.#theme`, and `modules/theme.nix` reads only that build plus `theme/tokens.json`.
+`theme/` builds without Nix (`./build.sh`: `sh`, `jq`, `python3`) and is tagged separately as `theme-vX.Y.Z`. The flake builds it as `.#theme`.
 
 ## Development
 
-With [direnv](https://direnv.net/), the repository root loads a devShell containing `statix`, `deadnix`, `nixfmt`, a `lint` script, and `jq`, `python3` and `shellcheck` for `theme/`.
+[direnv](https://direnv.net/) loads the devShell with all tools.
 
 ```sh
 nix run .#lint    # statix + deadnix + nixfmt
-nix flake check   # evaluate configurations
+nix flake check   # evaluate every machine
 nix build .#theme # build theme/ in the Nix sandbox
 ```
 
+Theme development and releases: [theme README](theme/README.md#development).
+
 ### CI
 
-`.github/workflows/nix.yaml` runs `nix run .#lint`, `nix flake check` and `nix build .#theme` on every change except Markdown-only ones. `.github/workflows/theme.yaml` builds, tests and shellchecks `theme/` without Nix whenever it changes, and `theme-release.yaml` publishes a release for every `theme-v*` tag.
+| Workflow             | Runs on                   | Does                                                     |
+| -------------------- | ------------------------- | -------------------------------------------------------- |
+| `nix.yaml`           | every non-Markdown change | `nix run .#lint`, `nix flake check`, `nix build .#theme` |
+| `theme.yaml`         | changes under `theme/`    | build, tests, shellcheck, without Nix                    |
+| `theme-release.yaml` | `theme-v*` tags           | release tarball and checksum                             |
 
-While the CI can't verify actual runtime behaviour, a green run signals well-formed & formatted code and that all configurations evaluate.
+CI checks evaluation and formatting, not runtime behaviour.

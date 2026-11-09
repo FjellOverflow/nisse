@@ -1,5 +1,5 @@
 {
-  description = "NixOS configurations";
+  description = "nordix: NixOS configurations and the nordix GNOME theme";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
   inputs.nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
