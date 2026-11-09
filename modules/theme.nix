@@ -1,6 +1,6 @@
 {
   pkgs,
-  nordfra,
+  nordix-theme,
   user,
   ...
 }:
@@ -20,7 +20,7 @@ in
     (_: prev: {
       gnome-shell = prev.gnome-shell.overrideAttrs (old: {
         postInstall = (old.postInstall or "") + ''
-          PATH=${prev.glib.dev}/bin:$PATH sh ${nordfra}/gdm-resource.sh \
+          PATH=${prev.glib.dev}/bin:$PATH sh ${nordix-theme}/gdm-resource.sh \
             $out/share/gnome-shell/gnome-shell-theme.gresource \
             $out/share/gnome-shell/gnome-shell-theme.gresource
         '';
@@ -41,10 +41,10 @@ in
   ];
 
   home-manager.users.${user} = _: {
-    xdg.configFile."gtk-3.0/gtk.css".source = "${nordfra}/variants/dark/config/gtk-3.0/gtk.css";
-    xdg.configFile."gtk-4.0/gtk.css".source = "${nordfra}/config/gtk-4.0/gtk.css";
-    xdg.dataFile."themes/nordfra".source = "${nordfra}/data/themes/nordfra";
-    xdg.dataFile."icons/nordfra".source = "${nordfra}/data/icons/nordfra";
+    xdg.configFile."gtk-3.0/gtk.css".source = "${nordix-theme}/variants/dark/config/gtk-3.0/gtk.css";
+    xdg.configFile."gtk-4.0/gtk.css".source = "${nordix-theme}/config/gtk-4.0/gtk.css";
+    xdg.dataFile."themes/nordix".source = "${nordix-theme}/data/themes/nordix";
+    xdg.dataFile."icons/nordix".source = "${nordix-theme}/data/icons/nordix";
 
     # merged with the list in gnome.nix
     dconf.settings."org/gnome/shell".enabled-extensions = [
@@ -56,7 +56,7 @@ in
       color-scheme = "prefer-dark";
       cursor-theme = "Adwaita";
       gtk-theme = "adw-gtk3-dark";
-      icon-theme = "nordfra";
+      icon-theme = "nordix";
       accent-color = tokens.gnome_accent;
       font-name = uiFont;
       document-font-name = "Recursive Sans Linear Static 12";
@@ -68,7 +68,7 @@ in
     };
 
     dconf.settings."org/gnome/shell/extensions/user-theme" = {
-      name = "nordfra";
+      name = "nordix";
     };
 
     dconf.settings."org/gnome/shell/extensions/blur-my-shell/overview" = {

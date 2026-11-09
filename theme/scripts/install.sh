@@ -9,14 +9,14 @@ usage() {
   echo "Usage: $0 [-l | -d | -r]"
   echo "  -l, --light   install and switch GNOME to light mode"
   echo "  -d, --dark    install and switch GNOME to dark mode"
-  echo "  -r, --remove  remove nordfra and restore the files it backed up"
-  echo "Without an option, nordfra is installed in the mode of the current Shell theme."
+  echo "  -r, --remove  remove nordix and restore the files it backed up"
+  echo "Without an option, nordix is installed in the mode of the current Shell theme."
 }
 
 shell_theme() {
   case $1 in
-    light) echo nordfra-light ;;
-    *) echo nordfra ;;
+    light) echo nordix-light ;;
+    *) echo nordix ;;
   esac
 }
 
@@ -43,10 +43,10 @@ remove_empty_dirs() {
 install_file() {
   source=$1 target=$2
   mkdir -p "$(dirname "$target")"
-  if [ "${target#"$config"/}" != "$target" ] && [ -f "$target" ] && [ ! -e "$target.nordfra-backup" ] &&
-    ! grep -qF '/* nordfra */' "$target" && ! cmp -s "$source" "$target"; then
-    mv "$target" "$target.nordfra-backup"
-    echo "backed up $target to $target.nordfra-backup"
+  if [ "${target#"$config"/}" != "$target" ] && [ -f "$target" ] && [ ! -e "$target.nordix-backup" ] &&
+    ! grep -qF '/* nordix */' "$target" && ! cmp -s "$source" "$target"; then
+    mv "$target" "$target.nordix-backup"
+    echo "backed up $target to $target.nordix-backup"
   fi
   cp "$source" "$target"
 }
@@ -54,18 +54,18 @@ install_file() {
 remove_file() {
   target=$2
   rm -f "$target"
-  if [ -f "$target.nordfra-backup" ]; then
-    mv "$target.nordfra-backup" "$target"
+  if [ -f "$target.nordix-backup" ]; then
+    mv "$target.nordix-backup" "$target"
     echo "restored $target"
   fi
 }
 
 reload_icon_theme() {
   command -v gsettings > /dev/null || return 0
-  [ "$(gsettings get org.gnome.desktop.interface icon-theme 2> /dev/null)" = "'nordfra'" ] || return 0
+  [ "$(gsettings get org.gnome.desktop.interface icon-theme 2> /dev/null)" = "'nordix'" ] || return 0
   gsettings set org.gnome.desktop.interface icon-theme Adwaita || return 0
   sleep 1
-  gsettings set org.gnome.desktop.interface icon-theme nordfra
+  gsettings set org.gnome.desktop.interface icon-theme nordix
 }
 
 reload_shell_theme() {
@@ -109,7 +109,7 @@ install_theme() {
   each_file install_file
   reload_icon_theme
   reload_shell_theme
-  echo "nordfra installed ($mode)"
+  echo "nordix installed ($mode)"
   for theme in "$(shell_theme dark)" "$(shell_theme light)"; do
     if [ -e "$HOME/.themes/$theme" ]; then
       echo "warning: $HOME/.themes/$theme shadows the installed Shell theme; remove it to use this one" >&2
@@ -131,7 +131,7 @@ case "${1:-}" in
     mode=$(current_mode)
     each_file remove_file
     remove_empty_dirs
-    echo "nordfra removed"
+    echo "nordix removed"
     ;;
   -h | --help)
     usage

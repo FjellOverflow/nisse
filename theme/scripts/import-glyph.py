@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Normalise an SVG into a nordfra glyph: 16x16 viewBox, colours stripped so the template's fill applies.
+"""Normalise an SVG into a nordix glyph: 16x16 viewBox, colours stripped so the template's fill applies.
 
 Usage: import-glyph.py [--silhouette] SOURCE.svg DEST.svg
        import-glyph.py --check GLYPH.svg...

@@ -24,12 +24,12 @@ jobs:
       - run: ./build.sh
       - name: Package theme
         run: |
-          tar -czf nordfra.tar.gz -C dist nordfra
-          sha256sum nordfra.tar.gz > nordfra.tar.gz.sha256
+          tar -czf nordix-theme.tar.gz -C dist nordix-theme
+          sha256sum nordix-theme.tar.gz > nordix-theme.tar.gz.sha256
       - name: Publish release
         run: |
           awk -v heading="## $GITHUB_REF_NAME " 'index($0, heading) == 1 { found = 1; next } found && /^- - -/ { exit } found' CHANGELOG.md > notes.md
           test -s notes.md
-          gh release create "$GITHUB_REF_NAME" nordfra.tar.gz nordfra.tar.gz.sha256 --title "$GITHUB_REF_NAME" --notes-file notes.md
+          gh release create "$GITHUB_REF_NAME" nordix-theme.tar.gz nordix-theme.tar.gz.sha256 --title "$GITHUB_REF_NAME" --notes-file notes.md
         env:
           GH_TOKEN: ${{ github.token }}

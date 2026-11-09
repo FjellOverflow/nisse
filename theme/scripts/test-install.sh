@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -eu
 
-cd "$(dirname "$0")/../dist/nordfra"
+cd "$(dirname "$0")/../dist/nordix-theme"
 
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
@@ -31,7 +31,7 @@ find config data variants/dark/config -type f | while read -r source; do
   esac
   cmp -s "$source" "$target" || fail "$source is not installed at $target"
 done
-[ "$(cat "$XDG_CONFIG_HOME/gtk-3.0/gtk.css.nordfra-backup")" = "user css" ] || fail "gtk-3.0/gtk.css was not backed up"
+[ "$(cat "$XDG_CONFIG_HOME/gtk-3.0/gtk.css.nordix-backup")" = "user css" ] || fail "gtk-3.0/gtk.css was not backed up"
 
 snapshot installed
 ./install.sh > /dev/null

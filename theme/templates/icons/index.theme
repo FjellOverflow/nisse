@@ -1,5 +1,5 @@
 [Icon Theme]
-Name=nordfra
+Name=nordix
 Comment=Nord app, folder and file icons
 Inherits=Adwaita,hicolor
 Directories=scalable/apps,scalable/places,scalable/mimetypes

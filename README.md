@@ -1,6 +1,6 @@
 <h1 align="center">
   <img src="./.github/logo.svg" height="64" align="middle" alt="" />
-  &nbsp;nisse
+  &nbsp;nordix
 </h1>
 
 <p align="center">
@@ -10,14 +10,12 @@
 <p align="center">
   <img src="https://img.shields.io/badge/NixOS-26.05-5277C3?logo=nixos&logoColor=white"/>
   &ensp;
-  <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/nisse/nix.yaml?branch=main&label=CI"/>
+  <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/nordix/nix.yaml?branch=main&label=CI"/>
   &ensp;
-  <img src="https://img.shields.io/github/v/tag/FjellOverflow/nisse?label=Version"/>
+  <img src="https://img.shields.io/github/v/tag/FjellOverflow/nordix?label=Version"/>
   &ensp;
-  <img src="https://img.shields.io/github/license/FjellOverflow/nisse?label=License"/>
+  <img src="https://img.shields.io/github/license/FjellOverflow/nordix?label=License"/>
 </p>
-
-> A *nisse* (Norwegian: [ˈnɪ̂sːə]) is a gnome-like household spirit from Nordic culture who, if rewarded with porridge, might help with common chores.
 
 <p align="center">
   <a href="#installation">Installation</a> |
@@ -37,7 +35,7 @@ It is assumed that the autoconfiguration takes place on a freshly installed mach
 
 ```sh
 nix-shell -p git
-git clone https://github.com/FjellOverflow/nisse.git ~/.nisse && cd ~/.nisse
+git clone https://github.com/FjellOverflow/nordix.git ~/.nordix && cd ~/.nordix
 ```
 
 2. Copy pre-generated configs
@@ -58,18 +56,18 @@ sudo chown $(whoami): machines/<host>/*
 
 ```sh
 git add .
-sudo nixos-rebuild switch --flake ~/.nisse#<host>
+sudo nixos-rebuild switch --flake ~/.nordix#<host>
 ```
 
 5. Wire in new config, once the activation above succeeded
 
 ```sh
 sudo rm -rf /etc/nixos
-sudo ln -s ~/.nisse /etc/nixos
+sudo ln -s ~/.nordix /etc/nixos
 ```
 
 > [!NOTE]
-> After symlinking `/etc/nixos` to it, `~/.nisse` should not be deleted or moved, otherwise the symlink needs updating.
+> After symlinking `/etc/nixos` to it, `~/.nordix` should not be deleted or moved, otherwise the symlink needs updating.
 
 ## Usage
 
@@ -78,7 +76,7 @@ Once set up, the configuration can be re-run at any time.
 1. Update the repository
 
 ```sh
-cd ~/.nisse && git pull
+cd ~/.nordix && git pull
 ```
 
 2. Apply new changes
@@ -100,7 +98,7 @@ The configuration is organized in four layers:
 
 Everything in `base` lands on every machine. A _module_ configures one feature and owns everything about it (package, enable, settings); `theme.nix` owns everything visual. A _profile_ bundles modules that belong together, plus the odd one-liner that doesn't deserve a module. A machine holds hardware facts and picks one or more profiles.
 
-`theme/` is the [nordfra](theme/README.md) GNOME theme. It is self-contained and Nix-free (`cd theme && ./build.sh` needs only `sh`, `jq` and `python3`) and ships its own tagged release tarballs (`theme-vX.Y.Z`) for non-NixOS machines. `flake.nix` builds it as `.#theme`, and `modules/theme.nix` reads only that build plus `theme/tokens.json`.
+`theme/` is the [nordix](theme/README.md) GNOME theme. It is self-contained and Nix-free (`cd theme && ./build.sh` needs only `sh`, `jq` and `python3`) and ships its own tagged release tarballs (`theme-vX.Y.Z`) for non-NixOS machines. `flake.nix` builds it as `.#theme`, and `modules/theme.nix` reads only that build plus `theme/tokens.json`.
 
 ## Development
 

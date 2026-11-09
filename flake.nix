@@ -66,11 +66,11 @@
         pkgs.python3
       ];
       theme = pkgs.stdenvNoCC.mkDerivation {
-        name = "nordfra";
+        name = "nordix-theme";
         src = ./theme;
         nativeBuildInputs = themeTools;
         buildPhase = "patchShebangs scripts && sh build.sh";
-        installPhase = "cp -r dist/nordfra $out";
+        installPhase = "cp -r dist/nordix-theme $out";
       };
       machines = builtins.attrNames (
         nixpkgs.lib.filterAttrs (_: type: type == "directory") (builtins.readDir ./machines)
@@ -110,7 +110,7 @@
               user
               spicetify-nix
               ;
-            nordfra = theme;
+            nordix-theme = theme;
           };
           modules = commonModules ++ [ ./machines/${host}/default.nix ];
         }

@@ -3,9 +3,9 @@ set -eu
 
 cd "$(dirname "$0")"
 target=/usr/share/gnome-shell/gnome-shell-theme.gresource
-backup=$target.nordfra-backup
+backup=$target.nordix-backup
 # Must match the marker in gdm-resource.sh.
-marker='/* nordfra: login screen */'
+marker='/* nordix: login screen */'
 
 usage() {
   echo "Usage: $0 [-r]"
@@ -61,8 +61,8 @@ theme() {
     return
   fi
 
-  as_root install -m 644 "$work/theme.gresource" "$target.nordfra-new"
-  as_root mv "$target.nordfra-new" "$target"
+  as_root install -m 644 "$work/theme.gresource" "$target.nordix-new"
+  as_root mv "$target.nordix-new" "$target"
   echo "login screen themed; log out to see it"
 }
 

@@ -3,7 +3,7 @@ set -eu
 
 release_dir=$(dirname "$0")
 prefix=/org/gnome/shell/theme
-marker='/* nordfra: login screen */'
+marker='/* nordix: login screen */'
 
 if [ $# -ne 2 ]; then
   echo "Usage: $0 <stock.gresource> <out.gresource>" >&2
@@ -34,7 +34,7 @@ if [ ! -s "$stylesheet" ]; then
   exit 1
 fi
 printf '\n%s\n' "$marker" >> "$stylesheet"
-cat "$release_dir/data/themes/nordfra/gnome-shell/gnome-shell.css" >> "$stylesheet"
+cat "$release_dir/data/themes/nordix/gnome-shell/gnome-shell.css" >> "$stylesheet"
 
 glib-compile-resources --sourcedir="$work" --target="$work/theme.gresource" "$work/theme.xml"
 # install-gdm.sh detects a themed file by grepping its raw bytes, so the stylesheet must stay uncompressed.

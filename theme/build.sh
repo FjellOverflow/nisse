@@ -2,7 +2,7 @@
 set -eu
 
 cd "$(dirname "$0")"
-out=dist/nordfra
+out=dist/nordix-theme
 
 substitutions_for() {
   jq -r --arg variant "$1" '
@@ -28,7 +28,7 @@ while read -r variant template target; do
 done <<EOF
 dark gtk-3.0.css variants/dark/config/gtk-3.0/gtk.css
 light gtk-3.0.css variants/light/config/gtk-3.0/gtk.css
-dark icons/index.theme data/icons/nordfra/index.theme
+dark icons/index.theme data/icons/nordix/index.theme
 EOF
 
 render_shell() {
@@ -39,8 +39,8 @@ render_shell() {
     sed "$dark" templates/shell/always-dark.css
   } > "$out/data/themes/$2/gnome-shell/gnome-shell.css"
 }
-render_shell "$dark" nordfra
-render_shell "$light" nordfra-light
+render_shell "$dark" nordix
+render_shell "$light" nordix-light
 
 mkdir -p "$out/config/gtk-4.0"
 {
@@ -64,7 +64,7 @@ compose() {
   done < "templates/icons/$template_file" | sed "$dark"
 }
 
-icons=$out/data/icons/nordfra/scalable
+icons=$out/data/icons/nordix/scalable
 while read -r context template; do
   mkdir -p "$icons/$context"
   for glyph in "icons/$context"/*.svg; do
