@@ -5,6 +5,10 @@
 </p>
 
 <p align="center">
+  <img src="./preview.png" width="60%"/>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/NixOS-26.05-5277C3?logo=nixos&logoColor=white"/>
   &ensp;
   <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/nordix/nix.yaml?branch=main&label=CI"/>
