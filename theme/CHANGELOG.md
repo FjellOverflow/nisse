@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## theme-v0.8.1 - 2026-11-11
+#### Bug Fixes
+- (**theme**) turn off the overview blur so the overview shows the theme background - (c76cb30) - FjellOverflow
+- (**theme**) theme the quick settings submenu background - (4728684) - FjellOverflow
+#### Documentation
+- rewrite the readmes for nordix and drop the old logo - (2b553f6) - FjellOverflow
+
+- - -
+
 ## theme-v0.8.0 - 2026-11-09
 #### Features
 - <span style="background-color: #d73a49; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold; font-size: 0.85em;">BREAKING</span>(**theme**) name the shell themes nordix-dark and nordix-light and the icon theme nordix-icons - (a28774c) - FjellOverflow
