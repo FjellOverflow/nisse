@@ -53,9 +53,10 @@ Switch by rerunning `install.sh` with the other option; without one it keeps the
 
 ### Blur my Shell
 
-Turn off its styling, and the popup and panel blur (it can't round corners on GNOME 51):
+Turn off its styling, the overview blur, and the popup and panel blur (it can't round corners on GNOME 51):
 
 ```sh
+dconf write /org/gnome/shell/extensions/blur-my-shell/overview/blur false
 dconf write /org/gnome/shell/extensions/blur-my-shell/overview/style-components 0
 dconf write /org/gnome/shell/extensions/blur-my-shell/appfolder/style-dialogs 0
 dconf write /org/gnome/shell/extensions/blur-my-shell/popup/blur false

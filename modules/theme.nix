@@ -72,6 +72,7 @@ in
     };
 
     dconf.settings."org/gnome/shell/extensions/blur-my-shell/overview" = {
+      blur = false;
       style-components = 0;
     };
 
