@@ -212,6 +212,7 @@
     dconf.settings."org/gnome/desktop/app-folders/folders/Office" = {
       name = "Office";
       apps = [
+        "io.github.alainm23.planify.desktop"
         "org.libreoffice.LibreOffice.desktop"
         "org.libreoffice.LibreOffice.base.desktop"
         "org.libreoffice.LibreOffice.calc.desktop"

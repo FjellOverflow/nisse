@@ -25,6 +25,7 @@
   services.flatpak.packages = [
     "com.bitwarden.desktop"
     "com.mattjakeman.ExtensionManager"
+    "io.github.alainm23.planify"
     "md.obsidian.Obsidian"
     "org.gimp.GIMP"
     "org.inkscape.Inkscape"
