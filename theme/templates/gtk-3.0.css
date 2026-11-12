@@ -32,11 +32,11 @@
 @define-color popover_bg_color {{ colors.raised }};
 @define-color popover_fg_color {{ colors.fg_bright }};
 
-decoration {
+window:not(.popup) > decoration {
   box-shadow: 0 3px 12px 1px {{ colors.shadow }}, 0 0 0 1px {{ colors.bg3 }};
 }
 
-decoration:backdrop {
+window:not(.popup) > decoration:backdrop {
   box-shadow: 0 3px 12px 1px transparent, 0 2px 6px 2px {{ colors.shadow_backdrop }}, 0 0 0 1px {{ colors.bg2 }};
 }
 
@@ -44,6 +44,32 @@ decoration:backdrop {
 .fullscreen decoration {
   border-radius: 0;
   box-shadow: none;
+}
+
+window.popup,
+window.csd.popup {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+window.popup > decoration,
+window.popup > decoration:backdrop,
+.csd.popup decoration,
+.csd.popup decoration:backdrop {
+  box-shadow: none;
+}
+
+menu,
+.csd menu,
+.csd.popup menu {
+  margin: 0;
+  border: 1px solid {{ colors.bg3 }};
+  box-shadow: none;
+}
+
+menu {
+  -GtkMenu-horizontal-offset: -12;
 }
 
 messagedialog .titlebar,
