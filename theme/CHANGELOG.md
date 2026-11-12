@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## theme-v0.8.2 - 2026-11-12
+#### Bug Fixes
+- (**theme**) turn off the window list blur so the bottom bar shows the theme background - (6a4e45c) - FjellOverflow
+
+- - -
+
 ## theme-v0.8.1 - 2026-11-11
 #### Bug Fixes
 - (**theme**) turn off the overview blur so the overview shows the theme background - (c76cb30) - FjellOverflow
