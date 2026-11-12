@@ -152,6 +152,7 @@
         "codium.desktop"
         "org.gnome.Nautilus.desktop"
         "md.obsidian.Obsidian.desktop"
+        "io.github.alainm23.planify.desktop"
         "com.bitwarden.desktop.desktop"
         "spotify.desktop"
         "org.gnome.Boxes.desktop"
@@ -212,7 +213,6 @@
     dconf.settings."org/gnome/desktop/app-folders/folders/Office" = {
       name = "Office";
       apps = [
-        "io.github.alainm23.planify.desktop"
         "org.libreoffice.LibreOffice.desktop"
         "org.libreoffice.LibreOffice.base.desktop"
         "org.libreoffice.LibreOffice.calc.desktop"
